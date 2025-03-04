@@ -1,0 +1,381 @@
+query getAccountTokensTotal(
+  $address: String!
+  $where: [current_token_ownerships_v2_bool_exp!]!
+) {
+  current_token_ownerships_v2_aggregate(
+    where: {
+      owner_address: { _eq: $address }
+      amount: { _gt: 0 }
+      _and: $where
+    }
+  ) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query getAccountTokenOwnerships(
+  $address: String!
+  $offset: Int
+  $limit: Int
+  $where: [current_token_ownerships_v2_bool_exp!]!
+  $order_by: [current_token_ownerships_v2_order_by!]!
+) {
+  current_token_ownerships_v2(
+    where: {
+      owner_address: { _eq: $address }
+      amount: { _gt: 0 }
+      # Filter out tokens that don't have a token_data_id (i.e. no token data).
+      current_token_data: { token_data_id: { _is_null: false } }
+      _and: $where
+    }
+    offset: $offset
+    limit: $limit
+    order_by: $order_by
+  ) {
+    ...TokenOwnershipFields
+  }
+}
+
+query getCurrentTokenData($tokenId: String!, $address: String!) {
+  current_token_datas_v2(where: { token_data_id: { _eq: $tokenId } }) {
+    token_name
+    current_collection {
+      collection_name
+    }
+    last_transaction_timestamp
+    description
+    token_properties
+    token_uri
+    cdn_asset_uris {
+      cdn_image_uri
+    }
+  }
+  created_activity: token_activities_v2(
+    where: { token_data_id: { _eq: $tokenId } }
+    order_by: [{ transaction_version: asc }, { event_index: asc }]
+    limit: 1
+  ) {
+    from_address
+    to_address
+    transaction_timestamp
+    type
+    transaction_version
+    event_index
+    event_account_address
+  }
+  acquired_activity: token_activities_v2(
+    where: { token_data_id: { _eq: $tokenId }, to_address: { _eq: $address } }
+    order_by: [{ transaction_version: desc }, { event_index: desc }]
+    limit: 1
+  ) {
+    from_address
+    to_address
+    transaction_timestamp
+    type
+    transaction_version
+    event_index
+  }
+}
+
+query getAccountCollections(
+  $address: String!
+  $offset: Int
+  $limit: Int
+  $where: [current_collection_ownership_v2_view_bool_exp!]!
+  $order_by: [current_collection_ownership_v2_view_order_by!]!
+) {
+  current_collection_ownership_v2_view(
+    where: { owner_address: { _eq: $address }, _and: $where }
+    offset: $offset
+    limit: $limit
+    order_by: $order_by
+  ) {
+    ...CollectionOwnership
+  }
+}
+
+query getTokenData($address: String!) {
+  current_token_datas_v2(where: { token_data_id: { _eq: $address } }) {
+    ...TokenDataFields
+  }
+  created_activity: token_activities_v2(
+    where: { token_data_id: { _eq: $address } }
+    order_by: [{ transaction_version: asc }, { event_index: asc }]
+    limit: 1
+  ) {
+    from_address
+    to_address
+    transaction_timestamp
+    type
+    transaction_version
+    event_index
+    event_account_address
+  }
+  acquired_activity: token_activities_v2(
+    where: { token_data_id: { _eq: $address } }
+    order_by: [{ transaction_version: desc }, { event_index: desc }]
+    limit: 1
+  ) {
+    from_address
+    to_address
+    transaction_timestamp
+    type
+    transaction_version
+    event_index
+    event_account_address
+  }
+}
+
+query getActivitiesAggregate($account_address: String!) {
+  address_events_summary(
+    where: { account_address: { _eq: $account_address } }
+  ) {
+    block_metadata {
+      timestamp
+    }
+    num_distinct_versions
+  }
+}
+
+query getTokenActivities($tokenId: String!, $offset: Int, $limit: Int) {
+  token_activities_v2(
+    where: { token_data_id: { _eq: $tokenId } }
+    order_by: [{ transaction_timestamp: desc }, { transaction_version: desc }]
+    offset: $offset
+    limit: $limit
+  ) {
+    ...TokenActivity
+  }
+}
+
+query getTokenAcquisitionActivity($address: String!, $tokenId: String!) {
+  token_activities_v2(
+    where: { token_data_id: { _eq: $tokenId }, to_address: { _eq: $address } }
+    order_by: [{ transaction_timestamp: desc }, { transaction_version: desc }]
+  ) {
+    transaction_timestamp
+  }
+}
+
+fragment TokenDataFields on current_token_datas_v2 {
+  current_collection {
+    ...CollectionDataFields
+  }
+  cdn_asset_uris {
+    cdn_image_uri
+  }
+  last_transaction_timestamp
+  last_transaction_version
+  token_properties
+  token_standard
+  is_fungible_v2
+  token_data_id
+  description
+  token_name
+  token_uri
+}
+
+fragment TokenOwnershipFields on current_token_ownerships_v2 {
+  current_token_data {
+    ...TokenDataFields
+  }
+  is_soulbound_v2
+  owner_address
+  amount
+}
+
+fragment CollectionDataFields on current_collections_v2 {
+  uri
+  max_supply
+  description
+  collection_name
+  collection_id
+  creator_address
+  cdn_asset_uris {
+    cdn_image_uri
+  }
+}
+
+fragment CollectionOwnership on current_collection_ownership_v2_view {
+  distinct_tokens
+  single_token_uri
+  current_collection {
+    ...CollectionDataFields
+  }
+}
+
+fragment BaseTokenActivity on token_activities_v2 {
+  from_address
+  to_address
+  transaction_version
+  transaction_timestamp
+  type
+  event_account_address
+  event_index
+}
+
+fragment TokenActivity on token_activities_v2 {
+  ...BaseTokenActivity
+  primary_aptos_name_from: aptos_names_from(
+    where: { is_primary: { _eq: true }, is_active: { _eq: true } }
+  ) {
+    domain
+    subdomain
+  }
+  primary_aptos_name_to: aptos_names_to(
+    where: { is_primary: { _eq: true }, is_active: { _eq: true } }
+  ) {
+    domain
+    subdomain
+  }
+  token_amount
+  current_token_data {
+    ...TokenDataFields
+  }
+  property_version_v1
+  token_amount
+  token_data_id
+}
+
+fragment FungibleAssetActivity on fungible_asset_activities {
+  owner_primary_aptos_name: owner_aptos_names(
+    where: { is_primary: { _eq: true }, is_active: { _eq: true } }
+  ) {
+    ...PrimaryAptosName
+  }
+  type
+  amount
+  block_height
+  asset_type
+  metadata {
+    ...FungibleAssetMetadataFields
+  }
+  entry_function_id_str
+  owner_address
+  event_index
+  is_gas_fee
+  gas_fee_payer_address
+  is_transaction_success
+  transaction_timestamp
+  transaction_version
+}
+
+fragment DelegatedStakingActivity on delegated_staking_activities {
+  amount
+  delegator_address
+  event_index
+  event_type
+  pool_address
+  transaction_version
+}
+
+fragment AccountTransaction on account_transactions {
+  account_address
+  transaction_version
+  fungible_asset_activities(
+    where: {
+      asset_type: { _is_null: false }
+      _and: $fungible_asset_activities_where
+    }
+    order_by: $fungible_asset_activities_order_by
+  ) {
+    ...FungibleAssetActivity
+  }
+  token_activities_v2(
+    where: { _and: $token_activities_v2_where }
+    order_by: $token_activities_v2_order_by
+  ) {
+    ...TokenActivity
+  }
+  delegated_staking_activities(order_by: { event_index: desc }) {
+    ...DelegatedStakingActivity
+  }
+  user_transaction {
+    sequence_number
+    sender
+  }
+}
+
+query getAccountTransactions(
+  $address: String!
+  $limit: Int
+  $offset: Int
+  $where: [account_transactions_bool_exp!]!
+  $fungible_asset_activities_where: [fungible_asset_activities_bool_exp!]!
+  $token_activities_v2_where: [token_activities_v2_bool_exp!]!
+  $order_by: [account_transactions_order_by!]!
+  $fungible_asset_activities_order_by: [fungible_asset_activities_order_by!]!
+  $token_activities_v2_order_by: [token_activities_v2_order_by!]!
+) {
+  account_transactions(
+    limit: $limit
+    offset: $offset
+    where: { account_address: { _eq: $address }, _and: $where }
+    order_by: $order_by
+  ) {
+    ...AccountTransaction
+  }
+}
+
+query getFungibleAssetMetadata($type: String!) {
+  fungible_asset_metadata(where: { asset_type: { _eq: $type } }) {
+    asset_type
+    decimals
+    name
+    symbol
+  }
+}
+
+fragment FungibleAssetBalanceFields on current_fungible_asset_balances {
+  amount
+  amount_v1
+  amount_v2
+  asset_type
+  asset_type_v1
+  asset_type_v2
+  is_frozen
+  is_primary
+  last_transaction_timestamp
+  last_transaction_version
+  token_standard
+  owner_address
+  metadata {
+    ...FungibleAssetMetadataFields
+  }
+}
+
+fragment FungibleAssetMetadataFields on fungible_asset_metadata {
+  asset_type
+  creator_address
+  decimals
+  icon_uri
+  project_uri
+  name
+  symbol
+  token_standard
+  supply_v2
+  maximum_v2
+}
+
+query getFungibleAssetBalances(
+  $where: current_fungible_asset_balances_bool_exp
+  $order_by: [current_fungible_asset_balances_order_by!]
+  $offset: Int
+  $limit: Int
+) {
+  current_fungible_asset_balances(
+    where: $where
+    order_by: $order_by
+    offset: $offset
+    limit: $limit
+  ) {
+    ...FungibleAssetBalanceFields
+  }
+}
+
+fragment PrimaryAptosName on current_aptos_names {
+  domain
+  subdomain
+}

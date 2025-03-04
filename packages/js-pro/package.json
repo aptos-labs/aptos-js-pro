@@ -1,0 +1,64 @@
+{
+  "name": "@aptos-labs/js-pro",
+  "version": "0.1.0-beta.0",
+  "description": "State management and library of utilities for Aptos applications.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aptos-labs/js-pro.git",
+    "directory": "packages/js-pro"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "generate": "graphql-codegen",
+    "lint": "eslint --cache ./src",
+    "lint:fix": "eslint --cache ./src --fix",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "graphql": "^16.10.0",
+    "graphql-request": "^7.1.2",
+    "graphql-tag": "^2.12.6",
+    "zustand": "^5.0.3"
+  },
+  "peerDependencies": {
+    "@aptos-labs/ts-sdk": ">=1.33.2"
+  },
+  "devDependencies": {
+    "@aptos-labs/eslint-config-petra": "workspace:*",
+    "@graphql-codegen/add": "^5.0.3",
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/import-types-preset": "^3.0.0",
+    "@graphql-codegen/typescript-graphql-request": "^6.2.0",
+    "@graphql-codegen/typescript-operations": "^4.5.1",
+    "@graphql-codegen/typescript-resolvers": "^4.4.4",
+    "tsup": "^8.3.6",
+    "typescript": "^5.8.2"
+  },
+  "keywords": [
+    "aptos",
+    "apt",
+    "siwa",
+    "web3",
+    "blockchain",
+    "dapps",
+    "wallet"
+  ]
+}

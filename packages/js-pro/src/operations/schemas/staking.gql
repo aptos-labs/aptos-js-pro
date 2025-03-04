@@ -1,0 +1,53 @@
+query getDelegatedStakingRoyalties($address: String!, $pool: String) {
+  delegated_staking_activities(
+    where: {
+      delegator_address: { _eq: $address }
+      pool_address: { _eq: $pool }
+    }
+    order_by: { transaction_version: desc }
+  ) {
+    amount
+    delegator_address
+    event_index
+    event_type
+    pool_address
+    transaction_version
+  }
+}
+
+query getDelegatedStaking($address: String!) {
+  delegator_distinct_pool(where: { delegator_address: { _eq: $address } }) {
+    delegator_address
+    pool_address
+    current_pool_balance {
+      operator_commission_percentage
+    }
+    staking_pool_metadata {
+      operator_address
+      operator_aptos_name {
+        domain
+      }
+    }
+  }
+}
+
+query getDelegationPools {
+  delegated_staking_pools {
+    staking_pool_address
+    current_staking_pool {
+      operator_address
+    }
+  }
+}
+
+query getNumberOfDelegators($poolAddress: String) {
+  num_active_delegator_per_pool(
+    where: {
+      pool_address: { _eq: $poolAddress }
+      num_active_delegator: { _gt: "0" }
+    }
+    distinct_on: pool_address
+  ) {
+    num_active_delegator
+  }
+}
