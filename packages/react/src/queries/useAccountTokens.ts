@@ -35,7 +35,7 @@ export function useAccountTokens({
   orderBy,
   where,
   ...queryOptions
-}: UseAccountTokensQueryParameters) {
+}: UseAccountTokensQueryParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;

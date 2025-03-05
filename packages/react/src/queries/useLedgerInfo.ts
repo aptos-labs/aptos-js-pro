@@ -20,7 +20,7 @@ export type UseLedgerInfoParameters = FetchLedgerInfoParameters &
 export function useLedgerInfo({
   network,
   ...queryOptions
-}: UseLedgerInfoParameters) {
+}: UseLedgerInfoParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;

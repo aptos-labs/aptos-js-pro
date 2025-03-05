@@ -20,7 +20,7 @@ export type UseSignTransactionMutationParameters = UseMutationOptions<
 
 export function useSignTransaction({
   ...mutationOptions
-}: UseSignTransactionMutationParameters) {
+}: UseSignTransactionMutationParameters = {}) {
   const core = useAptosCore();
 
   return useMutation({

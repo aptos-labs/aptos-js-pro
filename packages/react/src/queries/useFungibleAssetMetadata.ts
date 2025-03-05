@@ -23,7 +23,7 @@ export function useFungibleAssetMetadata({
   network,
   asset,
   ...queryOptions
-}: UseFungibleAssetMetadataQueryParameters) {
+}: UseFungibleAssetMetadataQueryParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;

@@ -32,8 +32,6 @@ export function useAptBalance({
 
   const activeAddress = address ?? core.account?.address;
 
-  console.log(activeAddress?.toString());
-
   const activeNetwork = network ?? core.network;
 
   const enabled = Boolean(activeAddress && (queryOptions.enabled ?? true));

@@ -32,7 +32,7 @@ export function useAccountCoins({
   where,
   orderBy,
   ...queryOptions
-}: UseAccountCoinsQueryParameters) {
+}: UseAccountCoinsQueryParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;

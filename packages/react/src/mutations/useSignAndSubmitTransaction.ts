@@ -18,7 +18,7 @@ export type UseSignAndSubmitTransactionMutationParameters = UseMutationOptions<
 
 export function useSignAndSubmitTransaction({
   ...mutationOptions
-}: UseSignAndSubmitTransactionMutationParameters) {
+}: UseSignAndSubmitTransactionMutationParameters = {}) {
   const core = useAptosCore();
 
   const mutation = useMutation({

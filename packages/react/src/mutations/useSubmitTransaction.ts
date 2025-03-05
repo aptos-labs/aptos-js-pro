@@ -20,7 +20,7 @@ export type UseSubmitTransactionMutationParameters = UseMutationOptions<
 
 export function useSubmitTransaction({
   ...mutationOptions
-}: UseSubmitTransactionMutationParameters) {
+}: UseSubmitTransactionMutationParameters = {}) {
   const core = useAptosCore();
 
   return useMutation({

@@ -6,7 +6,7 @@ import { useAptosCore } from "../AptosJSCoreProvider.js";
 export function useClients() {
   const core = useAptosCore();
   return {
-    aptos: core.client,
+    aptos: core.client.aptos,
     indexer: core.client.indexer,
     client: core.client,
     network: core.network,

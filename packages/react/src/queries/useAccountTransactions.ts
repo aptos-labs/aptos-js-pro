@@ -47,7 +47,7 @@ export function useAccountTransactions({
   tokenActivitiesWhere,
   tokenActivitiesOrderBy,
   ...queryOptions
-}: UseAccountTransactionsQueryParameters) {
+}: UseAccountTransactionsQueryParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;
