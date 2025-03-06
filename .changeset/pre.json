@@ -8,6 +8,7 @@
     "@aptos-labs/js-pro-vite": "0.0.0"
   },
   "changesets": [
-    "fluffy-ideas-ask"
+    "fluffy-ideas-ask",
+    "twenty-stars-jump"
   ]
 }
