@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.3
+
+### Patch Changes
+
+- f57c51a: `useAccountTransactions` will now provide the entryFunction
+
 ## 0.1.0-beta.2
 
 ## 0.1.0-beta.1
