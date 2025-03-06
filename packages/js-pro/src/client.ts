@@ -3,7 +3,13 @@
 
 import { subscribeWithSelector } from "zustand/middleware";
 import { createStore, Mutate, StoreApi } from "zustand/vanilla";
-import { Aptos, AptosConfig, AptosSettings, Network } from "@aptos-labs/ts-sdk";
+import {
+  Aptos,
+  AptosApiType,
+  AptosConfig,
+  AptosSettings,
+  Network,
+} from "@aptos-labs/ts-sdk";
 import { GraphQLClient } from "graphql-request";
 import { Sdk, createIndexerClient } from "./operations/index.js";
 import { AccountInfo, NetworkInfo, SignerClient } from "./types/index.js";
@@ -238,7 +244,10 @@ export class AptosJSProClient {
     clientConfig?: AptosSettings,
     network: NetworkInfo = this.state.network
   ): Sdk | undefined => {
-    const indexerUrl = this.createAptos(clientConfig, network).config.indexer;
+    const indexerUrl = this.createAptos(
+      clientConfig,
+      network
+    ).config.getRequestUrl(AptosApiType.INDEXER);
 
     if (indexerUrl === undefined) return undefined;
 
