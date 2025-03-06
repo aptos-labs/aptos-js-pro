@@ -295,6 +295,7 @@ fragment AccountTransaction on account_transactions {
   user_transaction {
     sequence_number
     sender
+    entry_function_id_str
   }
 }
 

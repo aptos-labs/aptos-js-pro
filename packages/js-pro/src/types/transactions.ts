@@ -16,5 +16,6 @@ export interface AccountTransaction {
   userTransaction?: {
     sequenceNumber: string;
     sender: string;
+    entryFunction: string;
   } | null;
 }

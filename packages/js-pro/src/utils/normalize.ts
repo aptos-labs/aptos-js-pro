@@ -191,6 +191,7 @@ export const normalizeAccountTransaction = (
       ? {
           sequenceNumber: transaction.user_transaction.sequence_number,
           sender: transaction.user_transaction.sender,
+          entryFunction: transaction.user_transaction.entry_function_id_str,
         }
       : undefined,
   };
