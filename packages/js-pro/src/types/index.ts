@@ -8,4 +8,4 @@ export * from "./resources.js";
 export * from "./tokens.js";
 export * from "./fungibleAssets.js";
 export * from "./transactions.js";
-export * from "./activities.js";
+export * from "./activities.js";``

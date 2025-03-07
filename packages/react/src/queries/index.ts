@@ -23,3 +23,4 @@ export * from "./useTokenData.js";
 export * from "./useTransaction.js";
 export * from "./useViewModule.js";
 export * from "./useWaitForTransaction.js";
+export * from "./useEvents.js";

@@ -30,6 +30,9 @@ import {
   fetchAccountCollections,
   fetchViewModule,
   fetchLedgerInfo,
+  fetchEvents,
+  fetchAccountTransactions,
+  fetchAccountTokens,
 } from "./queries/index.js";
 import {
   buildTransaction,
@@ -39,8 +42,6 @@ import {
   submitTransaction,
   waitForTransaction,
 } from "./mutations/index.js";
-import { fetchAccountTokens } from "./queries/fetchAccountTokens.js";
-import { fetchAccountTransactions } from "./queries/fetchAccountTransactions.js";
 
 type IndexerClientOptions = ConstructorParameters<typeof GraphQLClient>[1];
 
@@ -307,6 +308,8 @@ export class AptosJSProClient {
   fetchEstimatedGasPrice = fetchEstimatedGasPrice;
 
   fetchViewModule = fetchViewModule;
+
+  fetchEvents = fetchEvents;
 
   //* Client Mutations
 
