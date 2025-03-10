@@ -8,8 +8,10 @@
     "@aptos-labs/js-pro-vite": "0.0.0"
   },
   "changesets": [
+    "easy-otters-end",
     "fluffy-ideas-ask",
     "fruity-boats-learn",
+    "spotty-brooms-design",
     "twenty-stars-jump"
   ]
 }
