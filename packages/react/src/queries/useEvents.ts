@@ -10,7 +10,7 @@ import { UseQueryOptions } from "../types/queries.js";
 export const getUseEventsQueryKey = (params: {
   network: string;
   minimumLedgerVersion?: AnyNumber;
-  options?: FetchEventsParameters["options"];
+  options?: object;
 }) => ["events", params.network, params.minimumLedgerVersion, params.options];
 
 export type UseEventsQueryParameters = FetchEventsParameters &
