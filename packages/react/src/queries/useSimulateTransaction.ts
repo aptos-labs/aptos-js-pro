@@ -38,6 +38,7 @@ export const getUseSimulateTransactionQueryKey = (params: {
     | ((
         sender: AccountAddress
       ) => Promise<InputGenerateTransactionPayloadData>);
+  sender?: AccountAddress;
 }) => [
   "simulate-transaction",
   params.network,
@@ -51,6 +52,7 @@ export const getUseSimulateTransactionQueryKey = (params: {
       : params.data,
     params.transactionOptions,
     params.withFeePayer,
+    params.sender,
   ],
   [params.transaction],
 ];
@@ -62,6 +64,7 @@ export type UseSimulateTransactionQueryParameters = Partial<
       | ((
           sender: AccountAddress
         ) => Promise<InputGenerateTransactionPayloadData>);
+    sender?: AccountAddress;
     transactionOptions?: InputGenerateTransactionOptions;
     withFeePayer?: boolean;
   }
@@ -77,6 +80,7 @@ export function useSimulateTransaction({
   signerPublicKey,
   transactionOptions,
   withFeePayer,
+  sender,
   ...queryOptions
 }: UseSimulateTransactionQueryParameters) {
   const core = useAptosCore();
@@ -101,6 +105,7 @@ export function useSimulateTransaction({
       feePayerPublicKey,
       signerPublicKey,
       secondarySignersPublicKeys,
+      sender,
     }),
     queryFn: async () => {
       if (data === undefined && transaction === undefined) {
@@ -117,11 +122,14 @@ export function useSimulateTransaction({
       if (transaction) {
         activeTransaction = transaction;
       } else if (data) {
-        const activeAddress = signerPublicKey
-          ? AuthenticationKey.fromPublicKey({
-              publicKey: signerPublicKey as AccountPublicKey,
-            }).derivedAddress()
-          : core.account?.address;
+        const activeAddress =
+          sender !== undefined
+            ? sender
+            : signerPublicKey
+              ? AuthenticationKey.fromPublicKey({
+                  publicKey: signerPublicKey as AccountPublicKey,
+                }).derivedAddress()
+              : core.account?.address;
 
         if (!activeAddress) {
           throw new SimulationArgumentError(
