@@ -105,7 +105,10 @@ export function useSimulateTransaction({
       feePayerPublicKey,
       signerPublicKey,
       secondarySignersPublicKeys,
+      data,
       sender,
+      transactionOptions,
+      withFeePayer,
     }),
     queryFn: async () => {
       if (data === undefined && transaction === undefined) {
