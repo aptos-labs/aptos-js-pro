@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.5
+
+### Patch Changes
+
+- 1b533f3: Add sender to useSimulateTransaction and added more resource types
+- Updated dependencies [1b533f3]
+  - @aptos-labs/js-pro@0.1.0-beta.5
+
 ## 0.1.0-beta.4
 
 ### Patch Changes
