@@ -8,6 +8,7 @@
     "@aptos-labs/js-pro-vite": "0.0.0"
   },
   "changesets": [
+    "cruel-parrots-attend",
     "easy-otters-end",
     "fluffy-ideas-ask",
     "fruity-boats-learn",
