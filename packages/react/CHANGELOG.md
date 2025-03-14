@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.6
+
+### Patch Changes
+
+- ff32dd0: Fix missing query keys for useSimulateTransaction
+- Updated dependencies [ff32dd0]
+  - @aptos-labs/js-pro@0.1.0-beta.6
+
 ## 0.1.0-beta.5
 
 ### Patch Changes
