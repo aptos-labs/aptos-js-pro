@@ -37,7 +37,7 @@ export function useAddressFromName({
     }),
     queryFn: () => {
       if (!name) throw new MissingRequiredArgumentError("name");
-      return core.client.fetchAddressFromName({ network, name });
+      return core.client.fetchAddressFromName({ network, name }) ?? null;
     },
     ...queryOptions,
     enabled,

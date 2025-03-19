@@ -22,7 +22,10 @@ import {
   InputSimulateTransactionOptions,
   PublicKey,
 } from "@aptos-labs/ts-sdk";
-import { hashFunctionQueryKey } from "../utils/queries.js";
+import {
+  hashFunctionQueryKey,
+  queryKeyHashFnCompat,
+} from "../utils/queries.js";
 
 export const getUseSimulateTransactionQueryKey = (params: {
   network: string;
@@ -174,6 +177,7 @@ export function useSimulateTransaction({
         signerPublicKey,
       });
     },
+    queryKeyHashFn: queryKeyHashFnCompat,
     ...queryOptions,
     enabled,
   });
