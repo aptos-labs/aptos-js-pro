@@ -9,18 +9,20 @@ import {
 } from "@aptos-labs/js-pro";
 import { UseQueryOptions } from "../types/queries.js";
 import { AccountAddress, AccountAddressInput } from "@aptos-labs/ts-sdk";
+import { MissingRequiredArgumentError } from "../errors/common.js";
 
 export const getUseNameFromAddressQueryKey = (params: {
   network: string;
-  address: AccountAddressInput;
+  address?: AccountAddressInput;
 }) => [
   "name-from-address",
   params.network,
-  AccountAddress.from(params.address).toString(),
+  params.address && AccountAddress.from(params.address).toString(),
 ];
 
-export type UseNameFromAddressQueryParameters = FetchNameFromAddressParameters &
-  UseQueryOptions<FetchNameFromAddressResult>;
+export type UseNameFromAddressQueryParameters =
+  Partial<FetchNameFromAddressParameters> &
+    UseQueryOptions<FetchNameFromAddressResult>;
 
 export function useNameFromAddress({
   network,
@@ -31,12 +33,18 @@ export function useNameFromAddress({
 
   const activeNetwork = network ?? core.network;
 
+  const enabled = Boolean(address && (queryOptions.enabled ?? true));
+
   return useQuery({
     queryKey: getUseNameFromAddressQueryKey({
       network: activeNetwork.network,
       address,
     }),
-    queryFn: () => core.client.fetchNameFromAddress({ network, address }),
+    queryFn: () => {
+      if (!address) throw new MissingRequiredArgumentError("address");
+      return core.client.fetchNameFromAddress({ network, address });
+    },
     ...queryOptions,
+    enabled,
   });
 }

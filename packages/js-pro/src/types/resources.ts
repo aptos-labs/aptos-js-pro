@@ -15,6 +15,11 @@ export interface ResourceMap {
     frozen: boolean;
     withdraw_events: ResourceEventHandle;
   };
+  ["0x1::multisig_account::MultisigAccount"]: {
+    owners: string[];
+    num_signatures_required: string;
+    next_sequence_number: string;
+  };
 }
 
 export type ResourceType = keyof ResourceMap;
