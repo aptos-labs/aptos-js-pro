@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.7
+
+### Patch Changes
+
+- bcfa4c8: ANS resolution hooks now accept `undefined` `address` or `name`
+- Updated dependencies [bcfa4c8]
+  - @aptos-labs/js-pro@0.1.0-beta.7
+
 ## 0.1.0-beta.6
 
 ### Patch Changes
