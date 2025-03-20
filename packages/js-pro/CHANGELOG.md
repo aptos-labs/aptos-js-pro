@@ -1,5 +1,12 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.8
+
+### Patch Changes
+
+- 3ab379b: Fix `useAddressFromName` and `useNameFromAddress` resolving to `undefined` instead of `null`
+- b6c39c8: Allow network specific API keys
+
 ## 0.1.0-beta.7
 
 ### Patch Changes
