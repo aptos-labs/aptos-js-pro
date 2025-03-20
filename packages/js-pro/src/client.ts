@@ -57,7 +57,7 @@ export type ClientConfigs = {
    * It is okay to accept a single argument here because it is standard to use the same
    * API key for both APIs (node and indexer APIs).
    */
-  apiKey?: string;
+  apiKey?: { [network: string | Network]: string } | string;
   /**
    * Will override any Network settings if provided in this config.
    */
@@ -222,6 +222,11 @@ export class AptosJSProClient {
 
     const userProvidedConfig = state.config?.aptos?.config ?? {};
 
+    const apiKey =
+      typeof state.config?.apiKey === "string"
+        ? state.config?.apiKey
+        : state.config?.apiKey?.[network.network];
+
     // Deep merge clientConfig over userProvidedConfig
     // 1. Add default networks config
     // 2. Add default state config and API_KEY
@@ -233,7 +238,7 @@ export class AptosJSProClient {
       ...clientConfig,
       clientConfig: {
         ...userProvidedConfig.clientConfig,
-        API_KEY: state.config?.apiKey,
+        API_KEY: apiKey,
         ...clientConfig?.clientConfig,
       },
     });
@@ -252,9 +257,14 @@ export class AptosJSProClient {
 
     if (indexerUrl === undefined) return undefined;
 
+    const apiKey =
+      typeof this.state.config?.apiKey === "string"
+        ? this.state.config?.apiKey
+        : this.state.config?.apiKey?.[network.network];
+
     const userProvidedOptions = this.state.config?.indexerClient?.options ?? {};
-    const authHeaders: Record<string, string> = this.state?.config?.apiKey
-      ? { Authorization: `Bearer ${this.state.config.apiKey}` }
+    const authHeaders: Record<string, string> = apiKey
+      ? { Authorization: `Bearer ${apiKey}` }
       : {};
     const options = {
       ...userProvidedOptions,
