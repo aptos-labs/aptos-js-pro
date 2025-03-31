@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.9
+
+### Patch Changes
+
+- e457314: Add new AdapterSignerClient
+
 ## 0.1.0-beta.8
 
 ### Patch Changes
