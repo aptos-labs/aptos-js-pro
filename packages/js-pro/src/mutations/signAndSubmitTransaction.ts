@@ -4,7 +4,7 @@
 import {
   Account,
   AnyRawTransaction,
-  PendingTransactionResponse,
+  TransactionResponse,
 } from "@aptos-labs/ts-sdk";
 import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";
@@ -24,7 +24,7 @@ export type SignAndSubmitTransactionParameters = WithNetwork<
     )
 >;
 
-export type SignAndSubmitTransactionResult = PendingTransactionResponse;
+export type SignAndSubmitTransactionResult = TransactionResponse;
 
 export async function signAndSubmitTransaction(
   this: AptosJSProClient,
@@ -35,7 +35,15 @@ export async function signAndSubmitTransaction(
 
   let transaction: AnyRawTransaction;
   if ("data" in params) {
-    transaction = await this.buildTransaction(params);
+    if (signer.type === "adapter") {
+      return await signer.signAndSubmitTransaction({
+        aptos,
+        payload: params,
+        signer: params.signer,
+      });
+    } else {
+      transaction = await this.buildTransaction(params);
+    }
   } else {
     transaction = params.transaction;
   }

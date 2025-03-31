@@ -11,6 +11,7 @@ import {
   AccountInfo as JsProAccountInfo,
   SignerClient,
 } from "@aptos-labs/js-pro";
+import { MissingRequiredArgumentError } from "../errors";
 
 export const convertWalletAdapterNetworkToNetworkInfo = (
   network: WalletAdapterNetworkInfo | null
@@ -34,16 +35,25 @@ export const convertWalletAdapterSignerToSigner = (
 ): SignerClient | undefined => {
   return signer
     ? {
-        type: "custom",
-        signAndSubmitTransaction: async ({ aptos, transaction }) => {
-          const signedTransaction = await signer.signTransaction({
-            transactionOrPayload: transaction,
-          });
+        type: "adapter",
+        signAndSubmitTransaction: async ({ aptos, transaction, payload }) => {
+          if (transaction) {
+            const signedTransaction = await signer.signTransaction({
+              transactionOrPayload: transaction,
+            });
 
-          return aptos.transaction.submit.simple({
-            senderAuthenticator: signedTransaction.authenticator,
-            transaction,
-          });
+            return aptos.transaction.submit.simple({
+              senderAuthenticator: signedTransaction.authenticator,
+              transaction,
+            });
+          }
+
+          if (payload) {
+            const { hash } = await signer.signAndSubmitTransaction(payload);
+            return aptos.getTransactionByHash({ transactionHash: hash });
+          }
+
+          throw new MissingRequiredArgumentError("transaction or data");
         },
         signTransaction: async ({ transaction }) =>
           await signer.signTransaction({
