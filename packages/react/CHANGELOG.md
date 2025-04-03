@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.10
+
+### Patch Changes
+
+- fd5339d: Add paginated fetchUserTransactions query and allow useClients to specify network
+- Updated dependencies [fd5339d]
+  - @aptos-labs/js-pro@0.1.0-beta.10
+
 ## 0.1.0-beta.9
 
 ### Patch Changes
