@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.11
+
+### Patch Changes
+
+- a6503db: Fix useClients to allow empty objects
+- Updated dependencies [a6503db]
+  - @aptos-labs/js-pro@0.1.0-beta.11
+
 ## 0.1.0-beta.10
 
 ### Patch Changes
