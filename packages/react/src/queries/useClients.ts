@@ -6,7 +6,7 @@ import { useAptosCore } from "../AptosJSCoreProvider.js";
 
 type UseClientsParameters = WithNetwork<{}>;
 
-export function useClients({ network }: UseClientsParameters) {
+export function useClients({ network }: UseClientsParameters = {}) {
   const core = useAptosCore();
 
   const clients = core.client.getClients({ network });
