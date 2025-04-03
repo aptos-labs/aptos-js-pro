@@ -33,6 +33,7 @@ import {
   fetchEvents,
   fetchAccountTransactions,
   fetchAccountTokens,
+  fetchUserTransactions,
 } from "./queries/index.js";
 import {
   buildTransaction,
@@ -320,6 +321,8 @@ export class AptosJSProClient {
   fetchViewModule = fetchViewModule;
 
   fetchEvents = fetchEvents;
+
+  fetchUserTransactions = fetchUserTransactions;
 
   //* Client Mutations
 

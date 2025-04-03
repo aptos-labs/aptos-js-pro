@@ -13,6 +13,7 @@ import {
   PrimaryAptosNameFragment,
   TokenActivityFragment,
   TokenDataFieldsFragment,
+  UserTransactionFragment,
 } from "../operations/generated/operations.js";
 import {
   BaseTokenActivity,
@@ -25,7 +26,7 @@ import {
   FungibleAssetMetadata,
 } from "../types/fungibleAssets.js";
 import { CollectionData, TokenData } from "../types/tokens.js";
-import { AccountTransaction } from "../types/transactions.js";
+import { AccountTransaction, UserTransaction } from "../types/transactions.js";
 import { AptosName } from "./names.js";
 import { fixBadAptosUri } from "./tokens.js";
 
@@ -254,4 +255,20 @@ export const normalizeDelegatedStakingActivity = (
   poolAddress: activity.pool_address,
   transactionVersion: activity.transaction_version,
   amount: activity.amount,
+});
+
+// normalizeUserTransaction
+
+export const normalizeUserTransaction = (
+  transaction: UserTransactionFragment
+): UserTransaction => ({
+  entryFunction: transaction.entry_function_id_str,
+  expirationTimestampSecs: transaction.expiration_timestamp_secs,
+  gasUnitPrice: transaction.gas_unit_price,
+  maxGasAmount: transaction.max_gas_amount,
+  parentSignatureType: transaction.parent_signature_type,
+  version: transaction.version,
+  timestamp: transaction.timestamp,
+  sequenceNumber: transaction.sequence_number,
+  sender: transaction.sender,
 });

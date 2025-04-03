@@ -47,9 +47,9 @@
     "@graphql-codegen/cli": "^5.0.5",
     "@graphql-codegen/import-types-preset": "^3.0.0",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
-    "@graphql-codegen/typescript-operations": "^4.5.1",
-    "@graphql-codegen/typescript-resolvers": "^4.4.4",
-    "tsup": "^8.3.6",
+    "@graphql-codegen/typescript-operations": "^4.6.0",
+    "@graphql-codegen/typescript-resolvers": "^4.5.0",
+    "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
   "keywords": [

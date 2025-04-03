@@ -271,6 +271,18 @@ fragment DelegatedStakingActivity on delegated_staking_activities {
   transaction_version
 }
 
+fragment UserTransaction on user_transactions {
+  sequence_number
+  sender
+  entry_function_id_str
+  expiration_timestamp_secs
+  gas_unit_price
+  max_gas_amount
+  parent_signature_type
+  version
+  timestamp
+}
+
 fragment AccountTransaction on account_transactions {
   account_address
   transaction_version
@@ -293,9 +305,7 @@ fragment AccountTransaction on account_transactions {
     ...DelegatedStakingActivity
   }
   user_transaction {
-    sequence_number
-    sender
-    entry_function_id_str
+    ...UserTransaction
   }
 }
 
@@ -317,6 +327,22 @@ query getAccountTransactions(
     order_by: $order_by
   ) {
     ...AccountTransaction
+  }
+}
+
+query getUserTransactions(
+  $limit: Int
+  $offset: Int
+  $where: user_transactions_bool_exp
+  $order_by: [user_transactions_order_by!]!
+) {
+  user_transactions(
+    limit: $limit
+    offset: $offset
+    where: $where
+    order_by: $order_by
+  ) {
+    ...UserTransaction
   }
 }
 

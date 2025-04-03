@@ -7,6 +7,18 @@ import {
   TokenActivity,
 } from "./activities.js";
 
+export interface UserTransaction {
+  sequenceNumber: string;
+  sender: string;
+  entryFunction: string;
+  expirationTimestampSecs: string;
+  gasUnitPrice: number;
+  maxGasAmount: number;
+  parentSignatureType: string;
+  version: string;
+  timestamp: string;
+}
+
 export interface AccountTransaction {
   accountAddress: string;
   transactionVersion: string;
