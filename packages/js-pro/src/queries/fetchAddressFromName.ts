@@ -11,7 +11,7 @@ export type FetchAddressFromNameParameters = WithNetwork<{
   name: string | AptosName;
 }>;
 
-export type FetchAddressFromNameResult = AccountAddress | undefined;
+export type FetchAddressFromNameResult = AccountAddress | null;
 
 export async function fetchAddressFromName(
   this: AptosJSProClient,
@@ -24,5 +24,5 @@ export async function fetchAddressFromName(
     undefined
   );
 
-  return address ? AccountAddress.from(address) : undefined;
+  return address ? AccountAddress.from(address) : null;
 }

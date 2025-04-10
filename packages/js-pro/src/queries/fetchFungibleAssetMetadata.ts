@@ -10,9 +10,7 @@ export type FetchFungibleAssetMetadataParameters = WithNetwork<{
   asset: string;
 }>;
 
-export type FetchFungibleAssetMetadataResult =
-  | FungibleAssetMetadata
-  | undefined;
+export type FetchFungibleAssetMetadataResult = FungibleAssetMetadata | null;
 
 export async function fetchFungibleAssetMetadata(
   this: AptosJSProClient,
@@ -28,5 +26,5 @@ export async function fetchFungibleAssetMetadata(
     },
   });
 
-  return result.at(0) ? normalizeFungibleAssetMetadata(result[0]) : undefined;
+  return result.at(0) ? normalizeFungibleAssetMetadata(result[0]) : null;
 }
