@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Authenticate as Sign in with Aptos Actions
+      - name: Authenticate as Aptos Labs Bot
         uses: actions/create-github-app-token@v1
         id: generate-token
         with:

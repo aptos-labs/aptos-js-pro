@@ -34,8 +34,6 @@
   "dependencies": {
     "@aptos-labs/js-pro": "workspace:*",
     "@aptos-labs/wallet-adapter-react": "^4.1.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "zustand": "^5.0.3"
   },
   "peerDependencies": {
@@ -55,7 +53,6 @@
   "keywords": [
     "aptos",
     "apt",
-    "siwa",
     "web3",
     "blockchain",
     "dapps",
