@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.12
+
+### Patch Changes
+
+- bec94ce: Change default values for queries from undefined to null
+- Updated dependencies [bec94ce]
+  - @aptos-labs/js-pro@0.1.0-beta.12
+
 ## 0.1.0-beta.11
 
 ### Patch Changes
