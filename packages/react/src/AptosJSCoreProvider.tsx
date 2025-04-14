@@ -17,10 +17,7 @@ interface AptosJSCoreProviderProps extends PropsWithChildren {
 
 const AptosCoreContext = createContext<AptosJSProClient | null>(null);
 
-function AptosJSCoreProvider({
-  children,
-  core,
-}: AptosJSCoreProviderProps): JSX.Element {
+function AptosJSCoreProvider({ children, core }: AptosJSCoreProviderProps) {
   return (
     <AptosCoreContext.Provider value={core}>
       {children}

@@ -40,7 +40,8 @@
     "zustand": "^5.0.3"
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": ">=1.33.2"
+    "@aptos-labs/ts-sdk": ">=1.33.2",
+    "typescript": ">=5.0.4"
   },
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
@@ -50,8 +51,7 @@
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.6.0",
     "@graphql-codegen/typescript-resolvers": "^4.5.0",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "tsup": "^8.4.0"
   },
   "keywords": [
     "aptos",
