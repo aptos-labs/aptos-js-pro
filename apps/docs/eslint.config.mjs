@@ -4,4 +4,4 @@
 import { config } from "@aptos-labs/eslint-config-petra/next";
 
 /** @type {import("eslint").Linter.Config} */
-export default config;
+export default [{ ignores: ["components/ui/**"] }, ...config];

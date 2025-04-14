@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 "use client";
 
 import { type Transition, motion } from "motion/react";

@@ -1,3 +1,6 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+
 "use client";
 
 import ExpandingContainer from "@/components/ExpandingContainer";

@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { Divider } from "@/components/Divider";
 import CTA from "@/components/views/landing/CTA";
 import CodeExamples from "@/components/views/landing/Code";
