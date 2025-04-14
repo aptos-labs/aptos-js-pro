@@ -1,6 +1,6 @@
 {
   "name": "@aptos-labs/react",
-  "version": "0.1.0-beta.14",
+  "version": "0.1.0-beta.15",
   "description": "React library for Aptos applications.",
   "repository": {
     "type": "git",

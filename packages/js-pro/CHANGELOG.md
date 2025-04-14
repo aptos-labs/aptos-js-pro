@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.15
+
+### Patch Changes
+
+- 64f547a: Export TransactionParser default
+
 ## 0.1.0-beta.14
 
 ### Patch Changes

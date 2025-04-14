@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.15
+
+### Patch Changes
+
+- 64f547a: Export TransactionParser default
+- Updated dependencies [64f547a]
+  - @aptos-labs/js-pro@0.1.0-beta.15
+
 ## 0.1.0-beta.14
 
 ### Patch Changes
