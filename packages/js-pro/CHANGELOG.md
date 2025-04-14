@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.13
+
+### Patch Changes
+
+- a370ae3: Add TransactionParser to parse UserTransactionResponse's for balance changes
+
 ## 0.1.0-beta.12
 
 ### Patch Changes
