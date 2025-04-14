@@ -5,7 +5,8 @@
     "@aptos-labs/eslint-config-petra": "0.0.2-experimental.2",
     "@aptos-labs/js-pro": "0.1.0-beta.0",
     "@aptos-labs/react": "0.1.0-beta.0",
-    "@aptos-labs/js-pro-vite": "0.0.0"
+    "@aptos-labs/js-pro-vite": "0.0.0",
+    "@aptos-labs/js-pro-docs": "0.1.0"
   },
   "changesets": [
     "afraid-cameras-wear",
@@ -16,6 +17,7 @@
     "fruity-boats-learn",
     "khaki-birds-appear",
     "puny-ducks-reply",
+    "purple-boxes-guess",
     "small-eagles-hang",
     "spotty-brooms-design",
     "tender-banks-wink",
