@@ -251,10 +251,12 @@ export class AptosJSProClient {
     clientConfig?: AptosSettings,
     network: NetworkInfo = this.state.network
   ): Sdk | undefined => {
-    const indexerUrl = this.createAptos(
-      clientConfig,
-      network
-    ).config.getRequestUrl(AptosApiType.INDEXER);
+    let indexerUrl: string | undefined;
+    try {
+      indexerUrl = this.createAptos(clientConfig, network).config.getRequestUrl(
+        AptosApiType.INDEXER
+      );
+    } catch {}
 
     if (indexerUrl === undefined) return undefined;
 

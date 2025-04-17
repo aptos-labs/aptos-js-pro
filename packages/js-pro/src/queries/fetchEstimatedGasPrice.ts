@@ -14,7 +14,7 @@ export type FetchEstimatedGasPriceResult = {
 
 export async function fetchEstimatedGasPrice(
   this: AptosJSProClient,
-  { network }: FetchEstimatedGasPriceParameters
+  { network }: FetchEstimatedGasPriceParameters = {}
 ): Promise<FetchEstimatedGasPriceResult> {
   const { aptos } = this.getClients({ network });
 

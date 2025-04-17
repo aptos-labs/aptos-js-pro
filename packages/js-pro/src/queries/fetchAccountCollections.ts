@@ -49,7 +49,7 @@ export async function fetchAccountCollections(
       const response = await indexer.getAccountCollections({
         limit,
         offset,
-        address: AccountAddress.from(params.address).toString(),
+        address: AccountAddress.from(params.address).toStringLong(),
         where,
         order_by: [
           {

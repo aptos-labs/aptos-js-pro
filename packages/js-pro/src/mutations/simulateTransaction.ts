@@ -35,7 +35,7 @@ export async function simulateTransaction(
 ): Promise<SimulateTransactionResult> {
   const { aptos } = this.getClients({ network: params.network });
 
-  if ("secondarySignerAddresses" in params) {
+  if ("secondarySignersPublicKeys" in params) {
     return (await aptos.transaction.simulate.multiAgent(params))[0];
   }
 

@@ -47,6 +47,7 @@ export async function signAndSubmitTransaction(
   } else {
     transaction = params.transaction;
   }
+
   return signer.signAndSubmitTransaction({
     aptos,
     transaction,

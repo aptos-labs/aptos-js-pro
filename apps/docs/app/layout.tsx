@@ -23,8 +23,8 @@ import AppProviders from "@/context/AppProviders";
 export const metadata: Metadata = {
   metadataBase: new URL("https://js-pro.aptos.dev"),
   title: {
-    default: "Aptos Labs JS-Pro",
-    template: "%s | Aptos Labs JS-Pro",
+    default: "Aptos JS-Pro",
+    template: "%s | Aptos JS-Pro",
   },
   description: "A collection of opinionated utilities for building on Aptos.",
   keywords: ["aptos", "blockchain", "web3", "crypto", "wallet"],
@@ -37,17 +37,17 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://js-pro.aptos.dev",
-    siteName: "Aptos Labs JS-Pro",
-    title: "Aptos Labs JS-Pro",
+    siteName: "Aptos JS-Pro",
+    title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aptos Labs JS-Pro",
+    title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",
     creator: "@AptosLabs",
   },
-  appleWebApp: { title: "Aptos Labs JS-Pro" },
+  appleWebApp: { title: "Aptos JS-Pro" },
   manifest: "/site.webmanifest",
 };
 

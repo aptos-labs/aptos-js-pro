@@ -26,6 +26,7 @@ export class FungibleAssetEventParser extends EventParser<
     const ownerAddress = context.objectOwners[storeAddress];
     const assetAddress = context.fungibleAssetStoreMetadata[storeAddress];
 
+    /* c8 ignore next 5 */
     if (ownerAddress === undefined || assetAddress === undefined) {
       // This should never really happen, as changing the balance will produce
       // a writeset change including the fungible store's owner and asset.
@@ -50,7 +51,7 @@ export class FungibleAssetEventParser extends EventParser<
     event: Event
   ) {
     switch (event.type) {
-      case '0x1::fungible_asset::Deposit': {
+      case "0x1::fungible_asset::Deposit": {
         this.applyChange(
           context,
           normalizeAddress(event.data.store),
@@ -58,7 +59,7 @@ export class FungibleAssetEventParser extends EventParser<
         );
         return true;
       }
-      case '0x1::fungible_asset::Withdraw': {
+      case "0x1::fungible_asset::Withdraw": {
         this.applyChange(
           context,
           normalizeAddress(event.data.store),

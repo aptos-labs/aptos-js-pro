@@ -57,7 +57,9 @@ export async function fetchAccountCoins(
           _and: [
             {
               metadata: { asset_type: { _is_null: false } },
-              owner_address: { _eq: AccountAddress.from(address).toString() },
+              owner_address: {
+                _eq: AccountAddress.from(address).toStringLong(),
+              },
             },
             where ?? {},
           ],

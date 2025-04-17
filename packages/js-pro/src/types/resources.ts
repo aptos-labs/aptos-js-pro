@@ -20,6 +20,15 @@ export interface ResourceMap {
     num_signatures_required: string;
     next_sequence_number: string;
   };
+  ["0x1::account::Account"]: {
+    authentication_key: string;
+    coin_register_events: ResourceEventHandle;
+    guid_creation_num: string;
+    withdraw_events: ResourceEventHandle;
+    sequence_number: string;
+    signer_capability_offer: { for: { vec: [] } };
+    rotation_capability_offer: { for: { vec: [] } };
+  };
 }
 
 export type ResourceType = keyof ResourceMap;

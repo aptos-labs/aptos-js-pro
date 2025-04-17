@@ -31,7 +31,7 @@ export async function fetchUserTransactions(
     offset = 0,
     orderBy = [],
     where = {},
-  }: FetchUserTransactionsParameters
+  }: FetchUserTransactionsParameters = {}
 ): Promise<FetchUserTransactionsResult> {
   const { indexer } = this.getClients({ network });
   if (!indexer) throw new IndexerNotInitializedError();

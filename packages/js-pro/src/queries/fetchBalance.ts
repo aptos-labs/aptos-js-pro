@@ -21,7 +21,7 @@ export async function fetchBalance(
   const isCoinType = asset.includes("::");
 
   const amount = await aptos.account.getAccountCoinAmount({
-    accountAddress: AccountAddress.from(address).toString(),
+    accountAddress: AccountAddress.from(address).toStringLong(),
     coinType: isCoinType
       ? (asset as `${string}::${string}::${string}`)
       : undefined,

@@ -55,7 +55,7 @@ export async function fetchAccountTransactions(
     offset,
     queryFn: async ({ limit, offset }) => {
       const response = await indexer.getAccountTransactions({
-        address: AccountAddress.from(address).toString(),
+        address: AccountAddress.from(address).toStringLong(),
         limit,
         offset,
         order_by: [

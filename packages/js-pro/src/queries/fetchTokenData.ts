@@ -14,7 +14,7 @@ export type FetchTokenDataParameters = WithNetwork<{
   address: string;
 }>;
 
-export type FetchTokenDataResult = TokenData | undefined;
+export type FetchTokenDataResult = TokenData | null;
 
 export async function fetchTokenData(
   this: AptosJSProClient,
@@ -26,7 +26,7 @@ export async function fetchTokenData(
 
   const result = await indexer.getTokenData({ address: params.address });
 
-  if (result.current_token_datas_v2.length === 0) return undefined;
+  if (result.current_token_datas_v2.length === 0) return null;
 
   return {
     ...normalizeTokenData(result.current_token_datas_v2[0]),

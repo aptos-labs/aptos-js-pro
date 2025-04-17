@@ -18,7 +18,7 @@ export async function fetchAptBalance(
   const { aptos } = this.getClients({ network });
 
   const amount = await aptos.account.getAccountCoinAmount({
-    accountAddress: AccountAddress.from(address).toString(),
+    accountAddress: AccountAddress.from(address).toStringLong(),
     coinType: "0x1::aptos_coin::AptosCoin",
   });
 

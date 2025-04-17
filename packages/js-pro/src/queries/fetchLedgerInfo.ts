@@ -21,7 +21,7 @@ export type FetchLedgerInfoResult = {
 
 export async function fetchLedgerInfo(
   this: AptosJSProClient,
-  { network }: FetchLedgerInfoParameters
+  { network }: FetchLedgerInfoParameters = {}
 ): Promise<FetchLedgerInfoResult> {
   const { aptos } = this.getClients({ network });
 

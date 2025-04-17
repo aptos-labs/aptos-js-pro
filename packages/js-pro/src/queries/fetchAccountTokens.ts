@@ -46,7 +46,7 @@ export async function fetchAccountTokens(
     offset,
     queryFn: async ({ limit, offset }) => {
       const response = await indexer.getAccountTokenOwnerships({
-        address: AccountAddress.from(address).toString(),
+        address: AccountAddress.from(address).toStringLong(),
         limit,
         offset,
         order_by: orderBy,

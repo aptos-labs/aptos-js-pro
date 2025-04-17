@@ -13,7 +13,7 @@ export type FetchEventsResult = GetEventsResponse;
 
 export async function fetchEvents(
   this: AptosJSProClient,
-  { network, ...params }: FetchEventsParameters
+  { network, ...params }: FetchEventsParameters = {}
 ): Promise<FetchEventsResult> {
   const { aptos } = this.getClients({ network });
 

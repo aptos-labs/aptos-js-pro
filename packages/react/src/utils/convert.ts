@@ -53,7 +53,7 @@ export const convertWalletAdapterSignerToSigner = (
             return aptos.getTransactionByHash({ transactionHash: hash });
           }
 
-          throw new MissingRequiredArgumentError("transaction or data");
+          throw new MissingRequiredArgumentError("transaction or payload");
         },
         signTransaction: async ({ transaction }) =>
           await signer.signTransaction({
