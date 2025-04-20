@@ -1,6 +1,6 @@
 {
   "name": "@aptos-labs/js-pro",
-  "version": "0.1.0-beta.15",
+  "version": "0.1.0-beta.16",
   "description": "State management and library of utilities for Aptos applications.",
   "repository": {
     "type": "git",
