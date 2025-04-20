@@ -1,0 +1,20 @@
+# useAptBalance
+
+Hook for getting the APT balance of an account.
+
+## Usage
+
+```tsx
+import { useAptBalance } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: aptBalance, isLoading } = useAptBalance({
+    address:
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return <div>APT Balance: {aptBalance} octas</div>;
+}
+```

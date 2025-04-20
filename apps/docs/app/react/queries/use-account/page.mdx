@@ -1,0 +1,15 @@
+# useAccount
+
+Hook for getting the current account. The account may be `undefined` if the user is not connected.
+
+## Usage
+
+```tsx
+import { useAccount } from "@aptos-labs/react";
+
+export default function App() {
+  const account = useAccount();
+
+  return account ? <div>{account.address}</div> : <div>Not connected</div>;
+}
+```

@@ -23,35 +23,38 @@ describe("submitTransaction", async () => {
     });
   });
 
-  test("should submit the transaction with SignedTransaction", async ({
-    devnet,
-  }) => {
-    devnet.setAccount(convertAptosAccountToAccountInfo(account));
-    devnet.setSigner(convertAptosAccountToSigner(account));
+  test.sequential(
+    "should submit the transaction with SignedTransaction",
+    async ({ devnet }) => {
+      devnet.setAccount(convertAptosAccountToAccountInfo(account));
+      devnet.setSigner(convertAptosAccountToSigner(account));
 
-    const transaction = await devnet.buildTransaction({
-      data: {
-        function: "0x1::aptos_account::transfer",
-        functionArguments: [account.accountAddress, 100],
-      },
-      sender: account.accountAddress,
-    });
+      const transaction = await devnet.buildTransaction({
+        data: {
+          function: "0x1::aptos_account::transfer",
+          functionArguments: [account.accountAddress, 100],
+        },
+        sender: account.accountAddress,
+      });
 
-    const signedTransaction = await devnet.signTransaction({ transaction });
+      const signedTransaction = await devnet.signTransaction({ transaction });
 
-    const result = await devnet.submitTransaction({
-      transaction: SignedTransaction.deserialize(
-        new Deserializer(
-          generateSignedTransaction({
-            senderAuthenticator: signedTransaction.authenticator,
-            transaction,
-          })
-        )
-      ),
-    });
+      const pendingTransaction = await devnet.submitTransaction({
+        transaction: SignedTransaction.deserialize(
+          new Deserializer(
+            generateSignedTransaction({
+              senderAuthenticator: signedTransaction.authenticator,
+              transaction,
+            })
+          )
+        ),
+      });
 
-    expect(result).toBeDefined();
-  });
+      await devnet.waitForTransaction(pendingTransaction);
+
+      expect(pendingTransaction).toBeDefined();
+    }
+  );
 
   test.sequential(
     "should submit the transaction with senderAuthenticator",
@@ -69,12 +72,14 @@ describe("submitTransaction", async () => {
 
       const signedTransaction = await devnet.signTransaction({ transaction });
 
-      const result = await devnet.submitTransaction({
+      const pendingTransaction = await devnet.submitTransaction({
         senderAuthenticator: signedTransaction.authenticator,
         transaction,
       });
 
-      expect(result).toBeDefined();
+      await devnet.waitForTransaction(pendingTransaction);
+
+      expect(pendingTransaction).toBeDefined();
     }
   );
 });

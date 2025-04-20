@@ -25,7 +25,9 @@ export async function fetchBalance(
     coinType: isCoinType
       ? (asset as `${string}::${string}::${string}`)
       : undefined,
-    faMetadataAddress: isCoinType ? undefined : asset,
+    faMetadataAddress: isCoinType
+      ? undefined
+      : AccountAddress.from(asset).toStringLong(),
   });
 
   return BigInt(amount);

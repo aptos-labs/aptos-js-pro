@@ -17,7 +17,7 @@ describe("fetchBalance", () => {
   test("should fetch the 0xa balance of an account", async ({ testnet }) => {
     const balance = await testnet.fetchBalance({
       address: AccountAddress.from("0x1"),
-      asset: AccountAddress.from("0xa").toStringLong(),
+      asset: "0xa",
     });
 
     expect(balance).toBeGreaterThan(0n);
