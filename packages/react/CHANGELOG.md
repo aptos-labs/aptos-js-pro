@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.16
+
+### Patch Changes
+
+- 47c56ba: Add default empty objects to js-pro queries
+- Updated dependencies [47c56ba]
+  - @aptos-labs/js-pro@0.1.0-beta.16
+
 ## 0.1.0-beta.15
 
 ### Patch Changes
