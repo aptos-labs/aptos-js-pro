@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [".env"],
   "tasks": {
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
@@ -8,9 +9,15 @@
     },
     "test": {
       "outputs": ["coverage/**"],
-      "dependsOn": []
+      "dependsOn": [],
+      "env": [
+        "APTOS_DEVNET_API_KEY",
+        "APTOS_TESTNET_API_KEY",
+        "APTOS_MAINNET_API_KEY"
+      ]
     },
     "lint": {},
+    "format": {},
     "dev": {
       "cache": false,
       "persistent": true

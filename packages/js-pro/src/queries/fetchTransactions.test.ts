@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { describe, expect } from "vitest";
 import { test } from "../../tests/fixtures";
 

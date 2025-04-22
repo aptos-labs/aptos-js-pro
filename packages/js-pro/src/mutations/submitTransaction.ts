@@ -2,14 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 import {
   PendingTransactionResponse,
-  RawTransaction,
   SignedTransaction,
   postAptosFullNode,
   MimeType,
   InputSubmitTransactionData,
   generateSignedTransaction,
   AnyRawTransaction,
-  Deserializer,
 } from "@aptos-labs/ts-sdk";
 import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";

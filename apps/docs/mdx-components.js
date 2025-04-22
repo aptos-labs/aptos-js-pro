@@ -1,3 +1,6 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+
 import { useMDXComponents as getThemeComponents } from "nextra-theme-docs";
 
 const themeComponents = getThemeComponents();

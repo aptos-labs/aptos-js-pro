@@ -8,6 +8,19 @@
     "build": {
       "dependsOn": ["generate"],
       "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["^build", "build"],
+      "outputs": ["coverage/**"],
+      "env": [
+        "APTOS_DEVNET_API_KEY",
+        "APTOS_TESTNET_API_KEY",
+        "APTOS_MAINNET_API_KEY"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["build"],
+      "outputs": [".eslintcache"]
     }
   }
 }

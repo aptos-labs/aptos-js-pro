@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { AccountAddress, createObjectAddress } from "@aptos-labs/ts-sdk";
 import { createUserDerivedObjectAddress } from "./objects.js";
 

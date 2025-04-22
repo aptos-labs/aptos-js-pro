@@ -21,7 +21,7 @@ export function useEvents({
   minimumLedgerVersion,
   options,
   ...queryOptions
-}: UseEventsQueryParameters) {
+}: UseEventsQueryParameters = {}) {
   const core = useAptosCore();
 
   const activeNetwork = network ?? core.network;

@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import type { Event } from "@aptos-labs/ts-sdk";
 import { normalizeAddress, serializeEventGuid } from "../shared";
 import { EventParser } from "../../../types/parsers";

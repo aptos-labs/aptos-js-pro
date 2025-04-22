@@ -1,6 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 
+import { AccountAddress } from "@aptos-labs/ts-sdk";
 import { AptosJSProClient } from "../client.js";
 import { FungibleAssetMetadata } from "../types/fungibleAssets.js";
 import { WithNetwork } from "../types/parameters.js";
@@ -21,7 +22,11 @@ export async function fetchFungibleAssetMetadata(
   const result = await aptos.getFungibleAssetMetadata({
     options: {
       where: {
-        asset_type: { _eq: params.asset },
+        asset_type: {
+          _eq: params.asset.includes("::")
+            ? params.asset
+            : AccountAddress.from(params.asset).toStringLong(),
+        },
       },
     },
   });

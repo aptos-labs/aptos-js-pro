@@ -1,7 +1,8 @@
-import { describe, expect, vi } from "vitest";
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+import { describe, expect } from "vitest";
 import { test } from "../../tests/fixtures";
 import { Network } from "@aptos-labs/ts-sdk";
-import { Order_By } from "../operations";
 
 describe("fetchAccountTransactions", () => {
   test("should fetch the account transactions", async ({ testnet }) => {

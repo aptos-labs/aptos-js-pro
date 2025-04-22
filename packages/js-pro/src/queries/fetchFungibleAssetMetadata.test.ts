@@ -1,6 +1,7 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { describe, expect } from "vitest";
 import { test } from "../../tests/fixtures";
-import { AccountAddress } from "@aptos-labs/ts-sdk";
 
 describe("fetchFungibleAssetMetadata", () => {
   test("should fetch the metadata for 0x1::aptos_coin::AptosCoin", async ({
@@ -26,7 +27,7 @@ describe("fetchFungibleAssetMetadata", () => {
 
   test("should fetch the metadata for 0xa", async ({ devnet }) => {
     const metadata = await devnet.fetchFungibleAssetMetadata({
-      asset: AccountAddress.from("0xa").toStringLong(),
+      asset: "0xa",
     });
 
     expect(metadata).toMatchInlineSnapshot(`

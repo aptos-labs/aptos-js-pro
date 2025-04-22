@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { WriteSetChange } from "@aptos-labs/ts-sdk";
 import { isWriteResourceChange, normalizeAddress } from "../shared";
 import { WritesetParser } from "../../../types/parsers";

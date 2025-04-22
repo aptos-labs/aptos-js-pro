@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { beforeAll, describe, expect } from "vitest";
 import { setupClient, test } from "../../tests/fixtures";
 import { AnyRawTransaction, Account } from "@aptos-labs/ts-sdk";

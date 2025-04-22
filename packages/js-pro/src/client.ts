@@ -58,7 +58,7 @@ export type ClientConfigs = {
    * It is okay to accept a single argument here because it is standard to use the same
    * API key for both APIs (node and indexer APIs).
    */
-  apiKey?: { [network: string | Network]: string } | string;
+  apiKey?: { [network: string | Network]: string | undefined } | string;
   /**
    * Will override any Network settings if provided in this config.
    */
@@ -256,7 +256,9 @@ export class AptosJSProClient {
       indexerUrl = this.createAptos(clientConfig, network).config.getRequestUrl(
         AptosApiType.INDEXER
       );
-    } catch {}
+    } catch {
+      /* empty */
+    }
 
     if (indexerUrl === undefined) return undefined;
 

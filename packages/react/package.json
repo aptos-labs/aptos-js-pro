@@ -2,6 +2,7 @@
   "name": "@aptos-labs/react",
   "version": "0.1.0-beta.16",
   "description": "React library for Aptos applications.",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/aptos-labs/js-pro.git",
@@ -20,6 +21,8 @@
   "files": [
     "dist",
     "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -46,9 +49,16 @@
   },
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "tsup": "^8.4.0"
+    "@vitest/browser": "^3.1.2",
+    "dotenv": "^16.5.0",
+    "happy-dom": "^17.4.4",
+    "playwright": "^1.52.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.2"
   },
   "keywords": [
     "aptos",

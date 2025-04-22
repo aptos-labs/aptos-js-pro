@@ -23,9 +23,15 @@ export function useSignTransaction({
 }: UseSignTransactionMutationParameters = {}) {
   const core = useAptosCore();
 
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: (params: SignTransactionParameters) =>
       core.client.signTransaction(params),
     ...mutationOptions,
   });
+
+  return {
+    ...mutation,
+    signTransaction: mutation.mutate,
+    signTransactionAsync: mutation.mutateAsync,
+  };
 }

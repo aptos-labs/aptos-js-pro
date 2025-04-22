@@ -1,3 +1,5 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
 import { describe, expect, vi } from "vitest";
 import { test } from "../../tests/fixtures";
 import { Network } from "@aptos-labs/ts-sdk";

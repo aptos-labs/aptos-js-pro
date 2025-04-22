@@ -23,9 +23,15 @@ export function useSubmitTransaction({
 }: UseSubmitTransactionMutationParameters = {}) {
   const core = useAptosCore();
 
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: (params: SubmitTransactionParameters) =>
       core.client.submitTransaction(params),
     ...mutationOptions,
   });
+
+  return {
+    ...mutation,
+    submitTransaction: mutation.mutate,
+    submitTransactionAsync: mutation.mutateAsync,
+  };
 }

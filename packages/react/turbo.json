@@ -8,6 +8,15 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "env": [
+        "APTOS_DEVNET_API_KEY",
+        "APTOS_TESTNET_API_KEY",
+        "APTOS_MAINNET_API_KEY"
+      ]
     }
   }
 }

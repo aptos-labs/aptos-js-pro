@@ -1,7 +1,8 @@
-import { beforeAll, describe, expect, it } from "vitest";
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+import { beforeAll, describe, expect } from "vitest";
 import { setupClient, test } from "../../tests/fixtures";
 import {
-  AccountAddress,
   AnyRawTransaction,
   Account,
   InputGenerateTransactionPayloadData,

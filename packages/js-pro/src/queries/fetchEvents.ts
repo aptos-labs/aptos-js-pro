@@ -1,7 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 
-import { Aptos, GetEventsResponse, MoveResource } from "@aptos-labs/ts-sdk";
+import { Aptos, GetEventsResponse } from "@aptos-labs/ts-sdk";
 import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";
 

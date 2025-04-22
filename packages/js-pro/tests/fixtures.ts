@@ -1,10 +1,8 @@
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+
 import { test as vitestTest } from "vitest";
-import {
-  Account,
-  AnyRawTransaction,
-  InputGenerateTransactionPayloadData,
-  Network,
-} from "@aptos-labs/ts-sdk";
+import { Account, Network } from "@aptos-labs/ts-sdk";
 import {
   AptosJSProClient,
   AptosJSProClientParameters,
@@ -19,6 +17,23 @@ export function setupClient(args: Partial<AptosJSProClientParameters> = {}) {
     network: { network: Network.DEVNET },
     signer: convertAptosAccountToSigner(account),
     ...args,
+    config: {
+      apiKey: {
+        devnet:
+          process.env.APTOS_DEVNET_API_KEY !== undefined
+            ? process.env.APTOS_DEVNET_API_KEY
+            : undefined,
+        testnet:
+          process.env.APTOS_TESTNET_API_KEY !== undefined
+            ? process.env.APTOS_TESTNET_API_KEY
+            : undefined,
+        mainnet:
+          process.env.APTOS_MAINNET_API_KEY !== undefined
+            ? process.env.APTOS_MAINNET_API_KEY
+            : undefined,
+      },
+      ...args.config,
+    },
   });
 }
 
@@ -28,6 +43,7 @@ export const test = vitestTest.extend<{
   testnet: AptosJSProClient;
   mainnet: AptosJSProClient;
 }>({
+  // eslint-disable-next-line no-empty-pattern
   account: async ({}, use) => {
     const account = Account.generate();
     await use(account);
