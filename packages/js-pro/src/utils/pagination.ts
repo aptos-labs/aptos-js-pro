@@ -3,11 +3,15 @@
 
 export type WithPagination<T> = T & {
   /**
-   * The number of results to return per page.
+   * The number of results to return per page. This value is capped at 100 results.
+   *
+   * @default 100
    */
   limit?: number;
   /**
    * The offset to start the query from.
+   *
+   * @default 0
    */
   offset?: number;
 };
@@ -83,7 +87,7 @@ export const createPaginatedQuery = async <TQueryFnResult>({
   // Find the next and previous cursors.
   const nextCursor = hasNextPage ? offset + limit : undefined;
   const prevCursor =
-    hasPrevPage ?? offset > 0 ? Math.max(offset - limit, 0) : undefined;
+    (hasPrevPage ?? offset > 0) ? Math.max(offset - limit, 0) : undefined;
 
   return { nextCursor, prevCursor, ...(data as TQueryFnResult) };
 };

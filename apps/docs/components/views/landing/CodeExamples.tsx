@@ -23,7 +23,7 @@ export default function CodeExamples({ options }: CodeExamplesProps) {
             key={item.title}
             type="button"
             onClick={() => setSelectedIndex(index)}
-            className={`flex-shrink-0 rounded-md px-3 py-2 text-sm font-medium cursor-pointer transition-all ${
+            className={`flex-shrink-0 rounded-none px-3 py-2 text-sm font-medium cursor-pointer transition-all ${
               selectedIndex === index
                 ? "bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
                 : "bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-400"

@@ -8,6 +8,9 @@ import { AptosName } from "../utils/names.js";
 import { asyncTryOrDefault } from "../utils/lib.js";
 
 export type FetchAddressFromNameParameters = WithNetwork<{
+  /**
+   * The name to fetch the address for. You can pass in an instance of `AptosName` or a `string`.
+   */
   name: string | AptosName;
 }>;
 

@@ -1,0 +1,35 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchTokenData
+
+Function to fetch token (NFT) data for a given token address.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const tokenData = await client.fetchTokenData({
+  address: "0xc7dfc262666b2d4f74c7e77a64fe21d3b24386628fb780f65522fc2c625819a2",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchTokenDataParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { TokenData as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

@@ -1,0 +1,31 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# getClients
+
+This function is used to get the clients from the `AptosJSProClient`.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const { aptos, indexer, account, network, signer } = new AptosJSProClient({
+  /* ... */
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { GetClientsParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { GetClientsResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

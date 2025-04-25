@@ -1,0 +1,238 @@
+import { Steps } from "nextra/components";
+
+# Send Coins Guide
+
+The following guide demonstrates how to send transactions using **@aptos-labs/react**. The example will be a basic app that allows the users to send coins between addresses.
+
+## Getting Started
+
+<Steps>
+### Setup @aptos-labs/react
+
+Follow the [Quick Start](/react/quick-start) guide to set up **@aptos-labs/react**.
+
+### Create the `SendCoins` Component
+
+Create a new component called `SendCoins`. This component will act as the form for the users to send coins between addresses.
+
+```tsx filename="SendCoins.tsx"
+export default function SendCoins() {
+  return (
+    <form>
+      <input type="text" placeholder="Recipient Address" />
+      <input type="text" placeholder="Amount" />
+      <button type="submit">Send</button>
+    </form>
+  );
+}
+```
+
+Once the form has been set up, we can add the [`useSignAndSubmitTransaction`](/react/mutations/use-sign-and-submit-transaction) hook to the component to handle the transaction submission. We will add a simple form handler
+to call the `signAndSubmitTransaction` function when the form is submitted.
+
+```tsx filename="SendCoins.tsx" {1-1, 4-4, 6-24, 27-27, 33-33}
+import { useSignAndSubmitTransaction, parseApt } from "@aptos-labs/react";
+
+export default function SendCoins() {
+  const { hash, signAndSubmitTransaction } = useSignAndSubmitTransaction();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to sign and submit a transaction payload
+    signAndSubmitTransaction({
+      data: {
+        function: "0x1::account::transfer",
+        functionArguments: [
+          recipientAddress,
+          parseApt(amount), // `parseApt` parses APT amounts into octas
+        ],
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="recipientAddress">Recipient Address</label>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <label htmlFor="amount">APT Amount</label>
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit">Send</button>
+      {hash && <div>Transaction Hash: {hash}</div>}
+    </form>
+  );
+}
+```
+
+### Add a loading state (recommended)
+
+We also recommend adding a loading state to the component to indicate that the user is in the process of signing and submitting a transaction.
+
+```tsx filename="SendCoins.tsx" /isPending/ {4-4,33-35}
+import { useSignAndSubmitTransaction, parseApt } from "@aptos-labs/react";
+
+export default function SendCoins() {
+  const { hash, isPending, signAndSubmitTransaction } =
+    useSignAndSubmitTransaction();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to sign and submit a transaction payload
+    signAndSubmitTransaction({
+      data: {
+        function: "0x1::account::transfer",
+        functionArguments: [
+          recipientAddress,
+          parseApt(amount), // `parseApt` parses APT amounts into octas
+        ],
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="recipientAddress">Recipient Address</label>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <label htmlFor="amount">APT Amount</label>
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Confirming..." : "Send"}
+      </button>
+      {hash && <div>Transaction Hash: {hash}</div>}
+    </form>
+  );
+}
+```
+
+### Wait for confirmation
+
+After a transaction has been submitted on-chain, you have to wait for it to be confirmed. Once confirmed, changes in the state of the account (balance) will be reflected. You can do this by using the
+[`useWaitForTransaction`](/react/queries/use-wait-for-transaction) hook.
+
+```tsx filename="SendCoins.tsx" {7-8,40-41}
+import { useSignAndSubmitTransaction, parseApt } from "@aptos-labs/react";
+
+export default function SendCoins() {
+  const { hash, isPending, signAndSubmitTransaction } =
+    useSignAndSubmitTransaction();
+
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransaction({ hash });
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to sign and submit a transaction payload
+    signAndSubmitTransaction({
+      data: {
+        function: "0x1::account::transfer",
+        functionArguments: [
+          recipientAddress,
+          parseApt(amount), // `parseApt` parses APT amounts into octas
+        ],
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="recipientAddress">Recipient Address</label>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <label htmlFor="amount">APT Amount</label>
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Waiting for user confirmation..." : "Send"}
+      </button>
+      {hash && <div>Transaction Hash: {hash}</div>}
+      {isConfirming && <div>Confirming transaction...</div>}
+      {isConfirmed && <div>Transaction Confirmed!</div>}
+    </form>
+  );
+}
+```
+
+### Handling errors
+
+It is important to handle errors that may occur when signing and submitting a transaction. Typically an error will be thrown if the user rejects the transaction request. You can handle this by using the
+`error` state from the [`useSignAndSubmitTransaction`](/react/mutations/use-sign-and-submit-transaction) hook.
+
+```tsx filename="SendCoins.tsx" /error/ /AptosReactBaseError/ {4-4,8-8,46-50}
+import {
+  useSignAndSubmitTransaction,
+  parseApt,
+  AptosReactBaseError,
+} from "@aptos-labs/react";
+
+export default function SendCoins() {
+  const { hash, isPending, signAndSubmitTransaction, error } =
+    useSignAndSubmitTransaction();
+
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransaction({ hash });
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to sign and submit a transaction payload
+    signAndSubmitTransaction({
+      data: {
+        function: "0x1::account::transfer",
+        functionArguments: [
+          recipientAddress,
+          parseApt(amount), // `parseApt` parses APT amounts into octas
+        ],
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="recipientAddress">Recipient Address</label>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <label htmlFor="amount">APT Amount</label>
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Waiting for user confirmation..." : "Send"}
+      </button>
+      {hash && <div>Transaction Hash: {hash}</div>}
+      {isConfirming && <div>Confirming transaction...</div>}
+      {isConfirmed && <div>Transaction Confirmed!</div>}
+      {error && (
+        <div>
+          Error: {"shortMessage" in error ? error.shortMessage : error.message}
+        </div>
+      )}
+    </form>
+  );
+}
+```
+
+### That's it!
+
+This simple component is ready to be placed anywhere in your application to allow users to send coins between addresses. This end-to-end example demonstrates how to use the `useSignAndSubmitTransaction` hook to sign and
+submit a transaction, handle errors, and wait for confirmation of the transaction.
+
+</Steps>
+
+## Next Steps

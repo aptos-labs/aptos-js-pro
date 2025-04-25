@@ -1,0 +1,100 @@
+import { Steps } from "nextra/components";
+
+# Quick Start
+
+**@aptos-labs/js-pro** is a collection of TypeScript utilities for building on top of Aptos. The library focuses on providing a seamless experience for developers to build with the best practices in mind.
+
+## Getting Started
+
+<Steps>
+### Installation
+
+To install Aptos JS-Pro, you can use your preferred package manager.
+
+```bash npm2yarn
+npm install @aptos-labs/ts-sdk @aptos-labs/js-pro
+```
+
+### Creating a `AptosJSProClient`
+
+To utilize Aptos JS-Pro in your application, you will need to create a `AptosJSProClient` in order to manage your networks and account connections.
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Network } from "@aptos-labs/ts-sdk";
+
+const client = new AptosJSProClient({
+  network: { network: Network.DEVNET },
+});
+```
+
+The `AptosJSProClient` is a layer on top of the `@aptos-labs/ts-sdk` client. It provides a more opinionated interface for interacting with the Aptos blockchain and can be used to manage
+your networks and account connections from a single source.
+
+### Account Management
+
+If there is an existing account you would like to plug into the client, you can do so by using the `convertAptosAccountToAccountInfo` and `convertAptosAccountToSigner` utilities.
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Network } from "@aptos-labs/ts-sdk";
+
+const account = Account.generate();
+
+const client = new AptosJSProClient({
+  account: convertAptosAccountToAccountInfo(account),
+  signer: convertAptosAccountToSigner(account),
+  network: { network: Network.DEVNET },
+});
+```
+
+By establishing the client with an account, the client will use the `signer` to sign and/or submit transactions. For example, if you were to call `client.signAndSubmitTransaction` without specifying a signer,
+the client would use the `signer` from the client.
+
+### You're all set!
+
+Now that you have your client set up, you can start using Aptos JS-Pro. With Aptos JS-Pro, you gain access to a collection of
+opinonated utilities that are reactive, tested, and ready to use out of the box. Create your first Aptos application in minutes!
+
+**Querying the Blockchain**
+
+The `fetchBalance` function is a simple function that queries the Aptos blockchain for the balance of an account.
+
+```ts
+const balance = await client.fetchBalance({
+  address: "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+  asset: "0x1::AptosCoin::AptosCoin",
+});
+```
+
+**Signing and Submitting Transactions**
+
+The `signAndSubmitTransaction` function is a function that signs and submits a transaction to the Aptos blockchain.
+
+```ts
+import { parseApt } from "@aptos-labs/js-pro";
+
+// Will sign and submit the transaction using the client's signer
+const pendingTransaction = await client.signAndSubmitTransaction({
+  data: {
+    function: "0x1::aptos_coin::transfer",
+    functionArguments: [
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+      parseApt(amount),
+    ],
+  },
+});
+```
+
+**Switching Accounts or Networks**
+
+If you need to switch the account or network, you can do so by calling the `setAccount` and `setNetwork` methods.
+
+```ts
+client.setAccount(convertAptosAccountToAccountInfo(account));
+client.setNetwork({ network: Network.MAINNET });
+```
+
+These methods are reactive meaning that the client can be subscribed to the account and network changes.
+
+</Steps>

@@ -3,7 +3,7 @@
 import { describe, expect } from "vitest";
 import { test } from "../../tests/fixtures";
 
-describe("fetchTransactions", () => {
+describe("fetchTransaction", () => {
   test("should fetch transaction by ledger version", async ({ testnet }) => {
     const result = await testnet.fetchTransaction({
       ledgerVersion: 6690814066,

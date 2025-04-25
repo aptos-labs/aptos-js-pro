@@ -1,0 +1,81 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# signAndSubmitTransaction
+
+This function is used to sign and submit a transaction to the Aptos blockchain. If no signer is specified, the transaction will use the `signer` from the `AptosJSProClient`.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Account } from "@aptos-labs/ts-sdk";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const recipient = Account.generate();
+
+const pendingTransaction = await client.signAndSubmitTransaction({
+  data: {
+    function: "0x1::aptos_account::transfer",
+    functionArguments: [recipient.accountAddress, 100],
+  },
+});
+
+await client.waitForTransaction({ hash: pendingTransaction.hash });
+```
+
+### With Pre-built Transaction
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Account } from "@aptos-labs/ts-sdk";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const recipient = Account.generate();
+
+const transaction = await client.buildTransaction({
+  data: {
+    function: "0x1::aptos_account::transfer",
+    functionArguments: [recipient.accountAddress, 100],
+  },
+});
+
+const pendingTransaction = await client.signAndSubmitTransaction({
+  transaction,
+});
+
+await client.waitForTransaction({ hash: pendingTransaction.hash });
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SignAndSubmitTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `SignAndSubmitTransactionResult` will be a `TransactionResponse` from the `@aptos-labs/ts-sdk`. The type will typically be `PendingTransactionResponse` or `UserTransactionResponse`.
+
+### PendingTransactionResponse
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { PendingTransactionResponse as default } from "@aptos-labs/ts-sdk";`,
+  })}
+/>
+
+### UserTransactionResponse
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UserTransactionResponse as default } from "@aptos-labs/ts-sdk";`,
+  })}
+/>

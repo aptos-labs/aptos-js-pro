@@ -11,6 +11,9 @@ import {
 } from "../utils/normalize.js";
 
 export type FetchTokenDataParameters = WithNetwork<{
+  /**
+   * The token address (NFT) to fetch the token data for.
+   */
   address: string;
 }>;
 

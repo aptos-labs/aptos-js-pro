@@ -6,8 +6,8 @@ import { useAccountCoins } from "./useAccountCoins";
 import { test } from "../../tests/fixtures";
 import { expect } from "vitest";
 
-test("useAccountCoins", async ({ devnet }) => {
-  const { result } = renderHook(devnet, () =>
+test("useAccountCoins", async ({ testnet }) => {
+  const { result } = renderHook(testnet, () =>
     useAccountCoins({ address: "0x1" })
   );
 

@@ -1,0 +1,31 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchResources
+
+This function is used to fetch resources for an account.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const resources = await client.fetchResources({
+  address: "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchResourcesParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `fetchResources` function will return an array of `MoveResource` objects from the `@aptos-labs/ts-sdk`.

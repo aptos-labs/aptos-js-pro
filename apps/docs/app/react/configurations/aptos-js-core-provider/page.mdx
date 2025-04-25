@@ -1,0 +1,36 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# AptosJSCoreProvider
+
+The `AptosJSCoreProvider` is a React context provider that provides a `AptosJSProClient` instance to the application.
+
+## Usage
+
+```tsx
+import { AptosJSCoreProvider } from "@aptos-labs/react";
+
+export default function App() {
+  const core = new AptosJSProClient({
+    /* ... */
+  });
+
+  return (
+    <AptosJSCoreProvider core={core}>
+      {/* Your app components */}
+    </AptosJSCoreProvider>
+  );
+}
+```
+
+## Props
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    import React from "react";
+    import { AptosJSCoreProvider } from "@aptos-labs/react";
+    type Props = React.ComponentProps<typeof AptosJSCoreProvider>;
+    export default Props;
+    `,
+  })}
+/>

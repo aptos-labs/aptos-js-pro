@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 import { Footer, Layout, Navbar } from "nextra-theme-docs";
-import { Head } from "nextra/components";
+import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
 import AppProviders from "@/context/AppProviders";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://js-pro.aptos.dev"),
+  metadataBase: new URL("https://jspro.aptos.dev"),
   title: {
     default: "Aptos JS-Pro",
     template: "%s | Aptos JS-Pro",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://js-pro.aptos.dev",
+    url: "https://jspro.aptos.dev",
     siteName: "Aptos JS-Pro",
     title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",
@@ -106,6 +106,12 @@ export default async function RootLayout({
               </Footer>
             }
           >
+            <Banner storageKey="0.1-release">
+              <p>
+                🚧 These packages are still in development and may change
+                rapidly as they continue to be developed.
+              </p>
+            </Banner>
             {children}
           </Layout>
         </body>

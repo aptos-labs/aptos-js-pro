@@ -1,0 +1,49 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchFungibleAssetMetadata
+
+Function to fetch fungible asset metadata for a given asset address.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const fungibleAssetMetadata = await client.fetchFungibleAssetMetadata({
+  address: "0xa",
+});
+```
+
+### Coin Type
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const fungibleAssetMetadata = await client.fetchFungibleAssetMetadata({
+  address: "0x1::aptos_coin::AptosCoin",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchFungibleAssetMetadataParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FungibleAssetMetadata as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

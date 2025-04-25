@@ -1,0 +1,33 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchEstimatedGasPrice
+
+This function fetches the estimated gas prioritization fees.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const estimatedGasPrice = await client.fetchEstimatedGasPrice();
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchEstimatedGasPriceParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchEstimatedGasPriceResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

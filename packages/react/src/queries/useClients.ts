@@ -4,7 +4,7 @@
 import { WithNetwork } from "../../../js-pro/dist/types/parameters.js";
 import { useAptosCore } from "../AptosJSCoreProvider.js";
 
-type UseClientsParameters = WithNetwork<object>;
+export type UseClientsParameters = WithNetwork<object>;
 
 export function useClients({ network }: UseClientsParameters = {}) {
   const core = useAptosCore();

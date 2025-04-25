@@ -6,7 +6,13 @@ import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";
 
 export type FetchBalanceParameters = WithNetwork<{
+  /**
+   * The address to fetch the asset balance for.
+   */
   address: AccountAddressInput;
+  /**
+   * The asset to fetch the balance for. This can be a coin type or Fungible Asset metadata address.
+   */
   asset: string;
 }>;
 

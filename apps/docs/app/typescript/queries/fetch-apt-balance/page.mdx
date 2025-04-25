@@ -1,0 +1,32 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchAptBalance
+
+This function is used to fetch the APT balance of an account.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const balance = await client.fetchAptBalance({
+  accountAddress:
+    "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAptBalanceParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `fetchAptBalance` function will return a `bigint` of the balance.

@@ -8,6 +8,9 @@ import { AptosName } from "../utils/names.js";
 import { asyncTryOrDefault } from "../utils/lib.js";
 
 export type FetchNameFromAddressParameters = WithNetwork<{
+  /**
+   * The address to fetch the ANS name for.
+   */
   address: AccountAddressInput;
 }>;
 

@@ -1,0 +1,112 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# AptosJSProClient
+
+The `AptosJSProClient` is a client for the Aptos blockchain that is used to manage your networks and account connections. This is a layer on top of the `@aptos-labs/ts-sdk` client.
+
+## Usage
+
+```ts
+import {
+  AptosJSProClient,
+  convertAptosAccountToAccountInfo,
+  convertAptosAccountToSigner,
+} from "@aptos-labs/js-pro";
+import { Network } from "@aptos-labs/ts-sdk";
+
+const account = Account.generate();
+
+const client = new AptosJSProClient({
+  network: { network: Network.DEVNET },
+  account: convertAptosAccountToAccountInfo(account),
+  signer: convertAptosAccountToSigner(account),
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { AptosJSProClientParameters as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+  typeLinkMap={{
+    ClientConfigs: "#clientconfigs",
+    AccountInfo: "#accountinfo",
+    NetworkInfo: "#networkinfo",
+    SignerClient: "#signerclient",
+  }}
+/>
+
+### AccountInfo
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { AccountInfo as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+/>
+
+### ClientConfigs
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { ClientConfigs as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+/>
+
+### NetworkInfo
+
+The configurations for the current network.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { NetworkInfo as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+/>
+
+### SignerClient
+
+A `SignerClient` can be of two types: `CustomSignerClient` and `AdapterSignerClient`.
+
+#### CustomSignerClient
+
+This client is typically used with an `Account` object.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { CustomSignerClient as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+/>
+
+#### AdapterSignerClient
+
+This client is typically used with the `@aptos-labs/wallet-adapter-react`.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    export { AdapterSignerClient as default } from "@aptos-labs/js-pro";
+    `,
+  })}
+/>
+
+### Methods
+
+<TSDoc
+  definition={generateDefinition({
+    code: `
+    import { AptosJSProClient } from "@aptos-labs/js-pro";
+    type AptosJSProClientMethods = Omit<AptosJSProClient, "#private" | "store" | "refreshClients">;
+    export default AptosJSProClientMethods;
+    `,
+  })}
+/>

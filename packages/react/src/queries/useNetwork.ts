@@ -7,3 +7,4 @@ export function useNetwork() {
   const core = useAptosCore();
   return core.network;
 }
+

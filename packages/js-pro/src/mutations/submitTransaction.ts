@@ -12,11 +12,11 @@ import {
 import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";
 
-type SubmitTransactionWithSignedTransactionParameters = WithNetwork<{
+export type SubmitTransactionWithSignedTransactionParameters = WithNetwork<{
   transaction: SignedTransaction;
 }>;
 
-type SubmitTransactionWithRawTransactionParameters =
+export type SubmitTransactionWithRawTransactionParameters =
   WithNetwork<InputSubmitTransactionData>;
 
 export type SubmitTransactionParameters =

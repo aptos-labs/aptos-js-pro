@@ -1,0 +1,51 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useUserTransactions
+
+Hook for fetching user transactions without activities with support for pagination. If no address is provided, it defaults to the connected account.
+
+Compared with [useAccountTransactions](./use-account-transactions.mdx) which fetches transactions with activities related to a specific account, this query will not fetch transactions related
+to the account, but must be directly specified by the sender address.
+
+## Usage
+
+```tsx
+import React from "react";
+import { useUserTransactions } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: transactions } = useUserTransactions();
+
+  return (
+    <div>
+      <h2>User Transactions:</h2>
+      {transactions?.pages.map((page, i) => (
+        <React.Fragment key={i}>
+          {page.transactions.map((tx) => (
+            <div key={tx.hash}>{tx.hash}</div>
+          ))}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseUserTransactionsQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useUserTransactions } from "@aptos-labs/react";
+    type UseUserTransactionsQueryResult = ReturnType<typeof useUserTransactions>;
+    export default UseUserTransactionsQueryResult;
+    `,
+  })}
+/>

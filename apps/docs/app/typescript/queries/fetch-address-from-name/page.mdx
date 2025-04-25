@@ -1,0 +1,39 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchAddressFromName
+
+This function is used to fetch the address from an ANS name.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const address = await client.fetchAddressFromName({
+  name: "aptos.apt",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAddressFromNameParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `fetchAddressFromName` function will return an `AccountAddress` or `null` if the name does not exist.
+
+### AccountAddress
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { AccountAddress as default } from "@aptos-labs/ts-sdk";`,
+  })}
+/>

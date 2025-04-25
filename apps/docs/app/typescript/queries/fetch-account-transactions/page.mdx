@@ -1,0 +1,39 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchAccountTransactions
+
+Fetching transactions related to a specific account specific account, with support for pagination.
+
+As compared to `fetchUserTransactions`, this function may return results where the `sender` of a transaction is not the specified `address`.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const { nextCursor, prevCursor, transactions } =
+  await client.fetchAccountTransactions({
+    address:
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+  });
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAccountTransactionsParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAccountTransactionsResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

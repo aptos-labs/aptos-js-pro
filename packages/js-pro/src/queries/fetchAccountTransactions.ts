@@ -6,6 +6,7 @@ import { WithNetwork } from "../types/parameters.js";
 import {
   createPaginatedQuery,
   PaginationCursors,
+  WithPagination,
 } from "../utils/pagination.js";
 import { AptosJSProClient } from "../client.js";
 import {
@@ -16,17 +17,38 @@ import { IndexerNotInitializedError } from "../errors/clients.js";
 import { AccountTransaction } from "../types/transactions.js";
 import { normalizeAccountTransaction } from "../utils/normalize.js";
 
-export type FetchAccountTransactionsParameters = WithNetwork<{
-  address: AccountAddressInput;
-  limit?: number;
-  offset?: number;
-  orderBy?: GetAccountTransactionsQueryVariables["order_by"];
-  where?: GetAccountTransactionsQueryVariables["where"];
-  fungibleAssetActivitiesWhere?: GetAccountTransactionsQueryVariables["fungible_asset_activities_where"];
-  tokenActivitiesWhere?: GetAccountTransactionsQueryVariables["token_activities_v2_where"];
-  fungibleAssetActivitiesOrderBy?: GetAccountTransactionsQueryVariables["fungible_asset_activities_order_by"];
-  tokenActivitiesOrderBy?: GetAccountTransactionsQueryVariables["token_activities_v2_order_by"];
-}>;
+export type FetchAccountTransactionsParameters = WithPagination<
+  WithNetwork<{
+    /**
+     * The address of the account to fetch the transactions for.
+     */
+    address: AccountAddressInput;
+    /**
+     * Conditions for ordering the transaction results.
+     */
+    orderBy?: GetAccountTransactionsQueryVariables["order_by"];
+    /**
+     * Filters for the transaction results.
+     */
+    where?: GetAccountTransactionsQueryVariables["where"];
+    /**
+     * Filters for the fungible asset activities results.
+     */
+    fungibleAssetActivitiesWhere?: GetAccountTransactionsQueryVariables["fungible_asset_activities_where"];
+    /**
+     * Filters for the token activities results.
+     */
+    tokenActivitiesWhere?: GetAccountTransactionsQueryVariables["token_activities_v2_where"];
+    /**
+     * Conditions for ordering the fungible asset activities results.
+     */
+    fungibleAssetActivitiesOrderBy?: GetAccountTransactionsQueryVariables["fungible_asset_activities_order_by"];
+    /**
+     * Conditions for ordering the token activities results.
+     */
+    tokenActivitiesOrderBy?: GetAccountTransactionsQueryVariables["token_activities_v2_order_by"];
+  }>
+>;
 
 export type FetchAccountTransactionsResult = PaginationCursors & {
   transactions: AccountTransaction[];

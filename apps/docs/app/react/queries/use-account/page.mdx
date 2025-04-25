@@ -1,6 +1,8 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
 # useAccount
 
-Hook for getting the current account. The account may be `undefined` if the user is not connected.
+Hook for getting the current account from the `AptosJSProClient`. This typically is the account that is connected to the application. If no account is connected, it will return `undefined`.
 
 ## Usage
 
@@ -13,3 +15,13 @@ export default function App() {
   return account ? <div>{account.address}</div> : <div>Not connected</div>;
 }
 ```
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { AccountInfo } from "@aptos-labs/js-pro";
+    export default AccountInfo;
+    `,
+  })}
+/>

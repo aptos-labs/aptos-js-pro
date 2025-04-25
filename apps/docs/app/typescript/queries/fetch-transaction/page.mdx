@@ -1,0 +1,51 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchTransaction
+
+Fetching a transaction by ledger version or transaction hash.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.fetchTransaction({
+  transactionHash: "0x1234567890abcdef",
+});
+```
+
+### Ledger Version
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.fetchTransaction({
+  ledgerVersion: 1234567890,
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `FetchTransactionResult` is a `TransactionResponse` from the `@aptos-labs/ts-sdk`.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchTransactionResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

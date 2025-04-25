@@ -1,0 +1,58 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useResources
+
+Hook for fetching resources for a given account address.
+
+## Usage
+
+```tsx
+import { useResources } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: resources, isLoading } = useResources({
+    accountAddress:
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+  });
+
+  if (isLoading) {
+    return <div>Loading resources...</div>;
+  }
+
+  return (
+    <div>
+      <h2>Resources:</h2>
+      {resources && resources.length > 0 ? (
+        <ul>
+          {resources.map((resource) => (
+            <li key={resource.type}>
+              <strong>{resource.type}</strong>: {JSON.stringify(resource.data)}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No resources found.</p>
+      )}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseResourcesQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useResources } from "@aptos-labs/react";
+    type UseResourcesQueryResult = ReturnType<typeof useResources>;
+    export default UseResourcesQueryResult;
+    `,
+  })}
+/>

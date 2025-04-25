@@ -1,0 +1,27 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useNetwork
+
+Hook for getting the current network from the `AptosJSProClient`.
+
+## Usage
+
+```tsx
+import { useNetwork } from "@aptos-labs/react";
+
+export default function App() {
+  const network = useNetwork();
+
+  return <div>{network.network}</div>;
+}
+```
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { NetworkInfo } from "@aptos-labs/js-pro";
+    export default NetworkInfo;
+    `,
+  })}
+/>

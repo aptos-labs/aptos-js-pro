@@ -20,8 +20,17 @@ import { normalizeFungibleAssetBalances } from "../utils/normalize.js";
 
 export type FetchAccountCoinsParameters = WithPagination<
   WithNetwork<{
+    /**
+     * The address of the account to fetch the coin balances for.
+     */
     address: AccountAddressInput;
+    /**
+     * Conditions for ordering the coin balance results.
+     */
     orderBy?: GetFungibleAssetBalancesQueryVariables["order_by"];
+    /**
+     * Filters for the coin balance results.
+     */
     where?: GetFungibleAssetBalancesQueryVariables["where"];
   }>
 >;

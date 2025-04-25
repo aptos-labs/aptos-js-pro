@@ -55,7 +55,7 @@ export default function Hero() {
           }}
         >
           <Button asChild>
-            <Link href="/react">Get Started</Link>
+            <Link href="/react/introduction/quick-start">Get Started</Link>
           </Button>
         </motion.div>
       </div>

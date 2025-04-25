@@ -1,0 +1,51 @@
+---
+description: 
+globs: apps/docs/app/typescript/**/page.mdx
+alwaysApply: false
+---
+Whenever creating a documentation page, follow the rules below:
+
+# Formatting
+
+Whenever creating a documentation page, always follow this format:
+
+# {hook-name}
+
+{description}
+
+## Usage
+
+```tsx
+{code example}
+```
+
+# References
+
+Always read a four other documentation pages for reference. Match the style.
+
+# Find Tests
+
+When you are given a hook (i.e. `fetchResources.ts`), always find and read the test that should be in the following format `{function-name}.test.(ts)` (i.e. `fetchResources.test.ts`).
+
+# Usage Guidelines
+
+When making "Usage" examples, make sure to make it as minimal as possible. Use the following template as example and always refer to the "Usage" section of other documentation examples as reference.
+
+```tsx
+{imports}
+
+{usage}
+```
+
+Make sure to understand the types, if needed, go into the imports to make sure you understand all the types. For example, if you don't know what `MoveResource` is, go into the `@aptos-labs/ts-sdk` and figure out what it is. Always make sure to read the result types and understand what the reuslt is so that in the examples you are using the correct attributes. NEVER infer types, always find them. If after five attempts you still can't find the type, ask the user for help.
+
+# Address Guidelines
+
+If you need to use a valid address, use: "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a"
+
+When you put in the address, you can just do it inline.
+
+# Conclusion
+
+Once you have read everything, begin writing the documentation. Make sure to reference the other documentation pages for style and always reference the implementations of hooks and queries when creating the usage example.
+

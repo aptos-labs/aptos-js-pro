@@ -7,13 +7,13 @@ Aptos JS-Pro is a library of utilities built on top of the `@aptos-labs/ts-sdk`.
 ### JavaScript
 
 ```bash
-npm install @aptos-labs/js-pro
+npm install @aptos-labs/ts-sdk @aptos-labs/js-pro
 ```
 
 ### React
 
 ```bash
-npm install @aptos-labs/js-pro @aptos-labs/react @tanstack/react-query
+npm install @aptos-labs/ts-sdk @aptos-labs/js-pro @tanstack/react-query @aptos-labs/react
 ```
 
 ## Getting Started

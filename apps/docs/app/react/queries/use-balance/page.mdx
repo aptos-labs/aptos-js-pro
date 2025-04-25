@@ -1,3 +1,5 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
 # useBalance
 
 Hook for getting the current fungible asset or coin balance of an account.
@@ -21,3 +23,22 @@ export default function App() {
   return <div>APT Balance: {aptBalance} octas</div>;
 }
 ```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseBalanceParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useBalance } from "@aptos-labs/react";
+    type UseBalanceQueryResult = ReturnType<typeof useBalance>;
+    export default UseBalanceQueryResult;
+    `,
+  })}
+/>

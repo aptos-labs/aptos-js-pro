@@ -1,0 +1,52 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# simulateTransaction
+
+This function is used to simulate a transaction before submitting it to the Aptos blockchain.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.buildTransaction({
+  data: {
+    function: "0x1::aptos_account::transfer",
+    functionArguments: [account.accountAddress, 100],
+  },
+});
+
+const simulationResult = await client.simulateTransaction({ transaction });
+```
+
+## Parameters
+
+The `simulateTransaction` function has two types of parameters: `SimulateSimpleTransactionParameters` or `SimulateMultiAgentTransactionParameters`.
+
+### SimulateSimpleTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SimulateSimpleTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+### SimulateMultiAgentTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SimulateMultiAgentTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SimulateTransactionResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

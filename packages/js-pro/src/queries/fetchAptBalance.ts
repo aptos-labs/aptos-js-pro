@@ -6,6 +6,9 @@ import { AptosJSProClient } from "../client.js";
 import { WithNetwork } from "../types/parameters.js";
 
 export type FetchAptBalanceParameters = WithNetwork<{
+  /**
+   * The address to fetch the APT balance for.
+   */
   address: AccountAddressInput;
 }>;
 

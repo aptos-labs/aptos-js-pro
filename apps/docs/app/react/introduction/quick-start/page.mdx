@@ -2,7 +2,7 @@ import { Steps } from "nextra/components";
 
 # Quick Start
 
-Aptos JS-Pro is a collection of opinionated utilities for building on Aptos. This guide will walk you through the process of setting up Aptos JS-Pro with React hooks.
+**@aptos-labs/react** is a collection of opinionated React hooks for building on top of Aptos. The library focuses on providing a seamless experience for developers to build with the best practices in mind.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ Aptos JS-Pro is a collection of opinionated utilities for building on Aptos. Thi
 To install Aptos JS-Pro with React hooks, you can use your preferred package manager.
 
 ```bash npm2yarn
-npm install @aptos-labs/js-pro @aptos-labs/react @tanstack/react-query
+npm install @aptos-labs/ts-sdk @aptos-labs/js-pro @tanstack/react-query @aptos-labs/react
 ```
 
 **With Wallet Adapter (Recommended)**
@@ -68,7 +68,8 @@ that takes the connection information from the `AptosWalletAdapterProvider` and 
 
 ```tsx filename="AptosCoreProvider.tsx"
 import { PropsWithChildren } from "react";
-import { AptosJSCoreProvider, useWalletAdapterCore } from "@aptos-labs/react";
+import { AptosJSCoreProvider } from "@aptos-labs/react";
+import { useWalletAdapterCore } from "@aptos-labs/react/connectors";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 export default function AptosCoreProvider({ children }: PropsWithChildren) {
@@ -100,6 +101,24 @@ export default function App({ children }: PropsWithChildren) {
   );
 }
 ```
+
+### Wallet Selector (recommended)
+
+Once you have set up the providers, we also recommend adding a wallet selector UI to your application. A wallet selector is a component that allows a user to select their wallet of choice. Whenever a user connects their wallet,
+the wallet adapter should automatically connect the wallet to your JS-Pro context.
+
+You can follow this guide to setup a wallet selector for your application: [Using a Wallet Selector UI](<https://aptos.dev/en/build/sdks/wallet-adapter/dapp#import-usewallet-in-files-where-you-want-to-access-data-from-the-provider:~:text=%3D%20useWallet()%3B-,Choose%20a%20UI%20Package,-The%20Wallet%20Adapter>).
+
+<br />
+
+<div className="flex justify-center rounded-lg border overflow-clip">
+  <a
+    href="https://aptos.dev/en/build/sdks/wallet-adapter/dapp#import-usewallet-in-files-where-you-want-to-access-data-from-the-provider:~:text=%3D%20useWallet()%3B-,Choose%20a%20UI%20Package,-The%20Wallet%20Adapter"
+    target="_blank"
+  >
+    <img src="/assets/wallet-selector-ui.jpeg" alt="Wallet Selector Guide" />
+  </a>
+</div>
 
 ### You're all set!
 

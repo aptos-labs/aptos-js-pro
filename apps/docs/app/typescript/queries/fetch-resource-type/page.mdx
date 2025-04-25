@@ -1,0 +1,37 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchResourceType
+
+This function is used to fetch the resource type for a resource.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const resourceType = await client.fetchResourceType({
+  accountAddress:
+    "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+  resourceType: "0x1::account::Account",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchResourceTypeParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchResourceTypeResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

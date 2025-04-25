@@ -4,7 +4,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig((options) => ({
-  entry: ["./src/index.ts", "./src/legacy.ts"],
+  entry: ["./src/index.ts", "./src/connectors.tsx"],
   splitting: false,
   sourcemap: true,
   format: ["cjs", "esm"],

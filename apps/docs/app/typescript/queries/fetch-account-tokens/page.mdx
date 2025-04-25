@@ -1,0 +1,35 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchAccountTokens
+
+Fetching token (NFT) balances for a specific account, with support for pagination.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const { nextCursor, prevCursor, tokens } = await client.fetchAccountTokens({
+  address: "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAccountTokensParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchAccountTokensResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

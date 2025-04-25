@@ -1,0 +1,54 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# submitTransaction
+
+This function is used to submit signed transactions to the Aptos blockchain.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.buildTransaction({
+  /* ... */
+});
+
+const signedTransaction = await client.signTransaction({ transaction });
+
+const transactionResponse = await client.submitTransaction({
+  senderAuthenticator: signedTransaction.authenticator,
+  transaction: signedTransaction,
+});
+```
+
+## Parameters
+
+The `submitTransaction` function has two types of parameters: `SubmitTransactionWithSignedTransactionParameters` or `SubmitTransactionWithRawTransactionParameters`.
+
+### SubmitTransactionWithSignedTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SubmitTransactionWithSignedTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+### SubmitTransactionWithRawTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SubmitTransactionWithRawTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SubmitTransactionResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

@@ -7,6 +7,7 @@ import { WithNetwork } from "../types/parameters.js";
 import {
   createPaginatedQuery,
   PaginationCursors,
+  WithPagination,
 } from "../utils/pagination.js";
 import { AptosJSProClient } from "../client.js";
 import { IndexerNotInitializedError } from "../errors/index.js";
@@ -16,13 +17,22 @@ import {
 } from "../operations/index.js";
 import { normalizeCollectionData } from "../utils/normalize.js";
 
-export type FetchAccountCollectionsParameters = WithNetwork<{
-  address: AccountAddressInput;
-  limit?: number;
-  offset?: number;
-  where?: GetAccountCollectionsQueryVariables["where"];
-  orderBy?: GetAccountCollectionsQueryVariables["order_by"];
-}>;
+export type FetchAccountCollectionsParameters = WithPagination<
+  WithNetwork<{
+    /**
+     * The address of the account to fetch the collections for.
+     */
+    address: AccountAddressInput;
+    /**
+     * Filters for the collection results.
+     */
+    where?: GetAccountCollectionsQueryVariables["where"];
+    /**
+     * Conditions for ordering the collection results.
+     */
+    orderBy?: GetAccountCollectionsQueryVariables["order_by"];
+  }>
+>;
 
 export type FetchAccountCollectionsResult = PaginationCursors & {
   collections: CollectionData[];

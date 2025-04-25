@@ -48,7 +48,7 @@ type IndexerClientOptions = ConstructorParameters<typeof GraphQLClient>[1];
 
 export type ClientConfigs = {
   /**
-   * This will be included as `Authorization: Bearer <apiKey> in all requests to Aptos
+   * This will be included as `Authorization: Bearer <apiKey>` in all requests to Aptos
    * APIs. For the Aptos client this means settings AptosConfig.clientConfig.API_KEY.
    * For the indexer client, we provide a custom header.
    *

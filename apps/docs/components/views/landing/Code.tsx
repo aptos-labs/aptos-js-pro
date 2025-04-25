@@ -17,7 +17,8 @@ const options: CodeOption[] = [
     lang: "tsx",
     description:
       "Setup your app providers for Tanstack Query, Aptos Wallet Adapter, and Aptos JS-Pro.",
-    code: `import { AptosJSCoreProvider, useWalletAdapterCore } from '@aptos-labs/react';
+    code: `import { AptosJSCoreProvider } from '@aptos-labs/react';
+import { useWalletAdapterCore } from '@aptos-labs/react/connectors';
 import { AptosWalletAdapterProvider, useWallet } from '@aptos-labs/wallet-adapter-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
  

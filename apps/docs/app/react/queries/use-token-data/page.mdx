@@ -1,0 +1,45 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useTokenData
+
+Hook for fetching token data (NFT) for a given token address.
+
+## Usage
+
+```tsx
+import { useTokenData } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: tokenData, isLoading } = useTokenData({
+    address: "0x1234567890abcdef",
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Token Data</h1>
+      <pre>{JSON.stringify(tokenData, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseTokenDataQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useTokenData } from "@aptos-labs/react";
+    type UseTokenDataQueryResult = ReturnType<typeof useTokenData>;
+    export default UseTokenDataQueryResult;
+    `,
+  })}
+/>

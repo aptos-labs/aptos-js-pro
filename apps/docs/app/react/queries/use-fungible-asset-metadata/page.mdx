@@ -1,0 +1,45 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useFungibleAssetMetadata
+
+Hook for fetching the metadata for a fungible asset using its metadata address.
+
+## Usage
+
+```tsx
+import { useFungibleAssetMetadata } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: metadata, isLoading } = useFungibleAssetMetadata({
+    address: "0xa",
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Fungible Asset Metadata</h1>
+      <pre>{JSON.stringify(metadata, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseFungibleAssetMetadataQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useFungibleAssetMetadata } from "@aptos-labs/react";
+    type UseFungibleAssetMetadataQueryResult = ReturnType<typeof useFungibleAssetMetadata>;
+    export default UseFungibleAssetMetadataQueryResult;
+    `,
+  })}
+/>

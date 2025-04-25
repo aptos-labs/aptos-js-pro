@@ -1,0 +1,75 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useSubmitTransaction
+
+Hook for submitting a transaction. The hook will use the default `signer` from the `AptosJSProClient`.
+
+## Usage
+
+```tsx
+import {
+  useSubmitTransaction,
+  useClients,
+  useSignTransaction,
+} from "@aptos-labs/react";
+import { Account } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { client } = useClients();
+  const recipient = Account.generate();
+
+  const { mutateAsync: signTransaction } = useSignTransaction();
+
+  const {
+    mutate: submitTransaction,
+    data: transactionResult,
+    isPending: isSubmitting,
+    isSuccess: isSubmitted,
+  } = useSubmitTransaction();
+
+  const handleSignAndSubmitTransaction = async () => {
+    const transaction = await client.buildTransaction({
+      data: {
+        function: "0x1::aptos_account::transfer",
+        functionArguments: [recipient.accountAddress, 100],
+      },
+    });
+
+    const signedTransaction = await signTransaction({ transaction });
+
+    submitTransaction({
+      senderAuthenticator: signedTransaction.authenticator,
+      transaction,
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleSignAndSubmitTransaction} disabled={isPending}>
+        Sign and Submit Transaction
+      </button>
+      {isSubmitting && <p>Submitting transaction...</p>}
+      {isSubmitted && <p>Transaction hash: {transactionResult?.hash}</p>}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseSubmitTransactionMutationParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useSubmitTransaction } from "@aptos-labs/react";
+    type UseSubmitTransactionMutationResult = ReturnType<typeof useSubmitTransaction>;
+    export default UseSubmitTransactionMutationResult;
+    `,
+  })}
+/>

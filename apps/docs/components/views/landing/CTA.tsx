@@ -17,10 +17,10 @@ export default function CTA() {
 
         <div className="flex justify-center gap-4">
           <Button className="w-fit" asChild>
-            <Link href="/react">React</Link>
+            <Link href="/react/introduction/quick-start">React</Link>
           </Button>
           <Button className="w-fit" asChild>
-            <Link href="/typescript">TypeScript</Link>
+            <Link href="/typescript/introduction/quick-start">TypeScript</Link>
           </Button>
         </div>
       </div>

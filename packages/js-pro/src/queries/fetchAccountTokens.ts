@@ -7,20 +7,33 @@ import { WithNetwork } from "../types/parameters.js";
 import {
   createPaginatedQuery,
   PaginationCursors,
+  WithPagination,
 } from "../utils/pagination.js";
 import { AptosJSProClient } from "../client.js";
 import { GetAccountTokenOwnershipsQueryVariables } from "../operations/index.js";
 import { IndexerNotInitializedError } from "../errors/index.js";
 import { normalizeTokenData } from "../utils/normalize.js";
 
-export type FetchAccountTokensParameters = WithNetwork<{
-  address: AccountAddressInput;
-  collectionId?: string;
-  limit?: number;
-  offset?: number;
-  orderBy?: GetAccountTokenOwnershipsQueryVariables["order_by"];
-  where?: GetAccountTokenOwnershipsQueryVariables["where"];
-}>;
+export type FetchAccountTokensParameters = WithPagination<
+  WithNetwork<{
+    /**
+     * The address of the account to fetch the tokens (NFTs) for.
+     */
+    address: AccountAddressInput;
+    /**
+     * The ID of the collection to fetch the tokens for.
+     */
+    collectionId?: string;
+    /**
+     * Conditions for ordering the token ownership results.
+     */
+    orderBy?: GetAccountTokenOwnershipsQueryVariables["order_by"];
+    /**
+     * Filters for the token ownership results.
+     */
+    where?: GetAccountTokenOwnershipsQueryVariables["where"];
+  }>
+>;
 
 export type FetchAccountTokensResult = PaginationCursors & {
   tokens: TokenOwnership[];

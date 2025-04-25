@@ -16,9 +16,6 @@ export type GetClientsResult = {
   signer?: SignerClient;
 };
 
-/**
- * @description Gets the clients from the AptosCore instance
- */
 export function getClients(
   this: AptosJSProClient,
   { network: selectedNetwork }: GetClientsParameters = {}

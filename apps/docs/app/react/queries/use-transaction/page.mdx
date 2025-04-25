@@ -1,0 +1,68 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useTransaction
+
+Hook for fetching a single transaction by hash or ledger version.
+
+## Usage
+
+### Transaction Hash
+
+```tsx
+import { useTransaction } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: transaction, isLoading } = useTransaction({
+    transactionHash: "0x1234567890abcdef",
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Transaction</h1>
+      <pre>{JSON.stringify(transaction, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+### Ledger Version
+
+```tsx
+import { useTransaction } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: transaction, isLoading } = useTransaction({
+    ledgerVersion: 1234567890,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Transaction</h1>
+      <pre>{JSON.stringify(transaction, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseTransactionQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useTransaction } from "@aptos-labs/react";
+    type UseTransactionQueryResult = ReturnType<typeof useTransaction>;
+    export default UseTransactionQueryResult;
+    `,
+  })}
+/>

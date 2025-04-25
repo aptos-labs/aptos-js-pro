@@ -1,0 +1,41 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# signTransaction
+
+This function is used to sign a transaction to be submitted later on the Aptos blockchain.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Account } from "@aptos-labs/ts-sdk";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.buildTransaction({
+  data: {
+    function: "0x1::aptos_account::transfer",
+    functionArguments: [recipient.accountAddress, 100],
+  },
+});
+
+const signedTransaction = await client.signTransaction({ transaction });
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SignTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SignTransactionResult as default } from "@aptos-labs/js-pro";`,
+  })}
+/>

@@ -26,6 +26,25 @@ export type FetchResourceTypeParameters<T extends string> = WithNetwork<
     Parameters<Aptos["account"]["getAccountResource"]>[0],
     "resourceType"
   > & {
+    /**
+     * The resource type to fetch. If the resource is a common type, the result may automatically be typed.
+     *
+     * For example, if you pass in `0x1::account::Account`, the result will be typed as:
+     *
+     * ```ts
+     * {
+     *   type: "0x1::account::Account",
+     *   data: {
+     *     authentication_key: string;
+     *     coin_register_events: ResourceEventHandle;
+     *     guid_creation_num: string;
+     *     withdraw_events: ResourceEventHandle;
+     *     sequence_number: string;
+     *     // ...more fields
+     *   };
+     * }
+     * ```
+     */
     resourceType: T extends object ? string : T;
   }
 >;

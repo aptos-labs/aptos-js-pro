@@ -1,0 +1,35 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# fetchViewModule
+
+Function to fetch a view module for a given module address.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const viewModule = await client.fetchViewModule({
+  payload: {
+    function: "0x1::account::exists_at",
+    typeArguments: [],
+    functionArguments: [AccountAddress.from("0x1").toString()],
+  },
+});
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { FetchViewModuleParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+An array of `MoveValue` objects from the `@aptos-labs/ts-sdk`.

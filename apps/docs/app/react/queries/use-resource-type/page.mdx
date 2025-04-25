@@ -1,0 +1,47 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useResourceType
+
+Hook for fetching a specific resource type for an account.
+
+## Usage
+
+```tsx
+import { useResourceType } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: accountResource, isLoading } = useResourceType({
+    accountAddress:
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+    resourceType: "0x1::account::Account",
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <p>Sequence Number: {accountResource.data.sequence_number}</p>
+      <p>Authentication Key: {accountResource.data.authentication_key}</p>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export {UseResourceTypeQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useResourceType } from "@aptos-labs/react";
+    type UseResourceTypeQueryResult = ReturnType<typeof useResourceType>;
+    export default UseResourceTypeQueryResult;
+    `,
+  })}
+/>

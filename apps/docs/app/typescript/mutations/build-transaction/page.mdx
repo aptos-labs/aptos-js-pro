@@ -1,0 +1,67 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# buildTransaction
+
+This function is used to build a transaction. The transaction will be built with `getServerTime` if no timestamps are provided.
+
+## Usage
+
+```ts
+import { AptosJSProClient } from "@aptos-labs/js-pro";
+import { Network } from "@aptos-labs/ts-sdk";
+
+const client = new AptosJSProClient({
+  /* ... */
+});
+
+const transaction = await client.buildTransaction({
+  data: {
+    function: "0x1::aptos_account::transfer",
+    functionArguments: [recipient.accountAddress, 100],
+  },
+});
+```
+
+## Parameters
+
+The `buildTransaction` function two types of parameters: `BuildSimpleTransactionParameters` or `BuildMultiAgentTransactionParameters`.
+
+### BuildSimpleTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { BuildSimpleTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+### BuildMultiAgentTransactionParameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { BuildMultiAgentTransactionParameters as default } from "@aptos-labs/js-pro";`,
+  })}
+/>
+
+## Return Type
+
+The `buildTransaction` will return a `SimpleTransaction` or `MultiAgentTransaction` from the `@aptos-labs/ts-sdk` depending on the parameters passed in.
+
+### SimpleTransaction
+
+This is the return type for the `buildTransaction` function when the `secondarySignerAddresses` parameter is not provided.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { SimpleTransaction as default } from "@aptos-labs/ts-sdk";`,
+  })}
+/>
+
+### MultiAgentTransaction
+
+This is the return type for the `buildTransaction` function when the `secondarySignerAddresses` parameter is provided.
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { MultiAgentTransaction as default } from "@aptos-labs/ts-sdk";`,
+  })}
+/>

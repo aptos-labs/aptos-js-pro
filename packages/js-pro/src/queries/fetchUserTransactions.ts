@@ -5,6 +5,7 @@ import { WithNetwork } from "../types/parameters.js";
 import {
   createPaginatedQuery,
   PaginationCursors,
+  WithPagination,
 } from "../utils/pagination.js";
 import { AptosJSProClient } from "../client.js";
 import { GetUserTransactionsQueryVariables } from "../operations/index.js";
@@ -12,12 +13,12 @@ import { IndexerNotInitializedError } from "../errors/clients.js";
 import { UserTransaction } from "../types/transactions.js";
 import { normalizeUserTransaction } from "../utils/normalize.js";
 
-export type FetchUserTransactionsParameters = WithNetwork<{
-  limit?: number;
-  offset?: number;
-  orderBy?: GetUserTransactionsQueryVariables["order_by"];
-  where?: GetUserTransactionsQueryVariables["where"];
-}>;
+export type FetchUserTransactionsParameters = WithNetwork<
+  WithPagination<{
+    orderBy?: GetUserTransactionsQueryVariables["order_by"];
+    where?: GetUserTransactionsQueryVariables["where"];
+  }>
+>;
 
 export type FetchUserTransactionsResult = PaginationCursors & {
   transactions: UserTransaction[];

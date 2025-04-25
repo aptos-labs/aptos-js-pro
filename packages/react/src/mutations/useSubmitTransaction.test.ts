@@ -1,12 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  Account,
-  Deserializer,
-  generateSignedTransaction,
-  SignedTransaction,
-} from "@aptos-labs/ts-sdk";
+import { Account } from "@aptos-labs/ts-sdk";
 import { beforeAll, describe, expect } from "vitest";
 import { setupClient, test } from "../../tests/fixtures";
 import {
@@ -47,14 +42,8 @@ describe("useSignAndSubmitTransaction", async () => {
       const signedTransaction = await devnet.signTransaction({ transaction });
 
       result.current.submitTransaction({
-        transaction: SignedTransaction.deserialize(
-          new Deserializer(
-            generateSignedTransaction({
-              senderAuthenticator: signedTransaction.authenticator,
-              transaction,
-            })
-          )
-        ),
+        senderAuthenticator: signedTransaction.authenticator,
+        transaction,
       });
 
       await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

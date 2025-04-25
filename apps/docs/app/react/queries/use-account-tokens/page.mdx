@@ -1,0 +1,61 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useAccountTokens
+
+Hook for fetching token balances (NFTs) for a specific account, with support for pagination. If no `address` is provided, it defaults to the connected account.
+
+## Usage
+
+```tsx
+import { useAccountTokens } from "@aptos-labs/react";
+import { AccountAddress } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { data, isLoading } = useAccountTokens({
+    address: AccountAddress.from(
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+    ),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Account Tokens</h1>
+      <ul>
+        {data?.pages[0]?.tokens?.map((token) => (
+          <li key={`${token.tokenId}-v${token.tokenStandard}`}>
+            {token.name} ({token.collectionData?.name}): {token.amount} -{" "}
+            <a
+              href={token.metadataUri}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View URI
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseAccountTokensQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
+
+## Return Type
+
+<TSDoc
+  definition={generateDefinition({
+    code: `import { useAccountTokens } from "@aptos-labs/react";
+    type UseAccountTokensQueryResult = ReturnType<typeof useAccountTokens>;
+    export default UseAccountTokensQueryResult;
+    `,
+  })}
+/>
