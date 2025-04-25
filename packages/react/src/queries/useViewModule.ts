@@ -27,7 +27,6 @@ export function useViewModule<T extends Array<MoveValue>>({
   network,
   payload,
   options,
-
   ...queryOptions
 }: UseViewModuleParameters<T>) {
   const core = useAptosCore();

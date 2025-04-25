@@ -1,0 +1,132 @@
+---
+description: 
+globs: apps/docs/app/react/queries/**/page.mdx
+alwaysApply: false
+---
+
+Whenever creating a documentation page, follow the rules below:
+
+# Formatting
+
+Whenever creating a documentation page, always follow this format:
+
+# {hook-name}
+
+{description}
+
+## Usage
+
+```tsx
+{code example}
+```
+
+# References
+
+Always read a four other documentation pages for reference. Match the style.
+
+# Find Tests
+
+When you are given a hook (i.e. `useResources.ts`), always find and read the test that should be in the following format `{hook-name}.test.(tsx|ts)` (i.e. `useResources.test.tsx` or `useResources.test.ts`).
+
+# Find Implementation
+
+Also read the implementation of each hook. Here is an example implementation of `useResources`
+
+```tsx
+// Copyright © Aptos
+// SPDX-License-Identifier: Apache-2.0
+
+import { useQuery } from "@tanstack/react-query";
+import { useAptosCore } from "../AptosJSCoreProvider.js";
+import {
+  FetchResourcesParameters,
+  FetchResourcesResult,
+} from "@aptos-labs/js-pro";
+import {
+  AccountAddress,
+  AccountAddressInput,
+  LedgerVersionArg,
+} from "@aptos-labs/ts-sdk";
+import { UseQueryOptions } from "../types/queries.js";
+
+export const getUseResourcesQueryKey = (params: {
+  network: string;
+  address: AccountAddressInput;
+  options?: LedgerVersionArg;
+}) => [
+  "resources",
+  params.network,
+  AccountAddress.from(params.address).toString(),
+  params.options,
+];
+
+export type UseResourcesQueryParameters = FetchResourcesParameters &
+  UseQueryOptions<FetchResourcesResult>;
+
+export function useResources({
+  network,
+  accountAddress,
+  options,
+  ...queryOptions
+}: UseResourcesQueryParameters) {
+  const core = useAptosCore();
+
+  const activeNetwork = network ?? core.network;
+
+  return useQuery({
+    queryKey: getUseResourcesQueryKey({
+      network: activeNetwork.network,
+      address: accountAddress,
+      options,
+    }),
+    queryFn: () =>
+      core.client.fetchResources({ network, accountAddress, options }),
+    ...queryOptions,
+  });
+}
+```
+
+Typically a hook will use Aptos core to call a query. This can be seen here:
+
+```tsx
+core.client.fetchResources({ network, accountAddress, options })
+```
+
+You should also read the implementation of the query. There should be a file with the query name, read that for reference:
+
+`fetchResources.ts`
+
+And always read the test:
+
+`fetchResources.test.ts`
+
+# Usage Guidelines
+
+When making "Usage" examples, make sure to make it as minimal as possible. Use the following template as example and always refer to the "Usage" section of other documentation examples as reference.
+
+```tsx
+{imports}
+
+export default function App() {
+  {usage}
+
+  return {html}
+}
+```
+
+Make sure to understand the types, if needed, go into the imports to make sure you understand all the types. For example, if you don't know what `MoveResource` is, go into the `@aptos-labs/ts-sdk` and figure out what it is. Always make sure to 
+read the result types and understand what the reuslt is so that in the examples you are using the correct attributes. NEVER infer types, always find them. If after five attempts you still can't find the type, ask the user for help.
+
+When making usage examples, try to display the information from the hook.
+
+No need to add error states.
+
+# Address Guidelines
+
+If you need to use a valid address, use: "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a"
+
+When you put in the address, you can just do it inline.
+
+# Conclusion
+
+Once you have read everything, begin writing the documentation. Make sure to reference the other documentation pages for style and always reference the implementations of hooks and queries when creating the usage example.

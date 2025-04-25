@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source "../../app"
+
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
@@ -29,7 +31,7 @@
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
-  --radius: 0rem;
+  --radius: 0.5rem;
 
   /* Aurora Text */
   --color-1: 0 100% 63%;
@@ -218,4 +220,9 @@ html.dark .shiki span {
   font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+aside.nextra-sidebar > div:first-of-type {
+  padding-left: calc(var(--x-spacing) * 2);
+  padding-right: calc(var(--x-spacing) * 2);
 }

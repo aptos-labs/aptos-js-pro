@@ -21,7 +21,7 @@ import "nextra-theme-docs/style.css";
 import AppProviders from "@/context/AppProviders";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://js-pro.aptos.dev"),
+  metadataBase: new URL("https://jspro.aptos.dev"),
   title: {
     default: "Aptos JS-Pro",
     template: "%s | Aptos JS-Pro",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://js-pro.aptos.dev",
+    url: "https://jspro.aptos.dev",
     siteName: "Aptos JS-Pro",
     title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",

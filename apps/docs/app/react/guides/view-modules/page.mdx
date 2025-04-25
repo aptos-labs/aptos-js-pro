@@ -1,0 +1,226 @@
+import { Steps } from "nextra/components";
+
+# View from Modules
+
+The [`useViewModule`](/react/queries/use-view-module) hook is a React hook that allows you to call view functions from modules on the Aptos blockchain. These functions allow you to query the state of the blockchain in a read-only manner. This guide is
+a basic example of how to use the [`useViewModule`](/react/queries/use-view-module) hook to view the APT balance of an account.
+
+## Getting Started
+
+<Steps>
+
+### Create a `AccountBalance` Component
+
+Create a new component called `AccountBalance`. This component will display the balance of an account. This component will accept an `accountAddress` prop, which is the address of the account to display the balance of. It will
+use the [`useViewModule`](/react/queries/use-view-module) hook to fetch the balance of the account by calling the `0x1::coin::balance` view function and passing in the `accountAddress` as an argument and the `0x1::aptos_coin::AptosCoin`
+type argument.
+
+```tsx filename="AccountBalance.tsx"
+import { useViewModule } from "@aptos-labs/react";
+
+interface AccountBalanceProps {
+  accountAddress: string;
+}
+
+export default function AccountBalance({
+  accountAddress,
+}: AccountBalanceProps) {
+  const { data: balance, isLoading } = useViewModule({
+    payload: {
+      function: "0x1::coin::balance",
+      typeArguments: ["0x1::aptos_coin::AptosCoin"],
+      functionArguments: [accountAddress],
+    },
+  });
+
+  return (
+    <div>
+      {accountAddress} APT Balance: {balance ?? "0"}
+    </div>
+  );
+}
+```
+
+Additionally, if the [`useViewModule`](/react/queries/use-view-module) depends on an argument, you can use the `enabled` prop to fetch the data only when the argument is provided.
+
+```tsx filename="AccountBalance.tsx" /enabled/ /accountAddress?:/ {4-4,16-16}
+import { useViewModule } from "@aptos-labs/react";
+
+interface AccountBalanceProps {
+  accountAddress?: string;
+}
+
+export default function AccountBalance({
+  accountAddress,
+}: AccountBalanceProps) {
+  const { data: balance, isLoading } = useViewModule({
+    payload: {
+      function: "0x1::coin::balance",
+      typeArguments: ["0x1::aptos_coin::AptosCoin"],
+      functionArguments: [accountAddress],
+    },
+    enabled: accountAddress !== undefined,
+  });
+
+  return (
+    <div>
+      {accountAddress} APT Balance: {balance ?? "0"}
+    </div>
+  );
+}
+```
+
+### Handling Loading and Error States
+
+It is important to handle errors and loading states to maintain a transparent user experience. The [`useViewModule`](/react/queries/use-view-module) hook exposes the `isLoading` and `error` properties which can be used to display a loading state and handle errors.
+
+```tsx filename="AccountBalance.tsx" /isLoading/ /error/ {12-13,23-25,27-33}
+import { useViewModule } from "@aptos-labs/react";
+
+interface AccountBalanceProps {
+  accountAddress?: string;
+}
+
+export default function AccountBalance({
+  accountAddress,
+}: AccountBalanceProps) {
+  const {
+    data: balance,
+    isLoading,
+    error,
+  } = useViewModule({
+    payload: {
+      function: "0x1::coin::balance",
+      typeArguments: ["0x1::aptos_coin::AptosCoin"],
+      functionArguments: [accountAddress],
+    },
+    enabled: accountAddress !== undefined,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div>
+        Error: {"shortMessage" in error ? error.shortMessage : error.message}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {accountAddress} APT Balance: {balance ?? "0"}
+    </div>
+  );
+}
+```
+
+### Refetching Data
+
+The [`useViewModule`](/react/queries/use-view-module) hook returns a `refetch` function which can be used to refetch the data. This is useful if you need to refresh the data.
+
+```tsx filename="AccountBalance.tsx" /refetch/ {14-14,39-39}
+import { useViewModule } from "@aptos-labs/react";
+
+interface AccountBalanceProps {
+  accountAddress?: string;
+}
+
+export default function AccountBalance({
+  accountAddress,
+}: AccountBalanceProps) {
+  const {
+    data: balance,
+    isLoading,
+    error,
+    refetch,
+  } = useViewModule({
+    payload: {
+      function: "0x1::coin::balance",
+      typeArguments: ["0x1::aptos_coin::AptosCoin"],
+      functionArguments: [accountAddress],
+    },
+    enabled: accountAddress !== undefined,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div>
+        Error: {"shortMessage" in error ? error.shortMessage : error.message}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {accountAddress} APT Balance: {balance ?? "0"}
+      <button onClick={refetch}>Refresh</button>
+    </div>
+  );
+}
+```
+
+Alternatively, you can use query invalidation to refetch the data. To do this, you can use the `queryClient` from the `useQueryClient` hook from **@tanstack/react-query**. To invalidate the query, you must also
+pass in a query key to the `invalidateQueries` function.
+
+```tsx filename="AccountBalance.tsx" {1-2,11-12,14-18,25,29-33,46}
+import { useViewModule, useNetwork } from "@aptos-labs/react";
+import { useQueryClient } from "@tanstack/react-query";
+
+interface AccountBalanceProps {
+  accountAddress?: string;
+}
+
+export default function AccountBalance({
+  accountAddress,
+}: AccountBalanceProps) {
+  const queryClient = useQueryClient();
+  const { network } = useNetwork();
+
+  const payload = {
+    function: "0x1::coin::balance",
+    typeArguments: ["0x1::aptos_coin::AptosCoin"],
+    functionArguments: [accountAddress],
+  };
+
+  const {
+    data: balance,
+    isLoading,
+    error,
+  } = useViewModule({
+    payload,
+    enabled: accountAddress !== undefined,
+  });
+
+  const handleRefresh = () => {
+    queryClient.invalidateQueries({
+      queryKey: getViewModuleQueryKey({ payload, network }),
+    });
+  };
+
+  if (error) {
+    return (
+      <div>
+        Error: {"shortMessage" in error ? error.shortMessage : error.message}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {accountAddress} APT Balance: {balance ?? "0"}
+      <button onClick={handleRefresh}>Refresh</button>
+    </div>
+  );
+}
+```
+
+</Steps>
+
+## Next Steps

@@ -1,1 +1,88 @@
-TBD
+# useSignAndSubmitTransaction
+
+Hook for signing and submitting a transaction. The hook will use the default `signer` from the `AptosJSProClient`.
+
+## Usage
+
+```tsx
+import { useSignAndSubmitTransaction } from "@aptos-labs/react";
+import { Account } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const recipient = Account.generate();
+
+  const {
+    mutate: signAndSubmitTransaction,
+    data: transactionResult,
+    isPending,
+    isSuccess,
+    error,
+  } = useSignAndSubmitTransaction();
+
+  const handleSignAndSubmit = async () => {
+    // Example using `data` parameter.
+    signAndSubmitTransaction({
+      data: {
+        function: "0x1::aptos_account::transfer",
+        functionArguments: [recipient.accountAddress, 100],
+      },
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleSignAndSubmit} disabled={isPending}>
+        Sign and Submit Transaction
+      </button>
+      {isPending && <p>Submitting transaction...</p>}
+      {isSuccess && (
+        <p>Transaction submitted with hash: {transactionResult?.hash}</p>
+      )}
+      {error && <p>Error: {error.message}</p>}
+    </div>
+  );
+}
+```
+
+### With Pre-built Transaction
+
+```tsx
+import { useSignAndSubmitTransaction, useClients } from "@aptos-labs/react";
+import { Account } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { client } = useClients();
+  const recipient = Account.generate();
+
+  const {
+    mutate: signAndSubmitTransaction,
+    data: transactionResult,
+    isPending,
+    isSuccess,
+  } = useSignAndSubmitTransaction();
+
+  const handleSignAndSubmit = async () => {
+    // Example using `transaction` parameter.
+    const transaction = await client.buildTransaction({
+      data: {
+        function: "0x1::aptos_account::transfer",
+        functionArguments: [recipient.accountAddress, 100],
+      },
+    });
+
+    signAndSubmitTransaction({ transaction });
+  };
+
+  return (
+    <div>
+      <button onClick={handleSignAndSubmit} disabled={isPending}>
+        Sign and Submit Pre-built Transaction
+      </button>
+      {isPending && <p>Submitting transaction...</p>}
+      {isSuccess && (
+        <p>Transaction submitted with hash: {transactionResult?.hash}</p>
+      )}
+    </div>
+  );
+}
+```

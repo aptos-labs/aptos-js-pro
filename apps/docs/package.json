@@ -11,29 +11,31 @@
     "format": "prettier --check \"**/*.{ts,tsx,md,mdx}\""
   },
   "dependencies": {
+    "@aptos-labs/js-pro": "^0.0.1",
+    "@aptos-labs/react": "workspace:*",
     "@radix-ui/react-slot": "^1.2.0",
-    "@tanstack/react-query": "^5.72.2",
+    "@tanstack/react-query": "^5.74.11",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "motion": "^12.6.3",
-    "next": "15.3.0",
-    "nextra": "^4.2.17",
-    "nextra-theme-docs": "^4.2.17",
+    "motion": "^12.9.2",
+    "next": "15.3.1",
+    "nextra": "^4.3.0-alpha.22",
+    "nextra-theme-docs": "^4.3.0-alpha.22",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-use-measure": "^2.1.7",
-    "shiki": "^3.2.2",
+    "shiki": "^3.3.0",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.3",
+    "@tailwindcss/postcss": "^4.1.4",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
     "pagefind": "^1.3.0",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.3"
+    "tailwindcss": "^4.1.4"
   }
 }

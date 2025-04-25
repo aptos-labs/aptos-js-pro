@@ -1,0 +1,44 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useWaitForTransaction
+
+Hook to wait for a transaction to be committed by the Aptos network. It polls the network until the transaction with the provided hash is found or the query times out.
+
+## Usage
+
+```tsx
+import { useWaitForTransaction } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: transaction, isLoading } = useWaitForTransaction({
+    hash: "0xb119c1b00bc6d37f0af3ef0fe5667634a9d02726dad3f019e58bafef0c62d317",
+  });
+
+  if (isLoading) return <div>Waiting for transaction...</div>;
+
+  return (
+    <div>
+      <h1>Transaction Details</h1>
+      {transaction ? (
+        <div>
+          <p>Version: {transaction.version}</p>
+          <p>Status: {transaction.vm_status}</p>
+          <p>Success: {transaction.success ? "Yes" : "No"}</p>
+          <p>Gas Used: {transaction.gas_used}</p>
+          <p>Sender: {transaction.sender}</p>
+        </div>
+      ) : (
+        <p>Transaction not found or failed.</p>
+      )}
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseWaitForTransactionQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

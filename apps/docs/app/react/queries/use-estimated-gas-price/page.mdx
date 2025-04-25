@@ -1,0 +1,33 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useEstimatedGasPrice
+
+Hook for fetching the current estimated gas price on the network.
+
+## Usage
+
+```tsx
+import { useEstimatedGasPrice } from "@aptos-labs/react";
+
+export default function App() {
+  const { data, isLoading } = useEstimatedGasPrice();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <p>Estimated Gas Price: {data?.gasEstimate}</p>
+      <p>Deprioritized Gas Estimate: {data?.deprioritizedGasEstimate}</p>
+      <p>Prioritized Gas Estimate: {data?.prioritizedGasEstimate}</p>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseEstimatedGasPriceParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

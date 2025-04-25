@@ -1,0 +1,49 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useAddressFromName
+
+Hook for fetching the account address associated with a given name, such as an Aptos name.
+
+## Usage
+
+```tsx
+import { useAddressFromName } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: address, isLoading } = useAddressFromName({
+    name: "example.apt",
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>Address: {address?.toString()}</div>;
+}
+```
+
+### With AptosName
+
+```tsx
+import { AptosName } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { data: address, isLoading } = useAddressFromName({
+    name: new AptosName("example.apt"),
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>Address: {address?.toString()}</div>;
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseAddressFromNameQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

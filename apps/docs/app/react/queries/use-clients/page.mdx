@@ -1,0 +1,42 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useClients
+
+Hook for accessing the underlying Aptos clients (`aptos`, `indexer`, `signer`) and the main `client` instance from the `AptosJSCoreProvider`. Allows specifying a different network.
+
+## Usage
+
+### Default Network
+
+```tsx
+import { useClients } from "@aptos-labs/react";
+
+export default function App() {
+  const { aptos, indexer, signer, network, client } = useClients();
+
+  return <>{/* ... */}</>;
+}
+```
+
+### Specific Network (Testnet)
+
+```tsx
+import { useClients } from "@aptos-labs/react";
+import { Network } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { aptos, indexer, signer, network, client } = useClients({
+    network: { network: Network.TESTNET },
+  });
+
+  return <>{/* ... */}</>;
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseClientsParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

@@ -1,0 +1,44 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useAccountCoins
+
+Hook for fetching fungible asset balances (coins) for a specific account, with support for pagination. If no address is provided, it defaults to the connected account.
+
+## Usage
+
+```tsx
+import { useAccountCoins } from "@aptos-labs/react";
+import { AccountAddress } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { data, isLoading } = useAccountCoins({
+    address: AccountAddress.from(
+      "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a"
+    ),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Account Coins</h1>
+      <ul>
+        {data?.pages[0].balances.map((assetBalance) => (
+          <li key={assetBalance.assetType}>
+            {assetBalance.metadata.name} ({assetBalance.metadata.symbol}):{" "}
+            {assetBalance.amount}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseAccountCoinsQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

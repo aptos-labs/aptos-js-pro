@@ -1,0 +1,37 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useViewModule
+
+The `useViewModule` hook is a React hook that allows you to query module view functions.
+
+## Usage
+
+```tsx
+import { useViewModule } from "@aptos-labs/react";
+
+export default function App() {
+  const { data: aptBalance, isLoading } = useViewModule({
+    payload: {
+      function: "0x1::coin::balance",
+      typeArguments: ["0x1::aptos_coin::AptosCoin"],
+      functionArguments: [
+        "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a",
+      ],
+    },
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>APT Balance: {aptBalance} octas</div>;
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseViewModuleParameters as default } from "@aptos-labs/react";`,
+  })}
+/>

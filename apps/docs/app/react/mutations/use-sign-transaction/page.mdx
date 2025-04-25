@@ -1,0 +1,45 @@
+# useSignTransaction
+
+Hook for signing a transaction. The hook will use the default `signer` from the `AptosJSProClient`.
+
+## Usage
+
+```tsx
+import { useSignTransaction, useClients } from "@aptos-labs/react";
+import { Account } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { client } = useClients();
+  const recipient = Account.generate();
+
+  const {
+    mutate: signTransaction,
+    data: signedTransaction,
+    isPending,
+    isSuccess,
+  } = useSignTransaction();
+
+  const handleSignTransaction = async () => {
+    const transaction = await client.buildTransaction({
+      data: {
+        function: "0x1::aptos_account::transfer",
+        functionArguments: [recipient.accountAddress, 100],
+      },
+    });
+
+    signTransaction({ transaction });
+  };
+
+  return (
+    <div>
+      <button onClick={handleSignTransaction} disabled={isPending}>
+        Sign Transaction
+      </button>
+      {isPending && <p>Signing transaction...</p>}
+      {isSuccess && (
+        <p>Transaction authenticator: {signedTransaction?.authenticator}</p>
+      )}
+    </div>
+  );
+}
+```

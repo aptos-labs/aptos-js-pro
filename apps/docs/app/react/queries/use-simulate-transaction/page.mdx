@@ -1,0 +1,45 @@
+import { TSDoc, generateDefinition } from "nextra/tsdoc";
+
+# useSimulateTransaction
+
+Hook for simulating a transaction on the Aptos network without broadcasting it. Accepts either a raw transaction or payload data and returns a detailed simulation result including gas estimates and events.
+
+## Usage
+
+```tsx
+import { useSimulateTransaction } from "@aptos-labs/react";
+import { AccountAddress } from "@aptos-labs/ts-sdk";
+
+export default function App() {
+  const { data: simulation, isLoading } = useSimulateTransaction({
+    data: {
+      function: "0x1::aptos_account::transfer",
+      functionArguments: [
+        AccountAddress.from(
+          "0x926ff619e85bdb5b02680f27bea5ea3302c71f86be4b16fa0d63df213add927a"
+        ),
+        100,
+      ],
+    },
+  });
+
+  if (isLoading) {
+    return <div>Simulating transaction...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Simulation Result</h1>
+      <pre>{JSON.stringify(simulation, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+## Parameters
+
+<TSDoc
+  definition={generateDefinition({
+    code: `export { UseSimulateTransactionQueryParameters as default } from "@aptos-labs/react";`,
+  })}
+/>
