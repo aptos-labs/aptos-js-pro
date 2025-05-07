@@ -10,7 +10,7 @@ export class AptosBaseError extends Error {
 
   longMessage?: string;
 
-  docsBaseUrl = "https://js-pro-docs.vercel.app/";
+  docsBaseUrl = "https://js-pro.aptos.dev/";
 
   override name = "AptosJSProError";
 

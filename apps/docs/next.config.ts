@@ -11,6 +11,18 @@ const nextConfig: NextConfig = {
   eslint: {
     dirs: ["pages", "components", "lib", "context"],
   },
+  redirects: async () => [
+    {
+      source: "/typescript",
+      destination: "/typescript/introduction/quick-start",
+      statusCode: 302,
+    },
+    {
+      source: "/react",
+      destination: "/react/introduction/quick-start",
+      statusCode: 302,
+    },
+  ],
 };
 
 export default withNextra(nextConfig);

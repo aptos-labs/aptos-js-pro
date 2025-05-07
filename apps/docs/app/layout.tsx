@@ -1,6 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
+  colorScheme: "light",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -72,6 +73,9 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <Head />
+      {process.env.NEXT_PUBLIC_GA4_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
+      )}
       <AppProviders>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -109,7 +113,7 @@ export default async function RootLayout({
             <Banner storageKey="0.1-release">
               <p>
                 🚧 These packages are still in development and may change
-                rapidly as they continue to be developed.
+                rapidly as they are developed.
               </p>
             </Banner>
             {children}

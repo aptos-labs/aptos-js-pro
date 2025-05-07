@@ -13,7 +13,8 @@
   "dependencies": {
     "@aptos-labs/js-pro": "workspace:*",
     "@aptos-labs/react": "workspace:*",
-    "@aptos-labs/ts-sdk": "^1.39.0",
+    "@aptos-labs/ts-sdk": "^2.0.0",
+    "@next/third-parties": "^15.3.2",
     "@radix-ui/react-slot": "^1.2.2",
     "@tanstack/react-query": "^5.75.5",
     "class-variance-authority": "^0.7.1",

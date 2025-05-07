@@ -1,0 +1,146 @@
+import { Steps, Callout } from "nextra/components";
+
+# Simulating Transactions Guide
+
+The following guide demonstrates how to simulate transactions using **@aptos-labs/react** and calculating the balance changes for an account. This basic example will simulate a transfer of APT between two accounts.
+
+## Getting Started
+
+<Steps>
+### Setup @aptos-labs/react
+
+Follow the [Quick Start](/react/quick-start) guide to set up **@aptos-labs/react**.
+
+### Create the `SimulateTransaction` Component
+
+Create a new component called `SimulateTransaction`. This component will act as the form for the users to simulate a transaction.
+
+```tsx filename="SimulateTransaction.tsx"
+export default function SimulateTransaction() {
+  return (
+    <form>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit">Simulate</button>
+    </form>
+  );
+}
+```
+
+Once the form has been set up, we can add the [`useSimulateTransaction`](/react/queries/use-simulate-transaction) hook to the component to handle the transaction simulation. We will use the `useState` hook to store the payload for a simple
+transfer transaction.
+
+```tsx filename="SimulateTransaction.tsx" /useSimulateTransaction/ {1-3,6-9,11-27,30-30,34-35}
+import { InputGenerateTransactionPayloadData } from "@aptos-labs/ts-sdk";
+import { useSimulateTransaction, parseApt } from "@aptos-labs/react";
+import { useState } from "react";
+
+export default function SimulateTransaction() {
+  const [payload, setPayload] = useState<InputGenerateTransactionPayloadData>();
+  const { data: simulation, error: simulationError } = useSimulateTransaction({
+    data: payload,
+  });
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to save the transaction payload of a simple transfer
+    setPayload({
+      function: "0x1::account::transfer",
+      functionArguments: [
+        recipientAddress,
+        parseApt(amount), // `parseApt` parses APT amounts into octas
+      ],
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit">Simulate</button>
+      {simulation && <div>Simulation: {simulation}</div>}
+      {simulationError && <div>Error: {simulationError}</div>}
+    </form>
+  );
+}
+```
+
+<Callout type="info">
+  Note that whenever the `data` is `undefined`, the `useSimulateTransaction`
+  hook will not run until the `data` is provided. This is to prevent unnecessary
+  simulations from being made.
+</Callout>
+
+### Calculating Balance Changes
+
+The `@aptos-labs/js-pro` package provides a `TransactionParser` class that can be used to parse the simulation result. This parsed result can be used to calculate the balance changes for an account.
+
+```tsx filename="SimulateTransaction.tsx" {4-4,30-42,51-51}
+import { InputGenerateTransactionPayloadData } from "@aptos-labs/ts-sdk";
+import { useSimulateTransaction, parseApt } from "@aptos-labs/react";
+import { TransactionParser } from "@aptos-labs/js-pro";
+import { useState, useMemo } from "react";
+
+export default function SimulateTransaction() {
+  const [payload, setPayload] = useState<InputGenerateTransactionPayloadData>();
+  const { data: simulation, error: simulationError } = useSimulateTransaction({
+    data: payload,
+  });
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    // Get the form data from the event target
+    const formData = new FormData(e.target as HTMLFormElement);
+    const recipientAddress = formData.get("recipientAddress") as string;
+    const amount = formData.get("amount") as string;
+
+    // Use the form data to sign and submit a transaction payload
+    setPayload({
+      function: "0x1::account::transfer",
+      functionArguments: [
+        recipientAddress,
+        parseApt(amount), // `parseApt` parses APT amounts into octas
+      ],
+    });
+  }
+
+  const balanceChanges = useMemo(() => {
+    if (!simulation) return null;
+
+    const parser = TransactionParser.create();
+
+    // Parse the simulation result into a context object. A context object breaks downs
+    // the events and writesets into a usable format for calculating balance changes.
+    const context = parser.parseTransaction(simulation);
+
+    // Calculate the balance changes for the account. This utility function from the
+    // `TransactionParser` class will return a map of account addresses to their balance changes.
+    return TransactionParser.getBalanceChanges(context);
+  }, [simulation]);
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="recipientAddress" type="text" placeholder="0x1…" required />
+      <input name="amount" type="text" placeholder="0.5" required />
+      <button type="submit">Simulate</button>
+      {simulation && <div>Simulation: {simulation}</div>}
+      {simulationError && <div>Error: {simulationError}</div>}
+      {balanceChanges && <div>Balance Changes: {balanceChanges}</div>}
+    </form>
+  );
+}
+```
+
+### That's it!
+
+This simple component demonstrates the usage of `useSimulateTransaction` and `TransactionParser` to calculate the balance changes for an account. This is useful when you want to display simulations of transactions to the user. It's important to understand that
+simulations may not always be accurate, especially when randomness is introduced to the transaction.
+
+</Steps>
