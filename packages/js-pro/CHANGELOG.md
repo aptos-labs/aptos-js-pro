@@ -1,5 +1,12 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.17
+
+### Patch Changes
+
+- 66f17ec: Update dependencies
+- 66f17ec: Move connectors to separate entry point
+
 ## 0.1.0-beta.16
 
 ### Patch Changes
