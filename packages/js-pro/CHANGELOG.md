@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.0-beta.18
+
+### Patch Changes
+
+- 1335293: Add README.md
+
 ## 0.1.0-beta.17
 
 ### Patch Changes

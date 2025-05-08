@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.0-beta.18
+
+### Patch Changes
+
+- 1335293: Add README.md
+- Updated dependencies [1335293]
+  - @aptos-labs/js-pro@0.1.0-beta.18
+
 ## 0.1.0-beta.17
 
 ### Patch Changes
