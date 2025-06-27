@@ -20,6 +20,7 @@ import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
 import AppProviders from "@/context/AppProviders";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jspro.aptos.dev"),
@@ -86,9 +87,11 @@ export default async function RootLayout({
                 projectLink="https://github.com/aptos-labs/aptos-js-pro"
                 logo={
                   <div className="gap-2 flex items-center">
-                    <img
-                      src="./navicon.svg"
+                    <Image
+                      src="/navicon.svg"
                       alt="Aptos Logo"
+                      width={24}
+                      height={24}
                       style={{
                         borderRadius: "4px",
                         height: "24px",
