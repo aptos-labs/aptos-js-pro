@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.1
+
+### Patch Changes
+
+- 8829abe: Update package.json metadata
+
 ## 0.1.0
 
 ### Patch Changes

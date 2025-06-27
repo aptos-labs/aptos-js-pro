@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.1
+
+### Patch Changes
+
+- 8829abe: Update package.json metadata
+- Updated dependencies [8829abe]
+  - @aptos-labs/js-pro@0.1.1
+
 ## 0.1.0
 
 ### Patch Changes
