@@ -1,6 +1,6 @@
 {
   "name": "@aptos-labs/eslint-config-petra",
-  "version": "0.0.2-experimental.2",
+  "version": "0.0.2",
   "type": "module",
   "private": true,
   "exports": {
