@@ -78,7 +78,6 @@ function useOffsetLimitPagination<
       TQueryFnData,
       TError,
       TData,
-      TQueryFnData,
       TQueryKey,
       UseOffsetLimitPageParam
     >,

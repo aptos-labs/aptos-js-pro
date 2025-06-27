@@ -1,5 +1,5 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "beta",
   "initialVersions": {
     "@aptos-labs/eslint-config-petra": "0.0.2-experimental.2",

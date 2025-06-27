@@ -31,7 +31,6 @@ export type UseInfiniteQueryOptions<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = InfiniteData<TQueryFnData>,
-  TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
   TPageParam = unknown,
 > = Omit<
@@ -39,7 +38,6 @@ export type UseInfiniteQueryOptions<
     TQueryFnData,
     TError,
     TData,
-    TQueryData,
     TQueryKey,
     TPageParam
   >,
@@ -55,13 +53,11 @@ export type UseOffsetLimitPaginationOptions<
   TQueryFnData extends PaginationCursors,
   TError = DefaultError,
   TData = InfiniteData<TQueryFnData>,
-  TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > = UseInfiniteQueryOptions<
   TQueryFnData,
   TError,
   TData,
-  TQueryData,
   TQueryKey,
   UseOffsetLimitPageParam
 > & { limit?: number; offset?: number };

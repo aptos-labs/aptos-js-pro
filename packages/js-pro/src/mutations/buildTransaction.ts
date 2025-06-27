@@ -53,9 +53,9 @@ export async function buildTransaction(
 
   if (!activeAddress) throw new SenderNotFoundError();
 
-  const options = {
+  const options: InputGenerateTransactionOptions = {
     ...transactionOptions,
-  } satisfies InputGenerateTransactionOptions;
+  };
 
   // If expiration timestamp is not provided, use the default expiration timestamp
   options.expireTimestamp ??=

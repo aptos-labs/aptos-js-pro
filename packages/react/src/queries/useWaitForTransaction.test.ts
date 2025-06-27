@@ -176,6 +176,7 @@ test("useWaitForTransaction", async ({ testnet }) => {
         "type": "entry_function_payload",
         "type_arguments": [],
       },
+      "replay_protection_nonce": null,
       "sender": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
       "sequence_number": "19891",
       "signature": {

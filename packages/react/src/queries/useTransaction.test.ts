@@ -242,6 +242,7 @@ describe("useTransaction", async () => {
         "type": "entry_function_payload",
         "type_arguments": [],
       },
+      "replay_protection_nonce": null,
       "sender": "0xa550c18",
       "sequence_number": "491185",
       "signature": {
@@ -500,6 +501,7 @@ describe("useTransaction", async () => {
           "type": "entry_function_payload",
           "type_arguments": [],
         },
+        "replay_protection_nonce": null,
         "sender": "0xa550c18",
         "sequence_number": "491185",
         "signature": {

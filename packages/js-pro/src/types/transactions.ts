@@ -8,7 +8,7 @@ import {
 } from "./activities.js";
 
 export interface UserTransaction {
-  sequenceNumber: string;
+  sequenceNumber?: string | null;
   sender: string;
   entryFunction: string;
   expirationTimestampSecs: string;
@@ -26,7 +26,7 @@ export interface AccountTransaction {
   tokenActivities: TokenActivity[];
   delegatedStakingActivities: DelegatedStakingActivity[];
   userTransaction?: {
-    sequenceNumber: string;
+    sequenceNumber?: string | null;
     sender: string;
     entryFunction: string;
   } | null;
