@@ -11,12 +11,31 @@ import {
   AccountInfo as JsProAccountInfo,
   SignerClient,
 } from "@aptos-labs/js-pro";
+import {
+  Network,
+  NetworkToFaucetAPI,
+  NetworkToIndexerAPI,
+  NetworkToNodeAPI,
+  NetworkToPepperAPI,
+  NetworkToProverAPI,
+} from "@aptos-labs/ts-sdk";
 import { MissingRequiredArgumentError } from "../errors";
 
 export const convertWalletAdapterNetworkToNetworkInfo = (
   network: WalletAdapterNetworkInfo | null
 ): JsProNetworkInfo | undefined => {
-  return network ? { network: network.name } : undefined;
+  if (network === null) return undefined;
+  if (network.name === Network.CUSTOM) {
+    return {
+      pepperUrl: NetworkToPepperAPI[network.name],
+      indexerUrl: NetworkToIndexerAPI[network.name],
+      proverUrl: NetworkToProverAPI[network.name],
+      faucetUrl: NetworkToFaucetAPI[network.name],
+      nodeUrl: network.url ?? NetworkToNodeAPI[network.name],
+      network: network.name,
+    };
+  }
+  return { network: network.name };
 };
 
 export const convertWalletAdapterAccountToAccountInfo = (
