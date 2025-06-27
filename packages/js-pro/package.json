@@ -5,9 +5,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aptos-labs/js-pro.git",
+    "url": "https://github.com/aptos-labs/aptos-js-pro.git",
     "directory": "packages/js-pro"
   },
+  "homepage": "https://js-pro.aptos.dev/",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
