@@ -1,5 +1,31 @@
 # @aptos-labs/js-pro
 
+## 0.1.0
+
+### Patch Changes
+
+- 3ab379b: Fix `useAddressFromName` and `useNameFromAddress` resolving to `undefined` instead of `null`
+- 47c56ba: Add default empty objects to js-pro queries
+- b6c39c8: Allow network specific API keys
+- ff32dd0: Fix missing query keys for useSimulateTransaction
+- 7ebca81: Fix explorer url to accept pathname
+- 1335293: Add README.md
+- ad3bbe0: Export TransactionParser
+- 4fb9cb5: Default queries/mutations to use empty object if possible
+- f57c51a: `useAccountTransactions` will now provide the entryFunction
+- e0374e3: Fix `convertWalletADapterNetworkToNetworkInfo` to use latest URLs for localnet if not provided
+- bcfa4c8: ANS resolution hooks now accept `undefined` `address` or `name`
+- 1b533f3: Add sender to useSimulateTransaction and added more resource types
+- a370ae3: Add TransactionParser to parse UserTransactionResponse's for balance changes
+- 64f547a: Export TransactionParser default
+- 66f17ec: Update dependencies
+- bec94ce: Change default values for queries from undefined to null
+- 66f17ec: Move connectors to separate entry point
+- 364ad41: Add `useEvents` hook
+- e457314: Add new AdapterSignerClient
+- fd5339d: Add paginated fetchUserTransactions query and allow useClients to specify network
+- a6503db: Fix useClients to allow empty objects
+
 ## 0.1.0-beta.18
 
 ### Patch Changes
