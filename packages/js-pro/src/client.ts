@@ -30,7 +30,6 @@ import {
   fetchAccountCollections,
   fetchViewModule,
   fetchLedgerInfo,
-  fetchEvents,
   fetchAccountTransactions,
   fetchAccountTokens,
   fetchUserTransactions,
@@ -323,8 +322,6 @@ export class AptosJSProClient {
   fetchEstimatedGasPrice = fetchEstimatedGasPrice;
 
   fetchViewModule = fetchViewModule;
-
-  fetchEvents = fetchEvents;
 
   fetchUserTransactions = fetchUserTransactions;
 
