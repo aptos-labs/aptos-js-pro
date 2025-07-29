@@ -23,7 +23,7 @@ import AppProviders from "@/context/AppProviders";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jspro.aptos.dev"),
+  metadataBase: new URL("https://js-pro.aptos.dev"),
   title: {
     default: "Aptos JS-Pro",
     template: "%s | Aptos JS-Pro",
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://jspro.aptos.dev",
+    url: "https://js-pro.aptos.dev",
+    images: [{ url: "/og_image.jpeg", width: 1200, height: 630 }],
     siteName: "Aptos JS-Pro",
     title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",
@@ -48,6 +49,7 @@ export const metadata: Metadata = {
     title: "Aptos JS-Pro",
     description: "A collection of opinionated utilities for building on Aptos.",
     creator: "@AptosLabs",
+    images: [{ url: "/og_image.jpeg", width: 1200, height: 630 }],
   },
   appleWebApp: { title: "Aptos JS-Pro" },
   manifest: "/site.webmanifest",
