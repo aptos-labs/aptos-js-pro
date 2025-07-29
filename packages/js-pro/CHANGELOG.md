@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.2
+
+### Patch Changes
+
+- 4d12449: Remove fetchEvents and useEvents queries
+
 ## 0.1.1
 
 ### Patch Changes
