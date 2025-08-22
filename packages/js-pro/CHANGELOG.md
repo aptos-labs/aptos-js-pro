@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.4
+
+### Patch Changes
+
+- bef17ae: Export useAccountTotalTransactions
+
 ## 0.1.3
 
 ### Patch Changes
