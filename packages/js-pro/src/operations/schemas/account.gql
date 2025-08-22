@@ -346,6 +346,14 @@ query getUserTransactions(
   }
 }
 
+query getAccountTotalTransactions($address: String!) {
+  move_resources_aggregate(where: {address: {_eq: $address}}) {
+    aggregate {
+      count
+    }
+  }
+}
+
 query getFungibleAssetMetadata($type: String!) {
   fungible_asset_metadata(where: { asset_type: { _eq: $type } }) {
     asset_type
