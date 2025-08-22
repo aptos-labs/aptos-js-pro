@@ -24,9 +24,9 @@ export const getPairedMetadata = (coinType: string) =>
  */
 export const getPrimaryFungibleStore = (
   accountAddress: string,
-  metadata: string
+  metadata: string,
 ) =>
   createUserDerivedObjectAddress(
     AccountAddress.fromString(accountAddress),
-    metadata
+    metadata,
   ).toStringLong();

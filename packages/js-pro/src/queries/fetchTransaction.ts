@@ -18,7 +18,7 @@ export type FetchTransactionResult = TransactionResponse;
 
 export async function fetchTransaction(
   this: AptosJSProClient,
-  { network, ...params }: FetchTransactionParameters
+  { network, ...params }: FetchTransactionParameters,
 ): Promise<FetchTransactionResult> {
   const { aptos } = this.getClients({ network });
 

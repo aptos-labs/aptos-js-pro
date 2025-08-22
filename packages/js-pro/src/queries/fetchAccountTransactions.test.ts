@@ -22,7 +22,7 @@ describe("fetchAccountTransactions", () => {
     });
 
     const sortedTransactions = transactions.transactions.sort(
-      (a, b) => Number(b.transactionVersion) - Number(a.transactionVersion)
+      (a, b) => Number(b.transactionVersion) - Number(a.transactionVersion),
     );
 
     expect(transactions.transactions).toEqual(sortedTransactions);
@@ -35,7 +35,7 @@ describe("fetchAccountTransactions", () => {
       testnet.fetchAccountTransactions({
         address: "0x1",
         network: { network: Network.CUSTOM },
-      })
+      }),
     ).rejects.toThrowError();
   });
 });

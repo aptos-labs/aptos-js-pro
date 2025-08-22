@@ -20,7 +20,7 @@ describe("fetchAccountCoins", () => {
       testnet.fetchAccountCoins({
         address: AccountAddress.from("0x1").toStringLong(),
         network: { network: Network.CUSTOM },
-      })
+      }),
     ).rejects.toThrowError();
   });
 });

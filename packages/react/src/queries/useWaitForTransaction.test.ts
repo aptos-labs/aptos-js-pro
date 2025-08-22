@@ -10,7 +10,7 @@ test("useWaitForTransaction", async ({ testnet }) => {
   const { result } = renderHook(testnet, () =>
     useWaitForTransaction({
       hash: "0xb119c1b00bc6d37f0af3ef0fe5667634a9d02726dad3f019e58bafef0c62d317",
-    })
+    }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

@@ -36,7 +36,7 @@ function App() {
       onSuccess: () => {
         toast.success("Transaction sent!");
       },
-    }
+    },
   );
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } =

@@ -15,7 +15,7 @@ test("useViewModule", async ({ testnet }) => {
         typeArguments: [],
         functionArguments: [AccountAddress.from("0x1").toString()],
       },
-    })
+    }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

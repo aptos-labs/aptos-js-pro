@@ -29,14 +29,14 @@ export const createWrapper = (core: AptosJSProClient) => {
 export const renderHook = <Result, Props>(
   core: AptosJSProClient,
   render: (props: Props) => Result,
-  options?: RenderHookOptions<Props> | undefined
+  options?: RenderHookOptions<Props> | undefined,
 ): RenderHookResult<Result, Props> => {
   return baseRenderHook(render, { wrapper: createWrapper(core), ...options });
 };
 
 export function waitFor<T>(
   callback: () => Promise<T> | T,
-  options?: waitForOptions | undefined
+  options?: waitForOptions | undefined,
 ): Promise<T> {
   return baseWaitFor(callback, { timeout: 10_000, ...options });
 }

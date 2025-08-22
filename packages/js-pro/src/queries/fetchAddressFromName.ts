@@ -18,13 +18,13 @@ export type FetchAddressFromNameResult = AccountAddress | null;
 
 export async function fetchAddressFromName(
   this: AptosJSProClient,
-  { network, name }: FetchAddressFromNameParameters
+  { network, name }: FetchAddressFromNameParameters,
 ): Promise<FetchAddressFromNameResult> {
   const { aptos } = this.getClients({ network });
 
   const address = await asyncTryOrDefault(
     () => aptos.getTargetAddress({ name: name.toString() }),
-    undefined
+    undefined,
   );
 
   return address ? AccountAddress.from(address) : null;

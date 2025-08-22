@@ -49,7 +49,7 @@ export async function fetchAccountTokens(
     offset = 0,
     orderBy = [],
     where = [],
-  }: FetchAccountTokensParameters
+  }: FetchAccountTokensParameters,
 ): Promise<FetchAccountTokensResult> {
   const { indexer } = this.getClients({ network });
   if (!indexer) throw new IndexerNotInitializedError();

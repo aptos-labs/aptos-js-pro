@@ -37,7 +37,7 @@ describe("signTransaction", async () => {
     testnet.setSigner(undefined);
 
     await expect(
-      testnet.signTransaction({ transaction })
+      testnet.signTransaction({ transaction }),
     ).rejects.toThrowError();
   });
 });

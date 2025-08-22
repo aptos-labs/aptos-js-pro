@@ -8,7 +8,7 @@ import { expect } from "vitest";
 
 test("useResources", async ({ testnet }) => {
   const { result } = renderHook(testnet, () =>
-    useResources({ accountAddress: "0x1" })
+    useResources({ accountAddress: "0x1" }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

@@ -5,7 +5,7 @@ import { getSdk } from "./generated/sdk.js";
 
 export function createIndexerClient(
   endpoint: string,
-  options?: ConstructorParameters<typeof GraphQLClient>[1]
+  options?: ConstructorParameters<typeof GraphQLClient>[1],
 ) {
   const graphqlClient = new GraphQLClient(endpoint, options);
   return getSdk(graphqlClient);

@@ -21,17 +21,17 @@ export type SimulateTransactionResult = UserTransactionResponse;
 
 export async function simulateTransaction(
   this: AptosJSProClient,
-  params: SimulateSimpleTransactionParameters
+  params: SimulateSimpleTransactionParameters,
 ): Promise<SimulateTransactionResult>;
 
 export async function simulateTransaction(
   this: AptosJSProClient,
-  params: SimulateMultiAgentTransactionParameters
+  params: SimulateMultiAgentTransactionParameters,
 ): Promise<SimulateTransactionResult>;
 
 export async function simulateTransaction(
   this: AptosJSProClient,
-  params: SimulateTransactionParameters
+  params: SimulateTransactionParameters,
 ): Promise<SimulateTransactionResult> {
   const { aptos } = this.getClients({ network: params.network });
 

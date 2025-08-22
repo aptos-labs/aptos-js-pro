@@ -36,7 +36,7 @@ describe("buildTransaction", async () => {
           function: "0x1::aptos_account::transfer",
           functionArguments: ["0x1", 100],
         },
-      })
+      }),
     ).rejects.toThrowError();
   });
 });

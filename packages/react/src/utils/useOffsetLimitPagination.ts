@@ -86,7 +86,7 @@ function useOffsetLimitPagination<
     queryFn: (
       context: QueryFunctionContext<TQueryKey, UseOffsetLimitPageParam> & {
         limit?: number;
-      }
+      },
     ) => TQueryFnData | Promise<TQueryFnData>;
   }) {
   return useInfiniteQuery<

@@ -28,7 +28,7 @@ describe("fetchTokenData", () => {
         address:
           "0xc7dfc262666b2d4f74c7e77a64fe21d3b24386628fb780f65522fc2c625819a2",
         network: { network: Network.CUSTOM },
-      })
+      }),
     ).rejects.toThrowError();
   });
 

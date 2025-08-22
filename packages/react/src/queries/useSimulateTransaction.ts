@@ -39,7 +39,7 @@ export const getUseSimulateTransactionQueryKey = (params: {
   data?:
     | InputGenerateTransactionPayloadData
     | ((
-        sender: AccountAddress
+        sender: AccountAddress,
       ) => Promise<InputGenerateTransactionPayloadData>);
   sender?: AccountAddress;
 }) => [
@@ -65,7 +65,7 @@ export type UseSimulateTransactionQueryParameters = Partial<
     data?:
       | InputGenerateTransactionPayloadData
       | ((
-          sender: AccountAddress
+          sender: AccountAddress,
         ) => Promise<InputGenerateTransactionPayloadData>);
     sender?: AccountAddress;
     transactionOptions?: InputGenerateTransactionOptions;
@@ -92,7 +92,7 @@ export function useSimulateTransaction({
 
   const enabled = Boolean(
     (transaction !== undefined || data !== undefined) &&
-      (queryOptions.enabled ?? true)
+      (queryOptions.enabled ?? true),
   );
 
   let secondarySignersPublicKeys: (PublicKey | undefined)[] | undefined;
@@ -120,7 +120,7 @@ export function useSimulateTransaction({
 
       if (transaction && data) {
         throw new SimulationArgumentError(
-          "Cannot provide both `data` and `transaction` into the useSimulateTransaction hook."
+          "Cannot provide both `data` and `transaction` into the useSimulateTransaction hook.",
         );
       }
 
@@ -139,7 +139,7 @@ export function useSimulateTransaction({
 
         if (!activeAddress) {
           throw new SimulationArgumentError(
-            "`sender` must be available when providing `data` to the useSimulateTransaction hook."
+            "`sender` must be available when providing `data` to the useSimulateTransaction hook.",
           );
         }
 
@@ -154,7 +154,7 @@ export function useSimulateTransaction({
         });
       } else {
         throw new SimulationArgumentError(
-          "`data` or `transaction` must be provided to the useSimulateTransaction hook."
+          "`data` or `transaction` must be provided to the useSimulateTransaction hook.",
         );
       }
 

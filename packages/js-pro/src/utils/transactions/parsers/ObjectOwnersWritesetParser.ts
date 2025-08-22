@@ -10,7 +10,7 @@ export class ObjectOwnersWritesetParser extends WritesetParser<
 > {
   override parse(
     context: object & { objectOwners: { [objectAddress: string]: string } },
-    change: WriteSetChange
+    change: WriteSetChange,
   ) {
     if (
       !isWriteResourceChange(change) ||

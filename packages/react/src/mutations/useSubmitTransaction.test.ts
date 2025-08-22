@@ -49,6 +49,6 @@ describe("useSignAndSubmitTransaction", async () => {
       await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
       expect(result.current.data).toBeDefined();
-    }
+    },
   );
 });

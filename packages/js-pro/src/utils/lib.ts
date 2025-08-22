@@ -7,7 +7,7 @@
  */
 export const asyncTryOrDefault = async <T, U>(
   fn: () => T,
-  defaultValue: U
+  defaultValue: U,
 ): Promise<T | U> => {
   try {
     const res = await fn();
@@ -18,7 +18,7 @@ export const asyncTryOrDefault = async <T, U>(
 };
 
 export function shareRequests<TParam extends string | number, TResult>(
-  query: (param: TParam) => Promise<TResult>
+  query: (param: TParam) => Promise<TResult>,
 ) {
   const pendingRequests: { [key: string]: Promise<TResult> } = {};
   return async (param: TParam) => {

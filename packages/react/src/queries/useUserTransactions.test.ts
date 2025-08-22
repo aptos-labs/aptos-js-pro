@@ -12,6 +12,6 @@ test("useUserTransactions", async ({ testnet }) => {
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
   expect(result.current.data?.pages.at(0)?.transactions.length).toBeGreaterThan(
-    0
+    0,
   );
 });

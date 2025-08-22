@@ -22,7 +22,7 @@ export type SignTransactionResult = {
 
 export async function signTransaction(
   this: AptosJSProClient,
-  { network, ...params }: SignTransactionParameters
+  { network, ...params }: SignTransactionParameters,
 ) {
   const { aptos, signer } = this.getClients({ network });
 

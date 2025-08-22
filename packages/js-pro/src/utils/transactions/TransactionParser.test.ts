@@ -87,7 +87,7 @@ describe("TransactionParser", () => {
     }
 
     const result = TransactionParser.getBalanceChanges(
-      TransactionParser.create().parseTransaction(transaction)
+      TransactionParser.create().parseTransaction(transaction),
     );
 
     expect(result).toMatchInlineSnapshot(`

@@ -29,7 +29,7 @@ export type CustomSignerClient = {
       aptos: Aptos;
       transaction: AnyRawTransaction;
       signer?: Account;
-    } & FeePayerOrFeePayerAuthenticatorOrNeither
+    } & FeePayerOrFeePayerAuthenticatorOrNeither,
   ): Promise<TransactionResponse>;
 };
 
@@ -58,7 +58,7 @@ export type AdapterSignerClient = {
         };
       };
       signer?: Account;
-    } & FeePayerOrFeePayerAuthenticatorOrNeither
+    } & FeePayerOrFeePayerAuthenticatorOrNeither,
   ): Promise<TransactionResponse>;
 };
 

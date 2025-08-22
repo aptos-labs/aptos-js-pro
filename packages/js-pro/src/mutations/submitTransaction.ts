@@ -27,7 +27,7 @@ export type SubmitTransactionResult = PendingTransactionResponse;
 
 export async function submitTransaction(
   this: AptosJSProClient,
-  { network, transaction, ...params }: SubmitTransactionParameters
+  { network, transaction, ...params }: SubmitTransactionParameters,
 ): Promise<SubmitTransactionResult> {
   const { aptos } = this.getClients({ network });
 

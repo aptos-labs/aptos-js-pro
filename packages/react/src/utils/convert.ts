@@ -22,7 +22,7 @@ import {
 import { MissingRequiredArgumentError } from "../errors";
 
 export const convertWalletAdapterNetworkToNetworkInfo = (
-  network: WalletAdapterNetworkInfo | null
+  network: WalletAdapterNetworkInfo | null,
 ): JsProNetworkInfo | undefined => {
   if (network === null) return undefined;
   if (network.name === Network.CUSTOM) {
@@ -39,7 +39,7 @@ export const convertWalletAdapterNetworkToNetworkInfo = (
 };
 
 export const convertWalletAdapterAccountToAccountInfo = (
-  account: WalletAdapterAccount | null
+  account: WalletAdapterAccount | null,
 ): JsProAccountInfo | undefined => {
   return account
     ? { address: account.address, publicKey: account.publicKey }
@@ -50,7 +50,7 @@ export const convertWalletAdapterSignerToSigner = (
   signer: Pick<
     WalletContextState,
     "signAndSubmitTransaction" | "signTransaction"
-  > | null
+  > | null,
 ): SignerClient | undefined => {
   return signer
     ? {

@@ -9,7 +9,7 @@ import { describe, expect } from "vitest";
 describe("useTransaction", async () => {
   test("should fetch a transaction by ledger version", async ({ testnet }) => {
     const { result } = renderHook(testnet, () =>
-      useTransaction({ ledgerVersion: 6690814066 })
+      useTransaction({ ledgerVersion: 6690814066 }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
@@ -268,7 +268,7 @@ describe("useTransaction", async () => {
       useTransaction({
         transactionHash:
           "0xfbc9efcfa5600c806631bd5e60e57a58f5d9ad3c5d1fb4c2bf99a3ff5af766ff",
-      })
+      }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

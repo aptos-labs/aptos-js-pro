@@ -18,7 +18,7 @@ export type GetClientsResult = {
 
 export function getClients(
   this: AptosJSProClient,
-  { network: selectedNetwork }: GetClientsParameters = {}
+  { network: selectedNetwork }: GetClientsParameters = {},
 ): GetClientsResult {
   let aptos: Aptos = this.aptos;
   let indexer: Sdk | undefined = this.indexer;

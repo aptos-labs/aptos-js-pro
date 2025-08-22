@@ -48,7 +48,7 @@ export async function fetchAccountCoins(
     offset = 0,
     orderBy,
     where,
-  }: FetchAccountCoinsParameters
+  }: FetchAccountCoinsParameters,
 ): Promise<FetchAccountCoinsResult> {
   const { indexer } = this.getClients({ network });
 
@@ -76,7 +76,7 @@ export async function fetchAccountCoins(
       });
 
       const balances = response.current_fungible_asset_balances.filter(
-        (e) => e.metadata !== undefined && e.metadata !== null
+        (e) => e.metadata !== undefined && e.metadata !== null,
       ) as (FungibleAssetBalanceFieldsFragment & {
         metadata: FungibleAssetMetadataFieldsFragment;
       })[];

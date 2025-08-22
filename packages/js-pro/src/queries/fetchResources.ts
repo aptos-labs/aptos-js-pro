@@ -14,13 +14,13 @@ export type FetchResourcesResult = MoveResource[];
 
 export async function fetchResources(
   this: AptosJSProClient,
-  { network, ...params }: FetchResourcesParameters
+  { network, ...params }: FetchResourcesParameters,
 ): Promise<FetchResourcesResult> {
   const { aptos } = this.getClients({ network });
 
   const result = await asyncTryOrDefault(
     () => aptos.getAccountResources(params),
-    []
+    [],
   );
 
   return result;

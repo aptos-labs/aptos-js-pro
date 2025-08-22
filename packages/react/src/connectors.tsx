@@ -67,7 +67,7 @@ export const useWalletAdapterCore = ({
         network: network ?? defaultNetwork,
         signer,
       }),
-    []
+    [],
   );
 
   // React to the wallet adapter network changing and update the client.
@@ -135,7 +135,7 @@ export const useWalletSignerCore = ({
   const client = useMemo(
     () =>
       new AptosJSProClient({ account: accountInfo, config, network, signer }),
-    []
+    [],
   );
 
   // React to the wallet adapter network changing and update the client.

@@ -15,7 +15,7 @@ export type FetchFungibleAssetMetadataResult = FungibleAssetMetadata | null;
 
 export async function fetchFungibleAssetMetadata(
   this: AptosJSProClient,
-  { network, ...params }: FetchFungibleAssetMetadataParameters
+  { network, ...params }: FetchFungibleAssetMetadataParameters,
 ): Promise<FetchFungibleAssetMetadataResult> {
   const { aptos } = this.getClients({ network });
 

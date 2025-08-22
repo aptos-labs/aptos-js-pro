@@ -8,7 +8,7 @@ import { expect } from "vitest";
 
 test("useFungibleAssetMetadata", async ({ testnet }) => {
   const { result } = renderHook(testnet, () =>
-    useFungibleAssetMetadata({ asset: "0x1::aptos_coin::AptosCoin" })
+    useFungibleAssetMetadata({ asset: "0x1::aptos_coin::AptosCoin" }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

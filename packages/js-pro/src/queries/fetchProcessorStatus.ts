@@ -16,7 +16,7 @@ export type FetchProcessorStatusResult = {
 
 export async function fetchProcessorStatus(
   this: AptosJSProClient,
-  { network, processor }: FetchProcessorStatusParameters
+  { network, processor }: FetchProcessorStatusParameters,
 ): Promise<FetchProcessorStatusResult> {
   const { aptos } = this.getClients({ network });
 

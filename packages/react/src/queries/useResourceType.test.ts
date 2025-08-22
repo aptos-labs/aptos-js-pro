@@ -11,7 +11,7 @@ test("useResourceType", async ({ testnet }) => {
     useResourceType({
       accountAddress: "0x1",
       resourceType: "0x1::account::Account",
-    })
+    }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

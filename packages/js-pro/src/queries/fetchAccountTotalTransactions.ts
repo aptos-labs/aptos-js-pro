@@ -14,7 +14,7 @@ export type FetchAccountTotalTransactionsResult = number;
 
 export async function fetchAccountTotalTransactions(
   this: AptosJSProClient,
-  { address, network }: FetchAccountTotalTransactionsParameters
+  { address, network }: FetchAccountTotalTransactionsParameters,
 ): Promise<FetchAccountTotalTransactionsResult> {
   const { indexer } = this.getClients({ network });
   if (!indexer) throw new IndexerNotInitializedError();

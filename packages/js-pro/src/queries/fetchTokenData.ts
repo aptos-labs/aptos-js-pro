@@ -21,7 +21,7 @@ export type FetchTokenDataResult = TokenData | null;
 
 export async function fetchTokenData(
   this: AptosJSProClient,
-  params: FetchTokenDataParameters
+  params: FetchTokenDataParameters,
 ): Promise<FetchTokenDataResult> {
   const { indexer } = this.getClients({ network: params.network });
 

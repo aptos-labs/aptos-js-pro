@@ -80,7 +80,7 @@ export function useAptosCore(): AptosJSProClientState & {
  * @returns The selected state.
  */
 export function useAptosStateWithSelector<U>(
-  selector: (state: AptosJSProClientState) => U
+  selector: (state: AptosJSProClientState) => U,
 ) {
   const client = useAptosClient();
   return useStore(client.store, selector);

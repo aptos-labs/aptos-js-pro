@@ -108,8 +108,8 @@ export class AptosJSProClient {
           config: params.config,
           network: params.network,
           signer: params.signer,
-        })
-      )
+        }),
+      ),
     );
     this.#aptos = this.createAptos();
     this.#indexer = this.createIndexer();
@@ -168,32 +168,32 @@ export class AptosJSProClient {
   onAccountChange = (callback: (account?: AccountInfo) => void) =>
     this.#store.subscribe(
       (state) => state.account,
-      (account) => callback(account)
+      (account) => callback(account),
     );
 
   onNetworkChange = (callback: (network: NetworkInfo) => void) =>
     this.#store.subscribe(
       (state) => state.network,
-      (network) => callback(network)
+      (network) => callback(network),
     );
 
   onSignerChange = (callback: (signer?: SignerClient) => void) =>
     this.#store.subscribe(
       (state) => state.signer,
-      (signer) => callback(signer)
+      (signer) => callback(signer),
     );
 
   onConfigChange = (callback: (config?: ClientConfigs) => void) =>
     this.#store.subscribe(
       (state) => state.config,
-      (config) => callback(config)
+      (config) => callback(config),
     );
 
   onChange = (callback: (state: AptosJSProClientState) => void) =>
     this.#store.subscribe((state) => callback(state));
 
   createNetworkConfig = (
-    network: NetworkInfo = this.state.network
+    network: NetworkInfo = this.state.network,
   ): AptosSettings => {
     if (network.network === Network.CUSTOM) {
       return {
@@ -215,7 +215,7 @@ export class AptosJSProClient {
    */
   createAptos = (
     clientConfig?: AptosSettings,
-    network: NetworkInfo = this.state.network
+    network: NetworkInfo = this.state.network,
   ) => {
     const { state } = this;
 
@@ -249,12 +249,12 @@ export class AptosJSProClient {
 
   createIndexer = (
     clientConfig?: AptosSettings,
-    network: NetworkInfo = this.state.network
+    network: NetworkInfo = this.state.network,
   ): Sdk | undefined => {
     let indexerUrl: string | undefined;
     try {
       indexerUrl = this.createAptos(clientConfig, network).config.getRequestUrl(
-        AptosApiType.INDEXER
+        AptosApiType.INDEXER,
       );
     } catch {
       /* empty */

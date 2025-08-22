@@ -27,17 +27,17 @@ export type BuildMultiAgentTransactionParameters = WithNetwork<
 
 export async function buildTransaction(
   this: AptosJSProClient,
-  args: BuildMultiAgentTransactionParameters
+  args: BuildMultiAgentTransactionParameters,
 ): Promise<MultiAgentTransaction>;
 
 export async function buildTransaction(
   this: AptosJSProClient,
-  args: BuildSimpleTransactionParameters
+  args: BuildSimpleTransactionParameters,
 ): Promise<SimpleTransaction>;
 
 export async function buildTransaction(
   this: AptosJSProClient,
-  args: BuildSimpleTransactionParameters | BuildMultiAgentTransactionParameters
+  args: BuildSimpleTransactionParameters | BuildMultiAgentTransactionParameters,
 ): Promise<SimpleTransaction | MultiAgentTransaction> {
   const {
     network,

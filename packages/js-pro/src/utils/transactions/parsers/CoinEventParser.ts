@@ -27,7 +27,7 @@ export class CoinEventParser extends EventParser<
     },
     accountAddress: string,
     amount: bigint,
-    opts: { creationNum: string } | { coinType: string }
+    opts: { creationNum: string } | { coinType: string },
   ) {
     let coinType: string;
     if ("creationNum" in opts) {
@@ -56,7 +56,7 @@ export class CoinEventParser extends EventParser<
         [accountAddress: string]: { [coinType: string]: bigint };
       };
     },
-    event: Event
+    event: Event,
   ) {
     switch (event.type) {
       case "0x1::coin::DepositEvent": {

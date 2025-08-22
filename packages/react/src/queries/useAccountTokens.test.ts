@@ -8,7 +8,7 @@ import { expect } from "vitest";
 
 test("useAccountTokens", async ({ testnet }) => {
   const { result } = renderHook(testnet, () =>
-    useAccountTokens({ address: "0x1" })
+    useAccountTokens({ address: "0x1" }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

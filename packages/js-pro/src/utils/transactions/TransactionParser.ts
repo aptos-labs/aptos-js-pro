@@ -44,7 +44,7 @@ export default class TransactionParser<
    */
   constructor(
     public parsers: ValidateParsers<Parsers> & Parsers,
-    initial: ContextOfParsers<Parsers>
+    initial: ContextOfParsers<Parsers>,
   ) {
     this.defaultContext = initial;
   }
@@ -99,7 +99,7 @@ export default class TransactionParser<
         fungibleAssetBalanceChanges: {},
         fungibleAssetStoreMetadata: {},
         objectOwners: {},
-      }
+      },
     );
   }
 
@@ -109,7 +109,7 @@ export default class TransactionParser<
    * asset store.
    */
   static getBalanceChanges(
-    ctx: FungibleAssetEventParserProvides & CoinEventParserProvides
+    ctx: FungibleAssetEventParserProvides & CoinEventParserProvides,
   ) {
     const balanceChanges: {
       [address: string]: {
@@ -129,7 +129,7 @@ export default class TransactionParser<
           coinType,
           faAddress: getPairedMetadata(coinType),
         };
-      })
+      }),
     );
 
     Object.entries(ctx.fungibleAssetBalanceChanges).forEach(
@@ -148,7 +148,7 @@ export default class TransactionParser<
 
           // If the address already has a balance change for this fungible asset, add the delta to it.
           const pairedCoinBalanceChange = Object.entries(
-            balanceChanges[address]
+            balanceChanges[address],
           ).find(([, change]) => change.faAddress === faAddress);
 
           if (pairedCoinBalanceChange) {
@@ -164,7 +164,7 @@ export default class TransactionParser<
               coinType: undefined,
             };
           }
-        })
+        }),
     );
 
     return balanceChanges;

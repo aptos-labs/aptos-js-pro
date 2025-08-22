@@ -8,7 +8,7 @@ import { expect } from "vitest";
 
 test("useAptBalance", async ({ testnet }) => {
   const { result } = renderHook(testnet, () =>
-    useAptBalance({ address: "0x1" })
+    useAptBalance({ address: "0x1" }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

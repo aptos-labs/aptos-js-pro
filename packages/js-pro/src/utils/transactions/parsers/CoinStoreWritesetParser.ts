@@ -22,14 +22,14 @@ export class CoinStoreWritesetParser extends WritesetParser<
     ctx: object & {
       coinEventGuidToCoinType: { [eventGuid: string]: string };
     },
-    change: WriteSetChange
+    change: WriteSetChange,
   ): void {
     if (!isWriteResourceChange(change)) return;
 
     const resource = change.data;
 
     const coinType = resource.type.match(
-      new RegExp(`^0x1::coin::CoinStore<(.+)>$`)
+      new RegExp(`^0x1::coin::CoinStore<(.+)>$`),
     )?.[1];
 
     if (!coinType) return;
@@ -49,11 +49,11 @@ export class CoinStoreWritesetParser extends WritesetParser<
 
     const depositEventGuid = serializeEventGuid(
       coinResourceData.deposit_events.guid.id.addr,
-      coinResourceData.deposit_events.guid.id.creation_num
+      coinResourceData.deposit_events.guid.id.creation_num,
     );
     const withdrawEventGuid = serializeEventGuid(
       coinResourceData.withdraw_events.guid.id.addr,
-      coinResourceData.withdraw_events.guid.id.creation_num
+      coinResourceData.withdraw_events.guid.id.creation_num,
     );
 
     ctx.coinEventGuidToCoinType[depositEventGuid] = coinType;

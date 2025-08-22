@@ -16,7 +16,7 @@ export type FetchAptBalanceResult = bigint;
 
 export async function fetchAptBalance(
   this: AptosJSProClient,
-  { address, network }: FetchAptBalanceParameters
+  { address, network }: FetchAptBalanceParameters,
 ): Promise<FetchAptBalanceResult> {
   const { aptos } = this.getClients({ network });
 

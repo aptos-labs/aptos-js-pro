@@ -12,7 +12,7 @@ test("useAccountCollections", async ({ testnet }) => {
     useAccountCollections({
       address: "0x1",
       orderBy: { collection_id: Order_By.Desc },
-    })
+    }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

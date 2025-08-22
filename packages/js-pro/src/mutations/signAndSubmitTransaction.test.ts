@@ -49,7 +49,7 @@ describe("signAndSubmitTransaction", async () => {
       await devnet.waitForTransaction({ hash: signedTransaction.hash });
 
       expect(signedTransaction).toBeDefined();
-    }
+    },
   );
 
   test.sequential(
@@ -62,7 +62,7 @@ describe("signAndSubmitTransaction", async () => {
       await devnet.waitForTransaction({ hash: signedTransaction.hash });
 
       expect(signedTransaction).toBeDefined();
-    }
+    },
   );
 
   test.sequential(
@@ -87,14 +87,14 @@ describe("signAndSubmitTransaction", async () => {
       await devnet.waitForTransaction({ hash: signedTransaction.hash });
 
       expect(signedTransaction).toBeDefined();
-    }
+    },
   );
 
   test("should throw error if signer is not available", async ({ devnet }) => {
     devnet.setSigner(undefined);
 
     await expect(
-      devnet.signAndSubmitTransaction({ transaction })
+      devnet.signAndSubmitTransaction({ transaction }),
     ).rejects.toThrowError();
   });
 });

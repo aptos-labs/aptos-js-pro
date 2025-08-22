@@ -16,7 +16,7 @@ export class FungibleAssetStoreWritesetParser extends WritesetParser<
     context: object & {
       fungibleAssetStoreMetadata: { [storeAddress: string]: string };
     },
-    change: WriteSetChange
+    change: WriteSetChange,
   ) {
     if (
       !isWriteResourceChange(change) ||
@@ -30,7 +30,7 @@ export class FungibleAssetStoreWritesetParser extends WritesetParser<
     const storeAddress = normalizeAddress(change.address);
     const { metadata } = resource.data as { metadata: { inner: string } };
     context.fungibleAssetStoreMetadata[storeAddress] = normalizeAddress(
-      metadata.inner
+      metadata.inner,
     );
 
     return true;

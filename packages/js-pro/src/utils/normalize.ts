@@ -33,7 +33,7 @@ import { fixBadAptosUri } from "./tokens.js";
 // normalizePrimaryAptosName
 
 export const normalizePrimaryAptosName = (
-  aptosName: PrimaryAptosNameFragment
+  aptosName: PrimaryAptosNameFragment,
 ): AptosName | undefined =>
   aptosName.domain
     ? new AptosName(aptosName.domain, aptosName.subdomain)
@@ -42,7 +42,7 @@ export const normalizePrimaryAptosName = (
 // normalizeFungibleAssetMetadata
 
 export const normalizeFungibleAssetMetadata = (
-  metadata: FungibleAssetMetadataFieldsFragment
+  metadata: FungibleAssetMetadataFieldsFragment,
 ): FungibleAssetMetadata => ({
   assetType: metadata.asset_type,
   creatorAddress: metadata.creator_address,
@@ -59,7 +59,7 @@ export const normalizeFungibleAssetMetadata = (
 export const normalizeFungibleAssetBalances = (
   balances: (FungibleAssetBalanceFieldsFragment & {
     metadata: FungibleAssetMetadataFieldsFragment;
-  })[]
+  })[],
 ): FungibleAssetBalance[] =>
   balances.map(
     (balance) =>
@@ -77,13 +77,13 @@ export const normalizeFungibleAssetBalances = (
         metadata: normalizeFungibleAssetMetadata(balance.metadata),
         ownerAddress: balance.owner_address,
         tokenStandard: balance.token_standard,
-      }) satisfies FungibleAssetBalance
+      }) satisfies FungibleAssetBalance,
   );
 
 // normalizeCollectionData
 
 export const normalizeCollectionData = (
-  collectionData: CollectionDataFieldsFragment
+  collectionData: CollectionDataFieldsFragment,
 ): CollectionData => ({
   cdnImageUri: collectionData.cdn_asset_uris?.cdn_image_uri,
   collectionId: collectionData.collection_id,
@@ -100,7 +100,7 @@ export const normalizeCollectionData = (
 export const normalizeCollectionOwnership = (
   collectionOwnership: CollectionOwnershipFragment & {
     current_collection: CollectionDataFieldsFragment;
-  }
+  },
 ): CollectionData => ({
   ...normalizeCollectionData(collectionOwnership.current_collection),
   distinctTokens: collectionOwnership.distinct_tokens,
@@ -110,7 +110,7 @@ export const normalizeCollectionOwnership = (
 // normalizeTokenData
 
 export const normalizeTokenData = (
-  tokenData: TokenDataFieldsFragment
+  tokenData: TokenDataFieldsFragment,
 ): TokenData => {
   const fixedUri = fixBadAptosUri(tokenData.token_uri);
   return {
@@ -137,7 +137,7 @@ export const normalizeTokenData = (
 // normalizeBaseTokenActivity
 
 export const normalizeBaseTokenActivity = (
-  activity: BaseTokenActivityFragment
+  activity: BaseTokenActivityFragment,
 ): BaseTokenActivity => ({
   fromAddress: activity.from_address,
   toAddress: activity.to_address,
@@ -151,7 +151,7 @@ export const normalizeBaseTokenActivity = (
 // normalizeAccountTransaction
 
 export const normalizeAccountTransaction = (
-  transaction: AccountTransactionFragment
+  transaction: AccountTransactionFragment,
 ): AccountTransaction => {
   const fungibleAssetActivities: FungibleAssetActivity[] = [];
   const tokenActivities: TokenActivity[] = [];
@@ -164,7 +164,7 @@ export const normalizeAccountTransaction = (
         ...e,
         asset_type: e.asset_type,
         metadata: e.metadata,
-      })
+      }),
     );
   });
 
@@ -174,12 +174,12 @@ export const normalizeAccountTransaction = (
       normalizeTokenActivity({
         ...e,
         current_token_data: e.current_token_data,
-      })
+      }),
     );
   });
 
   transaction.delegated_staking_activities.forEach((e) =>
-    delegatedStakingActivities.push(normalizeDelegatedStakingActivity(e))
+    delegatedStakingActivities.push(normalizeDelegatedStakingActivity(e)),
   );
 
   return {
@@ -204,7 +204,7 @@ export const normalizeFungibleAssetActivity = (
   activity: FungibleAssetActivityFragment & {
     asset_type: string;
     metadata: FungibleAssetMetadataFieldsFragment;
-  }
+  },
 ): FungibleAssetActivity => ({
   ownerAddress: activity.owner_address,
   ownerPrimaryAptosName: activity.owner_primary_aptos_name.at(0)
@@ -229,7 +229,7 @@ export const normalizeFungibleAssetActivity = (
 export const normalizeTokenActivity = (
   activity: TokenActivityFragment & {
     current_token_data: TokenDataFieldsFragment;
-  }
+  },
 ): TokenActivity => ({
   ...normalizeBaseTokenActivity(activity),
   primaryAptosNameFrom: activity.primary_aptos_name_from.at(0)
@@ -247,7 +247,7 @@ export const normalizeTokenActivity = (
 // normalizeDelegatedStakingActivity
 
 export const normalizeDelegatedStakingActivity = (
-  activity: DelegatedStakingActivityFragment
+  activity: DelegatedStakingActivityFragment,
 ): DelegatedStakingActivity => ({
   delegatorAddress: activity.delegator_address,
   eventIndex: activity.event_index,
@@ -260,7 +260,7 @@ export const normalizeDelegatedStakingActivity = (
 // normalizeUserTransaction
 
 export const normalizeUserTransaction = (
-  transaction: UserTransactionFragment
+  transaction: UserTransactionFragment,
 ): UserTransaction => ({
   entryFunction: transaction.entry_function_id_str,
   expirationTimestampSecs: transaction.expiration_timestamp_secs,

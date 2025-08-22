@@ -62,7 +62,7 @@ export function useTransaction({
       }
 
       throw new MissingRequiredArgumentError(
-        "ledgerVersion or transactionHash"
+        "ledgerVersion or transactionHash",
       );
     },
     ...queryOptions,

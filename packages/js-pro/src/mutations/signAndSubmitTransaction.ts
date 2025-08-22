@@ -28,7 +28,7 @@ export type SignAndSubmitTransactionResult = TransactionResponse;
 
 export async function signAndSubmitTransaction(
   this: AptosJSProClient,
-  params: SignAndSubmitTransactionParameters
+  params: SignAndSubmitTransactionParameters,
 ): Promise<SignAndSubmitTransactionResult> {
   const { aptos, signer } = this.getClients({ network: params.network });
   if (!signer) throw new SignerNotFoundError();

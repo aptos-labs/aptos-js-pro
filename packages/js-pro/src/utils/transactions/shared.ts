@@ -9,7 +9,7 @@ import {
 } from "@aptos-labs/ts-sdk";
 
 export function isWriteResourceChange(
-  change: WriteSetChange
+  change: WriteSetChange,
 ): change is WriteSetChangeWriteResource {
   return change.type === "write_resource";
 }
@@ -30,7 +30,7 @@ export function normalizeAddress(address: AccountAddressInput) {
  */
 export function serializeEventGuid(
   creatorAddress: AccountAddressInput,
-  creationNum: string
+  creationNum: string,
 ) {
   return `${normalizeAddress(creatorAddress)}_${creationNum}`;
 }

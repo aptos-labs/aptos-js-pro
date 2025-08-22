@@ -19,7 +19,7 @@ import { sha3_256 } from "@noble/hashes/sha3";
  */
 export const createUserDerivedObjectAddress = (
   source: AccountAddressInput,
-  object: AccountAddressInput
+  object: AccountAddressInput,
 ): AccountAddress => {
   const sourceBytes = AccountAddress.from(source).bcsToBytes();
 

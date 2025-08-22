@@ -27,8 +27,8 @@ describe("fetchAccountTokens", () => {
       tokens.tokens.filter(
         (token) =>
           token.collectionId ===
-          "0x63d26a4e3a8aeececf9b878e46bad78997fb38e50936efeabb2c4453f4d7f746"
-      ).length
+          "0x63d26a4e3a8aeececf9b878e46bad78997fb38e50936efeabb2c4453f4d7f746",
+      ).length,
     ).toEqual(tokens.tokens.length);
   });
 
@@ -70,7 +70,7 @@ describe("fetchAccountTokens", () => {
     const tokens = await testnet.fetchAccountTokens({ address: "0x1" });
 
     expect(tokens.tokens.every((token) => token.isSoulbound === false)).toBe(
-      true
+      true,
     );
   });
 
@@ -81,7 +81,7 @@ describe("fetchAccountTokens", () => {
       testnet.fetchAccountTokens({
         address: "0x1",
         network: { network: Network.CUSTOM },
-      })
+      }),
     ).rejects.toThrowError();
   });
 });

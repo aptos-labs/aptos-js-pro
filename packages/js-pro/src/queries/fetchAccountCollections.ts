@@ -47,7 +47,7 @@ export async function fetchAccountCollections(
     orderBy = [],
     where = [],
     ...params
-  }: FetchAccountCollectionsParameters
+  }: FetchAccountCollectionsParameters,
 ): Promise<FetchAccountCollectionsResult> {
   const { indexer } = this.getClients({ network });
   if (!indexer) throw new IndexerNotInitializedError();
@@ -76,7 +76,7 @@ export async function fetchAccountCollections(
         if (!collection.current_collection) return;
 
         collections.push(
-          normalizeCollectionData(collection.current_collection)
+          normalizeCollectionData(collection.current_collection),
         );
       });
 

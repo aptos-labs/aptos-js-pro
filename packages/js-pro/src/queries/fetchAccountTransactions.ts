@@ -67,7 +67,7 @@ export async function fetchAccountTransactions(
     tokenActivitiesWhere = [],
     fungibleAssetActivitiesOrderBy = [],
     tokenActivitiesOrderBy = [],
-  }: FetchAccountTransactionsParameters
+  }: FetchAccountTransactionsParameters,
 ): Promise<FetchAccountTransactionsResult> {
   const { indexer } = this.getClients({ network });
   if (!indexer) throw new IndexerNotInitializedError();
@@ -96,7 +96,7 @@ export async function fetchAccountTransactions(
       return {
         hasNextPage: response.account_transactions.length === limit,
         transactions: response.account_transactions.map(
-          normalizeAccountTransaction
+          normalizeAccountTransaction,
         ),
       };
     },

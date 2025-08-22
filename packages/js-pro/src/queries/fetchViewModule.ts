@@ -13,7 +13,7 @@ export type FetchViewModuleResult<T extends Array<MoveValue>> = T;
 
 export async function fetchViewModule<T extends Array<MoveValue>>(
   this: AptosJSProClient,
-  params: FetchViewModuleParameters
+  params: FetchViewModuleParameters,
 ): Promise<FetchViewModuleResult<T>> {
   const { aptos } = this.getClients({ network: params.network });
 

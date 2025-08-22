@@ -5,14 +5,14 @@ import { Account } from "@aptos-labs/ts-sdk";
 import { AccountInfo, SignerClient } from "../types";
 
 export const convertAptosAccountToAccountInfo = (
-  account: Account | undefined
+  account: Account | undefined,
 ): AccountInfo | undefined =>
   account
     ? { address: account.accountAddress, publicKey: account.publicKey }
     : undefined;
 
 export const convertAptosAccountToSigner = (
-  account: Account | undefined
+  account: Account | undefined,
 ): SignerClient | undefined =>
   account
     ? {
@@ -25,7 +25,7 @@ export const convertAptosAccountToSigner = (
         signTransaction: async ({ signer, transaction }) => ({
           rawTransaction: transaction.rawTransaction.bcsToBytes(),
           authenticator: (signer ?? account).signTransactionWithAuthenticator(
-            transaction
+            transaction,
           ),
         }),
       }

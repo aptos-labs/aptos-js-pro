@@ -47,15 +47,15 @@ describe("submitTransaction", async () => {
             generateSignedTransaction({
               senderAuthenticator: signedTransaction.authenticator,
               transaction,
-            })
-          )
+            }),
+          ),
         ),
       });
 
       await devnet.waitForTransaction(pendingTransaction);
 
       expect(pendingTransaction).toBeDefined();
-    }
+    },
   );
 
   test.sequential(
@@ -82,6 +82,6 @@ describe("submitTransaction", async () => {
       await devnet.waitForTransaction(pendingTransaction);
 
       expect(pendingTransaction).toBeDefined();
-    }
+    },
   );
 });

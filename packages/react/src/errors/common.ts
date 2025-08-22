@@ -11,7 +11,7 @@ export class ClientContextMissingError extends AptosReactBaseError {
       {
         longMessage:
           "Make sure to wrap your application with AptosJSCoreProvider to use Aptos React hooks.",
-      }
+      },
     );
   }
 }

@@ -60,7 +60,6 @@ export default function CodeExamples({ options }: CodeExamplesProps) {
               exit={{ opacity: 0, translateX: 10, filter: "blur(8px)" }}
               transition={{ duration: 0.25 }}
               className=" font-mono text-sm bg-card [&>pre]:!bg-transparent [&>pre]:p-4 [&>pre]:px-8 [&_code]:break-all md:max-h-[50vh] overflow-scroll"
-              // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
               dangerouslySetInnerHTML={{
                 __html: options.at(selectedIndex)?.code ?? "",
               }}

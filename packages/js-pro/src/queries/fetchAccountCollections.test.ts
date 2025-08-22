@@ -41,7 +41,7 @@ describe("fetchAccountCollections", () => {
       testnet.fetchAccountCollections({
         address: "0x1",
         network: { network: Network.CUSTOM },
-      })
+      }),
     ).rejects.toThrowError();
   });
 });

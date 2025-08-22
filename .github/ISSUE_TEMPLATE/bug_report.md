@@ -1,9 +1,9 @@
 ---
 name: "\U0001F41B Bug report"
 about: Create a bug report to help improve Aptos JS-Pro
-title: '[Bug]'
+title: "[Bug]"
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 # 🐛 Bug

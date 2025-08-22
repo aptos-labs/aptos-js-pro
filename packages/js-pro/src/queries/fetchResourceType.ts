@@ -62,7 +62,7 @@ export async function fetchResourceType<T extends string | object>(
     network,
     accountAddress,
     ...params
-  }: FetchResourceTypeParameters<T extends object ? string : T & string>
+  }: FetchResourceTypeParameters<T extends object ? string : T & string>,
 ): Promise<
   FetchResourceTypeResult<ExtractResourceData<T>, GetResourceTypeString<T>>
 > {

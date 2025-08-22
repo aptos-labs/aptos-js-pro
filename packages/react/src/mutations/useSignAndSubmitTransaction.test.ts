@@ -43,7 +43,7 @@ describe("useSignAndSubmitTransaction", async () => {
       devnet.setSigner(convertAptosAccountToSigner(account));
 
       const { result } = renderHook(devnet, () =>
-        useSignAndSubmitTransaction()
+        useSignAndSubmitTransaction(),
       );
 
       result.current.signAndSubmitTransaction({
@@ -53,6 +53,6 @@ describe("useSignAndSubmitTransaction", async () => {
       await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
       expect(result.current.data).toBeDefined();
-    }
+    },
   );
 });

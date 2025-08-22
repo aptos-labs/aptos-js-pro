@@ -21,7 +21,7 @@ export type WaitForTransactionResult = CommittedTransactionResponse;
 
 export async function waitForTransaction(
   this: AptosJSProClient,
-  { network, ...params }: WaitForTransactionParameters
+  { network, ...params }: WaitForTransactionParameters,
 ): Promise<WaitForTransactionResult> {
   const { aptos } = this.getClients({ network });
 

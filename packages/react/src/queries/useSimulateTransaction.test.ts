@@ -33,7 +33,7 @@ describe("useSimulateTransaction", async () => {
     });
 
     const { result } = renderHook(devnet, () =>
-      useSimulateTransaction({ transaction })
+      useSimulateTransaction({ transaction }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
@@ -50,7 +50,7 @@ describe("useSimulateTransaction", async () => {
           function: "0x1::aptos_account::transfer",
           functionArguments: [account.accountAddress, 100],
         },
-      })
+      }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
@@ -71,7 +71,7 @@ describe("useSimulateTransaction", async () => {
         },
         sender: account.accountAddress,
         secondarySignersPublicKeys: [account2.publicKey],
-      })
+      }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

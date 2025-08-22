@@ -15,7 +15,7 @@ describe("fetchUserTransactions", () => {
     testnet,
   }) => {
     await expect(
-      testnet.fetchUserTransactions({ network: { network: Network.CUSTOM } })
+      testnet.fetchUserTransactions({ network: { network: Network.CUSTOM } }),
     ).rejects.toThrowError();
   });
 });

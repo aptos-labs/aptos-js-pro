@@ -23,7 +23,7 @@ export class FungibleAssetEventParser extends EventParser<
     context: FungibleAssetEventParserRequiredContext &
       FungibleAssetEventParserProvides,
     storeAddress: string,
-    amount: bigint
+    amount: bigint,
   ) {
     const ownerAddress = context.objectOwners[storeAddress];
     const assetAddress = context.fungibleAssetStoreMetadata[storeAddress];
@@ -50,14 +50,14 @@ export class FungibleAssetEventParser extends EventParser<
   override parse(
     context: FungibleAssetEventParserRequiredContext &
       FungibleAssetEventParserProvides,
-    event: Event
+    event: Event,
   ) {
     switch (event.type) {
       case "0x1::fungible_asset::Deposit": {
         this.applyChange(
           context,
           normalizeAddress(event.data.store),
-          BigInt(event.data.amount)
+          BigInt(event.data.amount),
         );
         return true;
       }
@@ -65,7 +65,7 @@ export class FungibleAssetEventParser extends EventParser<
         this.applyChange(
           context,
           normalizeAddress(event.data.store),
-          -BigInt(event.data.amount)
+          -BigInt(event.data.amount),
         );
         return true;
       }
