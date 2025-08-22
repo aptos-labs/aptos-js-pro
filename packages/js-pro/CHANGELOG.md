@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.3
+
+### Patch Changes
+
+- c741de9: Add fetchAccountTotalTransactions
+
 ## 0.1.2
 
 ### Patch Changes
