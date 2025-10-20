@@ -68,7 +68,7 @@
     "@vitest/browser": "^3.1.2",
     "dotenv": "^16.5.0",
     "happy-dom": "^17.4.4",
-    "playwright": "^1.52.0",
+    "playwright": "^1.55.1",
     "tsup": "^8.4.0",
     "vitest": "^3.1.2"
   },
