@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import { defineConfig } from "vitest/config";
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: "../../.env" });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 export default defineConfig({
   test: {

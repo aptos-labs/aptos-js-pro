@@ -24,4 +24,3 @@ export * from "./useTransaction.js";
 export * from "./useViewModule.js";
 export * from "./useWaitForTransaction.js";
 export * from "./useUserTransactions.js";
-export * from "./useAccountTotalTransactions.js";

@@ -5,7 +5,7 @@ import { test } from "../../tests/fixtures";
 import { AccountAddress } from "@aptos-labs/ts-sdk";
 
 const address =
-  "0x7d6d3185db27c43ceb54c61779aa3e5b8ec9e236e3d00c527d4a049c86637a7e";
+  "0xfb385da49059a1a0617f085eddeeb67ef2b0f4d0ca0b3e324f36af35650351fa";
 
 describe("fetchAddressFromName", () => {
   test("should fetch the address from the name", async ({ testnet }) => {
@@ -13,7 +13,7 @@ describe("fetchAddressFromName", () => {
       address: AccountAddress.from(address),
     });
 
-    expect(name?.toString()).toMatchInlineSnapshot(`"genericlongname.apt"`);
+    expect(name?.toString()).toMatchInlineSnapshot(`"rasa.apt"`);
   });
 
   test("should return null if the name is not found", async ({ testnet }) => {

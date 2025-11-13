@@ -20,4 +20,3 @@ export * from "./fetchFungibleAssetMetadata.js";
 export * from "./fetchAccountTransactions.js";
 export * from "./fetchAccountTokens.js";
 export * from "./fetchUserTransactions.js";
-export * from "./fetchAccountTotalTransactions.js";

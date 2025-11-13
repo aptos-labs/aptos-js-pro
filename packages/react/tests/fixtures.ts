@@ -21,18 +21,9 @@ export function setupClient(args: Partial<AptosJSProClientParameters> = {}) {
     ...args,
     config: {
       apiKey: {
-        devnet:
-          process.env.APTOS_DEVNET_API_KEY !== undefined
-            ? process.env.APTOS_DEVNET_API_KEY
-            : undefined,
-        testnet:
-          process.env.APTOS_TESTNET_API_KEY !== undefined
-            ? process.env.APTOS_TESTNET_API_KEY
-            : undefined,
-        mainnet:
-          process.env.APTOS_MAINNET_API_KEY !== undefined
-            ? process.env.APTOS_MAINNET_API_KEY
-            : undefined,
+        devnet: process.env.APTOS_DEVNET_API_KEY,
+        testnet: process.env.APTOS_TESTNET_API_KEY,
+        mainnet: process.env.APTOS_MAINNET_API_KEY,
       },
       ...args.config,
     },

@@ -128,17 +128,6 @@ query getTokenData($address: String!) {
   }
 }
 
-query getActivitiesAggregate($account_address: String!) {
-  address_events_summary(
-    where: { account_address: { _eq: $account_address } }
-  ) {
-    block_metadata {
-      timestamp
-    }
-    num_distinct_versions
-  }
-}
-
 query getTokenActivities($tokenId: String!, $offset: Int, $limit: Int) {
   token_activities_v2(
     where: { token_data_id: { _eq: $tokenId } }
@@ -343,14 +332,6 @@ query getUserTransactions(
     order_by: $order_by
   ) {
     ...UserTransaction
-  }
-}
-
-query getAccountTotalTransactions($address: String!) {
-  move_resources_aggregate(where: {address: {_eq: $address}}) {
-    aggregate {
-      count
-    }
   }
 }
 

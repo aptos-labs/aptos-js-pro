@@ -11,7 +11,7 @@ test("useProcessorStatus", async ({ devnet }) => {
   const { result } = renderHook(devnet, () =>
     useProcessorStatus({
       processor: ProcessorType.USER_TRANSACTION_PROCESSOR,
-    }),
+    })
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
