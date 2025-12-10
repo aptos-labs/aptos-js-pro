@@ -1,6 +1,6 @@
 {
   "name": "@aptos-labs/react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React library for Aptos applications.",
   "license": "Apache-2.0",
   "repository": {
