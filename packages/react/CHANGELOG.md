@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.5
+
+### Patch Changes
+
+- 4bde6b4: Fix useSimulateTransaction to respect server time
+- Updated dependencies [4bde6b4]
+  - @aptos-labs/js-pro@0.1.5
+
 ## 0.1.4
 
 ### Patch Changes
