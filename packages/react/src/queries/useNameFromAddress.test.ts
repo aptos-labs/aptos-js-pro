@@ -16,5 +16,5 @@ test("useNameForAddress", async ({ testnet }) => {
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
-  expect(result.current.data?.toString()).toMatchInlineSnapshot(`"rasa.apt"`);
+  expect(result.current.data?.toString()).toMatchInlineSnapshot(`"fasterandmorefuriouser.apt"`);
 });

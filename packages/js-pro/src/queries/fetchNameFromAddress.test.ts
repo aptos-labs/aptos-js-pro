@@ -13,7 +13,7 @@ describe("fetchAddressFromName", () => {
       address: AccountAddress.from(address),
     });
 
-    expect(name?.toString()).toMatchInlineSnapshot(`"rasa.apt"`);
+    expect(name?.toString()).toMatchInlineSnapshot(`"fasterandmorefuriouser.apt"`);
   });
 
   test("should return null if the name is not found", async ({ testnet }) => {
