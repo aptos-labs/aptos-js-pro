@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.7
+
+### Patch Changes
+
+- fe317bd: Bump ts-sdk version
+
 ## 0.1.6
 
 ### Patch Changes
