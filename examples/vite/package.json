@@ -12,7 +12,7 @@
   "dependencies": {
     "@aptos-labs/js-pro": "workspace:*",
     "@aptos-labs/react": "workspace:*",
-    "@aptos-labs/ts-sdk": "^2.0.0",
+    "@aptos-labs/ts-sdk": "^5.1.2",
     "@aptos-labs/wallet-adapter-react": "^6.0.2",
     "@radix-ui/react-collapsible": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.13",

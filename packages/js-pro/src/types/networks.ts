@@ -17,5 +17,7 @@ export type NetworkInfo =
         | Network.MAINNET
         | Network.DEVNET
         | Network.TESTNET
-        | Network.LOCAL;
+        | Network.LOCAL
+        | Network.SHELBYNET
+        | Network.NETNA;
     };

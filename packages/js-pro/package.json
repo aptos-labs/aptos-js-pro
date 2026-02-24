@@ -44,11 +44,12 @@
     "zustand": "^5.0.3"
   },
   "peerDependencies": {
-    "@aptos-labs/ts-sdk": ">=1.35.0",
+    "@aptos-labs/ts-sdk": ">=5.1.2",
     "typescript": ">=5.0.4"
   },
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
+    "@aptos-labs/ts-sdk": "^5.1.2",
     "@graphql-codegen/add": "^5.0.3",
     "@graphql-codegen/cli": "^5.0.5",
     "@graphql-codegen/import-types-preset": "^3.0.0",
