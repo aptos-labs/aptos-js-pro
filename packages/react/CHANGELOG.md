@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.6
+
+### Patch Changes
+
+- 59e4818: Bump wallet adapter version support
+- Updated dependencies [59e4818]
+  - @aptos-labs/js-pro@0.1.6
+
 ## 0.1.5
 
 ### Patch Changes

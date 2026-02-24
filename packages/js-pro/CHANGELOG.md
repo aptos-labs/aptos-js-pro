@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.6
+
+### Patch Changes
+
+- 59e4818: Bump wallet adapter version support
+
 ## 0.1.5
 
 ### Patch Changes
