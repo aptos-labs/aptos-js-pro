@@ -1,6 +1,6 @@
 {
   "name": "@aptos-labs/js-pro",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "State management and library of utilities for Aptos applications.",
   "license": "Apache-2.0",
   "repository": {

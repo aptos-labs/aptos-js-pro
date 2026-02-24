@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.7
+
+### Patch Changes
+
+- fe317bd: Bump ts-sdk version
+- Updated dependencies [fe317bd]
+  - @aptos-labs/js-pro@0.1.7
+
 ## 0.1.6
 
 ### Patch Changes
