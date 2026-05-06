@@ -45,7 +45,7 @@
   },
   "peerDependencies": {
     "@aptos-labs/js-pro": "workspace:*",
-    "@aptos-labs/ts-sdk": ">=5.1.2",
+    "@aptos-labs/ts-sdk": ">=6.0.0",
     "@aptos-labs/wallet-adapter-react": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "@tanstack/react-query": ">=5.0.0",
     "react": "^18.0.0 || ^19.0.0",
@@ -60,8 +60,8 @@
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
     "@aptos-labs/js-pro": "workspace:*",
-    "@aptos-labs/wallet-adapter-react": "^8.3.0",
-    "@aptos-labs/ts-sdk": "^5.1.2",
+    "@aptos-labs/ts-sdk": "^6.3.1",
+    "@aptos-labs/wallet-adapter-react": "^8.3.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.2",
