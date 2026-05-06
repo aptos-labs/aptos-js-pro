@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 0.1.8
+
+### Patch Changes
+
+- b0edf1c: Bump package support to `@aptos-labs/ts-sdk` v6.
+
 ## 0.1.7
 
 ### Patch Changes
