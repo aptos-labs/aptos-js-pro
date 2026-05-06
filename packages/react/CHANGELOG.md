@@ -1,5 +1,13 @@
 # @aptos-labs/react
 
+## 0.1.8
+
+### Patch Changes
+
+- b0edf1c: Bump package support to `@aptos-labs/ts-sdk` v6.
+- Updated dependencies [b0edf1c]
+  - @aptos-labs/js-pro@0.1.8
+
 ## 0.1.7
 
 ### Patch Changes
