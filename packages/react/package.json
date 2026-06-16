@@ -66,7 +66,7 @@
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "@vitest/browser": "^4.0.17",
+    "@vitest/browser": "^4.1.8",
     "dotenv": "^16.5.0",
     "happy-dom": "^20.3.1",
     "playwright": "^1.57.0",
