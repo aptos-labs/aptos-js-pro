@@ -29,7 +29,7 @@
     "sonner": "^1.7.4",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.1",
-    "vite-plugin-node-polyfills": "^0.25.0"
+    "vite-plugin-node-polyfills": "0.28.0"
   },
   "devDependencies": {
     "@aptos-labs/eslint-config-petra": "workspace:*",
