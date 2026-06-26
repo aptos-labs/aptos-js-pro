@@ -9,6 +9,15 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 export default defineConfig({
   test: {
     environment: "happy-dom",
+    environmentOptions: {
+      happyDOM: {
+        settings: {
+          fetch: {
+            disableSameOriginPolicy: true,
+          },
+        },
+      },
+    },
     coverage: {
       include: ["src/**/**.ts"],
       exclude: ["src/index.ts", "src/operations", "src/types"],
