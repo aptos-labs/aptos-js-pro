@@ -18,7 +18,7 @@ export const config = [
   {
     name: "petra-custom-rules",
     plugins: { headers },
-    ignores: ["**/dist/**"],
+    ignores: ["**/dist/**", "**/vite-env.d.ts"],
     rules: {
       "headers/header-format": [
         "error",

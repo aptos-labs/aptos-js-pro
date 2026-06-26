@@ -7,7 +7,7 @@ export default defineConfig((options) => ({
   entry: ["./src/index.ts", "./src/connectors.tsx"],
   splitting: false,
   sourcemap: true,
-  format: ["cjs", "esm"],
+  format: ["esm"],
   clean: !options.watch,
   minify: !options.watch,
   onSuccess: "tsc --project tsconfig.build.json",
