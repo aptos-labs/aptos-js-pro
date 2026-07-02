@@ -9,19 +9,16 @@
     "directory": "packages/react"
   },
   "homepage": "https://js-pro.aptos.dev/",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "default": "./dist/index.mjs"
     },
     "./connectors": {
       "types": "./dist/connectors.d.ts",
-      "import": "./dist/connectors.mjs",
-      "require": "./dist/connectors.js"
+      "default": "./dist/connectors.mjs"
     }
   },
   "files": [
