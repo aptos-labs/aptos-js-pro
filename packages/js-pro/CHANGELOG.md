@@ -1,5 +1,11 @@
 # @aptos-labs/js-pro
 
+## 1.0.0
+
+### Major Changes
+
+- 5716f58: Make published packages ESM-only with `"type": "module"`, remove CommonJS `require` export conditions, and replace tsup with native `tsc` builds.
+
 ## 0.1.8
 
 ### Patch Changes
