@@ -7,7 +7,7 @@ import {
   InputGenerateTransactionPayloadData,
 } from "@aptos-labs/ts-sdk";
 import { beforeAll, describe, expect } from "vitest";
-import { setupClient, test } from "../../tests/fixtures";
+import { setupClient, test, fundTestAccount, DEVNET_TEST_FUND_AMOUNT } from "../../tests/fixtures";
 import { convertAptosAccountToSigner } from "@aptos-labs/js-pro";
 import { renderHook, waitFor } from "../../tests/utils";
 import { useSignTransaction } from "./useSignTransaction";
@@ -21,10 +21,7 @@ describe("useSignTransaction", async () => {
   beforeAll(async () => {
     const devnet = setupClient();
 
-    await devnet.aptos.fundAccount({
-      accountAddress: account.accountAddress,
-      amount: 1000000000,
-    });
+    await fundTestAccount(devnet.aptos, account.accountAddress, DEVNET_TEST_FUND_AMOUNT);
 
     data = {
       function: "0x1::aptos_account::transfer",

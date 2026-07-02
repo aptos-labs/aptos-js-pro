@@ -1,7 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import { beforeAll, describe, expect } from "vitest";
-import { setupClient, test } from "../../tests/fixtures";
+import { setupClient, test, fundTestAccount, DEVNET_TEST_FUND_AMOUNT, DEVNET_TEST_TX_OPTIONS } from "../../tests/fixtures";
 import {
   AnyRawTransaction,
   Account,
@@ -22,10 +22,7 @@ describe("signAndSubmitTransaction", async () => {
   beforeAll(async () => {
     const devnet = setupClient();
 
-    await devnet.aptos.fundAccount({
-      accountAddress: account.accountAddress,
-      amount: 1000000000,
-    });
+    await fundTestAccount(devnet.aptos, account.accountAddress, DEVNET_TEST_FUND_AMOUNT);
 
     data = {
       function: "0x1::aptos_account::transfer",
@@ -35,6 +32,7 @@ describe("signAndSubmitTransaction", async () => {
     transaction = await devnet.buildTransaction({
       data,
       sender: account.accountAddress,
+      options: DEVNET_TEST_TX_OPTIONS,
     });
   });
 
@@ -58,7 +56,10 @@ describe("signAndSubmitTransaction", async () => {
       devnet.setSigner(convertAptosAccountToSigner(account));
       devnet.setAccount(convertAptosAccountToAccountInfo(account));
 
-      const signedTransaction = await devnet.signAndSubmitTransaction({ data });
+      const signedTransaction = await devnet.signAndSubmitTransaction({
+        data,
+        options: DEVNET_TEST_TX_OPTIONS,
+      });
       await devnet.waitForTransaction({ hash: signedTransaction.hash });
 
       expect(signedTransaction).toBeDefined();
@@ -77,13 +78,17 @@ describe("signAndSubmitTransaction", async () => {
             transaction: await aptos.transaction.build.simple({
               sender: account.accountAddress,
               data: payload.data,
+              options: DEVNET_TEST_TX_OPTIONS,
             }),
           });
         },
       } as AdapterSignerClient);
       devnet.setAccount(convertAptosAccountToAccountInfo(account));
 
-      const signedTransaction = await devnet.signAndSubmitTransaction({ data });
+      const signedTransaction = await devnet.signAndSubmitTransaction({
+        data,
+        options: DEVNET_TEST_TX_OPTIONS,
+      });
       await devnet.waitForTransaction({ hash: signedTransaction.hash });
 
       expect(signedTransaction).toBeDefined();
