@@ -5,19 +5,19 @@ import {
   AnyParser,
   ContextOfParsers,
   ValidateParsers,
-} from "../../types/parsers";
-import { getPairedMetadata } from "../fungibleAssets";
+} from "../../types/parsers.js";
+import { getPairedMetadata } from "../fungibleAssets.js";
 import {
   CoinEventParser,
   CoinEventParserProvides,
-} from "./parsers/CoinEventParser";
-import { CoinStoreWritesetParser } from "./parsers/CoinStoreWritesetParser";
+} from "./parsers/CoinEventParser.js";
+import { CoinStoreWritesetParser } from "./parsers/CoinStoreWritesetParser.js";
 import {
   FungibleAssetEventParser,
   FungibleAssetEventParserProvides,
-} from "./parsers/FungibleAssetEventParser";
-import { FungibleAssetStoreWritesetParser } from "./parsers/FungibleAssetStoreWritesetParser";
-import { ObjectOwnersWritesetParser } from "./parsers/ObjectOwnersWritesetParser";
+} from "./parsers/FungibleAssetEventParser.js";
+import { FungibleAssetStoreWritesetParser } from "./parsers/FungibleAssetStoreWritesetParser.js";
+import { ObjectOwnersWritesetParser } from "./parsers/ObjectOwnersWritesetParser.js";
 
 export default class TransactionParser<
   Parsers extends readonly AnyParser[] = readonly AnyParser[],

@@ -9,16 +9,17 @@
     "directory": "packages/react"
   },
   "homepage": "https://js-pro.aptos.dev/",
-  "main": "./dist/index.mjs",
+  "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "default": "./dist/index.js"
     },
     "./connectors": {
       "types": "./dist/connectors.d.ts",
-      "default": "./dist/connectors.mjs"
+      "default": "./dist/connectors.js"
     }
   },
   "files": [
@@ -30,8 +31,8 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "dev": "tsc --project tsconfig.build.json --watch",
     "lint": "eslint --cache ./src",
     "lint:fix": "eslint --cache ./src --fix",
     "test": "vitest run --coverage",
@@ -67,7 +68,6 @@
     "dotenv": "^16.6.1",
     "happy-dom": "^20.10.6",
     "playwright": "^1.61.1",
-    "tsup": "^8.5.1",
     "vitest": "^4.1.9"
   },
   "keywords": [

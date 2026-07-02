@@ -3,4 +3,4 @@
 "@aptos-labs/react": major
 ---
 
-Make published packages ESM-only by removing CommonJS `require` export conditions and aligning package exports with ESM build output.
+Make published packages ESM-only with `"type": "module"`, remove CommonJS `require` export conditions, and replace tsup with native `tsc` builds.

@@ -1,8 +1,8 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import type { WriteSetChange } from "@aptos-labs/ts-sdk";
-import { isWriteResourceChange, serializeEventGuid } from "../shared";
-import { WritesetParser } from "../../../types/parsers";
+import { isWriteResourceChange, serializeEventGuid } from "../shared.js";
+import { WritesetParser } from "../../../types/parsers.js";
 
 /**
  * Parser for mapping a coin event guid to its coin type.

@@ -3,6 +3,7 @@
 
 export * from "./accounts.js";
 export * from "./networks.js";
+export * from "./parameters.js";
 export * from "./signers.js";
 export * from "./resources.js";
 export * from "./tokens.js";

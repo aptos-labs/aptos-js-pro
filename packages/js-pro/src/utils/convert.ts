@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Account } from "@aptos-labs/ts-sdk";
-import { AccountInfo, SignerClient } from "../types";
+import { AccountInfo, SignerClient } from "../types/index.js";
 
 export const convertAptosAccountToAccountInfo = (
   account: Account | undefined,
