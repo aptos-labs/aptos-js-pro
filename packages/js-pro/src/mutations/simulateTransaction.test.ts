@@ -1,7 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import { beforeAll, describe, expect } from "vitest";
-import { setupClient, test } from "../../tests/fixtures";
+import { setupClient, test, fundTestAccount, DEVNET_TEST_FUND_AMOUNT, DEVNET_TEST_TX_OPTIONS } from "../../tests/fixtures";
 import { Account } from "@aptos-labs/ts-sdk";
 import { convertAptosAccountToAccountInfo } from "../utils";
 
@@ -12,10 +12,7 @@ describe("simulateTransaction", async () => {
   beforeAll(async () => {
     const devnet = setupClient();
 
-    await devnet.aptos.fundAccount({
-      accountAddress: account.accountAddress,
-      amount: 1000000000,
-    });
+    await fundTestAccount(devnet.aptos, account.accountAddress, DEVNET_TEST_FUND_AMOUNT);
   });
 
   test("should simulate a simple transaction", async ({ devnet }) => {
@@ -26,6 +23,7 @@ describe("simulateTransaction", async () => {
         function: "0x1::aptos_account::transfer",
         functionArguments: [account.accountAddress, 100],
       },
+      options: DEVNET_TEST_TX_OPTIONS,
     });
 
     const result = await devnet.simulateTransaction({ transaction });
@@ -43,6 +41,7 @@ describe("simulateTransaction", async () => {
       },
       sender: account.accountAddress,
       secondarySignerAddresses: [account2.accountAddress],
+      options: DEVNET_TEST_TX_OPTIONS,
     });
 
     const result = await devnet.simulateTransaction({
