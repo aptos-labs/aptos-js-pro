@@ -13,3 +13,4 @@ public/dist
 .turbo
 .eslintcache
 coverage
+.idea/

@@ -1,8 +1,8 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import type { WriteSetChange } from "@aptos-labs/ts-sdk";
-import { isWriteResourceChange, normalizeAddress } from "../shared";
-import { WritesetParser } from "../../../types/parsers";
+import { isWriteResourceChange, normalizeAddress } from "../shared.js";
+import { WritesetParser } from "../../../types/parsers.js";
 
 /**
  * Parse changes in fungible stores and populate a map of the store addresses to the contained asset's metadata address.

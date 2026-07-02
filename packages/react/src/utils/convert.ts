@@ -19,7 +19,7 @@ import {
   NetworkToPepperAPI,
   NetworkToProverAPI,
 } from "@aptos-labs/ts-sdk";
-import { MissingRequiredArgumentError } from "../errors";
+import { MissingRequiredArgumentError } from "../errors/index.js";
 
 export const convertWalletAdapterNetworkToNetworkInfo = (
   network: WalletAdapterNetworkInfo | null,

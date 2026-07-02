@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils";
 import { type MotionProps, motion } from "motion/react";
 import type React from "react";
 
-interface AuroraTextProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps> {
+interface AuroraTextProps extends Omit<
+  React.HTMLAttributes<HTMLElement>,
+  keyof MotionProps
+> {
   className?: string;
   children: React.ReactNode;
   as?: React.ElementType;

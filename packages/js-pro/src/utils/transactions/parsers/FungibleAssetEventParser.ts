@@ -1,8 +1,8 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 import type { Event } from "@aptos-labs/ts-sdk";
-import { normalizeAddress } from "../shared";
-import { EventParser } from "../../../types/parsers";
+import { normalizeAddress } from "../shared.js";
+import { EventParser } from "../../../types/parsers.js";
 
 export type FungibleAssetEventParserRequiredContext = {
   fungibleAssetStoreMetadata: { [storeAddress: string]: string };

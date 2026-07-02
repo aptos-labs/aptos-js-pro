@@ -1,7 +1,7 @@
 // Copyright © Aptos
 // SPDX-License-Identifier: Apache-2.0
 
-import { WithNetwork } from "../../../js-pro/dist/types/parameters.js";
+import { WithNetwork } from "@aptos-labs/js-pro";
 import { useAptosCore } from "../AptosJSCoreProvider.js";
 
 export type UseClientsParameters = WithNetwork<object>;

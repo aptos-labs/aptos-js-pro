@@ -31,7 +31,7 @@ describe("useSimulateTransaction", async () => {
     });
 
     const { result } = renderHook(devnet, () =>
-      useSimulateTransaction({ transaction })
+      useSimulateTransaction({ transaction }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
@@ -50,7 +50,7 @@ describe("useSimulateTransaction", async () => {
           functionArguments: [account.accountAddress, 100],
         },
         transactionOptions: DEVNET_TEST_TX_OPTIONS,
-      })
+      }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
@@ -73,7 +73,7 @@ describe("useSimulateTransaction", async () => {
         sender: account.accountAddress,
         secondarySignersPublicKeys: [account2.publicKey],
         transactionOptions: DEVNET_TEST_TX_OPTIONS,
-      })
+      }),
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBeTruthy());

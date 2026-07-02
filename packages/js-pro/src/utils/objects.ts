@@ -5,7 +5,7 @@ import {
   AccountAddressInput,
   DeriveScheme,
 } from "@aptos-labs/ts-sdk";
-import { sha3_256 } from "@noble/hashes/sha3";
+import { sha3_256 } from "@noble/hashes/sha3.js";
 
 /**
  * Deterministically derives an object address from the source address and

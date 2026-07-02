@@ -11,7 +11,7 @@ describe("fetchAddressFromName", () => {
     const address = await testnet.fetchAddressFromName({ name });
 
     expect(address?.toString()).toMatchInlineSnapshot(
-      `"0xfb385da49059a1a0617f085eddeeb67ef2b0f4d0ca0b3e324f36af35650351fa"`
+      `"0xfb385da49059a1a0617f085eddeeb67ef2b0f4d0ca0b3e324f36af35650351fa"`,
     );
   });
 
