@@ -3,7 +3,7 @@
 
 import { Account } from "@aptos-labs/ts-sdk";
 import { beforeAll, describe, expect } from "vitest";
-import { setupClient, test } from "../../tests/fixtures";
+import { setupClient, test, fundTestAccount, DEVNET_TEST_FUND_AMOUNT, DEVNET_TEST_TX_OPTIONS } from "../../tests/fixtures";
 import {
   convertAptosAccountToAccountInfo,
   convertAptosAccountToSigner,
@@ -17,10 +17,7 @@ describe("useSignAndSubmitTransaction", async () => {
   beforeAll(async () => {
     const devnet = setupClient();
 
-    await devnet.aptos.fundAccount({
-      accountAddress: account.accountAddress,
-      amount: 1000000000,
-    });
+    await fundTestAccount(devnet.aptos, account.accountAddress, DEVNET_TEST_FUND_AMOUNT);
   });
 
   test.sequential(
@@ -37,6 +34,7 @@ describe("useSignAndSubmitTransaction", async () => {
           functionArguments: [account.accountAddress, 100],
         },
         sender: account.accountAddress,
+        options: DEVNET_TEST_TX_OPTIONS,
       });
 
       const signedTransaction = await devnet.signTransaction({ transaction });

@@ -188,6 +188,7 @@ test("useWaitForTransaction", async ({ testnet }) => {
       "state_checkpoint_hash": null,
       "success": true,
       "timestamp": "1719839333100588",
+      "txn_limits_request": null,
       "type": "user_transaction",
       "version": "2614808448",
       "vm_status": "Executed successfully",

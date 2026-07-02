@@ -3,7 +3,7 @@
 
 import { Account } from "@aptos-labs/ts-sdk";
 import { beforeAll, describe, expect } from "vitest";
-import { setupClient, test } from "../../tests/fixtures";
+import { setupClient, test, fundTestAccount, DEVNET_TEST_FUND_AMOUNT, DEVNET_TEST_TX_OPTIONS } from "../../tests/fixtures";
 import { convertAptosAccountToAccountInfo } from "@aptos-labs/js-pro";
 import { waitFor } from "../../tests/utils";
 import { renderHook } from "../../tests/utils";
@@ -16,10 +16,7 @@ describe("useSimulateTransaction", async () => {
   beforeAll(async () => {
     const devnet = setupClient();
 
-    await devnet.aptos.fundAccount({
-      accountAddress: account.accountAddress,
-      amount: 1000000000,
-    });
+    await fundTestAccount(devnet.aptos, account.accountAddress, DEVNET_TEST_FUND_AMOUNT);
   });
 
   test("should simulate a simple transaction", async ({ devnet }) => {
@@ -30,6 +27,7 @@ describe("useSimulateTransaction", async () => {
         function: "0x1::aptos_account::transfer",
         functionArguments: [account.accountAddress, 100],
       },
+      options: DEVNET_TEST_TX_OPTIONS,
     });
 
     const { result } = renderHook(devnet, () =>
@@ -51,6 +49,7 @@ describe("useSimulateTransaction", async () => {
           function: "0x1::aptos_account::transfer",
           functionArguments: [account.accountAddress, 100],
         },
+        transactionOptions: DEVNET_TEST_TX_OPTIONS,
       }),
     );
 
@@ -73,6 +72,7 @@ describe("useSimulateTransaction", async () => {
         },
         sender: account.accountAddress,
         secondarySignersPublicKeys: [account2.publicKey],
+        transactionOptions: DEVNET_TEST_TX_OPTIONS,
       }),
     );
 
