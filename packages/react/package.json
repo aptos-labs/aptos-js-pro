@@ -68,7 +68,7 @@
     "dotenv": "^16.6.1",
     "happy-dom": "^20.10.6",
     "playwright": "^1.61.1",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   },
   "keywords": [
     "aptos",
