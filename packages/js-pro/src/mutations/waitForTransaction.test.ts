@@ -3,37 +3,43 @@
 import { expect } from "vitest";
 import { test } from "../../tests/fixtures";
 
-test("waitForTransaction", async ({ testnet }) => {
-  const transactionResult = await testnet.waitForTransaction({
-    hash: "0xb119c1b00bc6d37f0af3ef0fe5667634a9d02726dad3f019e58bafef0c62d317",
+const ARCHIVE_MAINNET_FULLNODE = "https://archive.mainnet.aptoslabs.com/v1";
+
+test("waitForTransaction", async ({ mainnet }) => {
+  mainnet.setConfig({
+    ...mainnet.state.config,
+    aptos: { config: { fullnode: ARCHIVE_MAINNET_FULLNODE } },
+  });
+  const transactionResult = await mainnet.waitForTransaction({
+    hash: "0xf0f67d76af475864eec20f4243f8284f6d1cd1236c6704788f6a24464264d00c",
   });
 
   expect(transactionResult).toMatchInlineSnapshot(`
     {
-      "accumulator_root_hash": "0x1b723bc3da72e5b7671d943e59001e72a38d61efe4dbc3af213788055d14735e",
+      "accumulator_root_hash": "0x113da5ca52ea764d00c54977cdd97f11afbb8febaf156852c7e23201c3b9c98f",
       "changes": [
         {
-          "address": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+          "address": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
           "data": {
             "data": {
               "coin": {
-                "value": "33565350",
+                "value": "377302800",
               },
               "deposit_events": {
-                "counter": "1",
+                "counter": "100069",
                 "guid": {
                   "id": {
-                    "addr": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+                    "addr": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
                     "creation_num": "2",
                   },
                 },
               },
               "frozen": false,
               "withdraw_events": {
-                "counter": "0",
+                "counter": "107203",
                 "guid": {
                   "id": {
-                    "addr": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+                    "addr": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
                     "creation_num": "3",
                   },
                 },
@@ -41,29 +47,29 @@ test("waitForTransaction", async ({ testnet }) => {
             },
             "type": "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>",
           },
-          "state_key_hash": "0x19f8e83c8badb2efb9853947a28e980713439e0a2352382737cf7e34ac58483f",
+          "state_key_hash": "0x8ed999a98e464ae1ec13123cb878c63a71989239f2aefbd7661e4900cb05e76c",
           "type": "write_resource",
         },
         {
-          "address": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+          "address": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
           "data": {
             "data": {
-              "authentication_key": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+              "authentication_key": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
               "coin_register_events": {
-                "counter": "2",
+                "counter": "5",
                 "guid": {
                   "id": {
-                    "addr": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+                    "addr": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
                     "creation_num": "0",
                   },
                 },
               },
-              "guid_creation_num": "6",
+              "guid_creation_num": "12",
               "key_rotation_events": {
                 "counter": "0",
                 "guid": {
                   "id": {
-                    "addr": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+                    "addr": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
                     "creation_num": "1",
                   },
                 },
@@ -73,7 +79,7 @@ test("waitForTransaction", async ({ testnet }) => {
                   "vec": [],
                 },
               },
-              "sequence_number": "19892",
+              "sequence_number": "213544",
               "signer_capability_offer": {
                 "for": {
                   "vec": [],
@@ -82,51 +88,39 @@ test("waitForTransaction", async ({ testnet }) => {
             },
             "type": "0x1::account::Account",
           },
-          "state_key_hash": "0x0424b7bbf5327ea2927b509b910640db60598f83640fcf2be82cf66ed72c16a6",
+          "state_key_hash": "0xa7cb4fad2c34f52ff426c43b9330603f0a003b02693705a3520637276478c299",
           "type": "write_resource",
         },
         {
-          "address": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
+          "address": "0xf008a23b120630ee8503ef4f7e7cf51f84da0858f332d889287f4983fdfdfb4a",
           "data": {
             "data": {
-              "bonus": "0",
-              "claimed_rewards": false,
-              "equipment_bonus": "0",
-              "gloves": {
-                "vec": [],
+              "coin": {
+                "value": "100900",
               },
-              "hat": {
-                "vec": [],
+              "deposit_events": {
+                "counter": "2",
+                "guid": {
+                  "id": {
+                    "addr": "0xf008a23b120630ee8503ef4f7e7cf51f84da0858f332d889287f4983fdfdfb4a",
+                    "creation_num": "2",
+                  },
+                },
               },
-              "next_milestone_index": "3",
-              "pet": {
-                "vec": [],
-              },
-              "plays": "18609",
-              "task_points": "0",
-            },
-            "type": "0xe20af97eaaf8cc006c397b75afb8da4806b944b8b30e5c47e259f2f23a1e2ddd::tapos_game_2::Player",
-          },
-          "state_key_hash": "0xf547bb85b4971d3e01321c853e9a21fdd0a1bf407324500a335a5166dddaa07d",
-          "type": "write_resource",
-        },
-        {
-          "address": "0xe20af97eaaf8cc006c397b75afb8da4806b944b8b30e5c47e259f2f23a1e2ddd",
-          "data": {
-            "data": {
-              "next_milestone": "1329510000",
-              "total_bonus": {
-                "max_value": "18446744073709551615",
-                "value": "0",
-              },
-              "total_transactions": {
-                "max_value": "18446744073709551615",
-                "value": "1329463070",
+              "frozen": false,
+              "withdraw_events": {
+                "counter": "1",
+                "guid": {
+                  "id": {
+                    "addr": "0xf008a23b120630ee8503ef4f7e7cf51f84da0858f332d889287f4983fdfdfb4a",
+                    "creation_num": "3",
+                  },
+                },
               },
             },
-            "type": "0xe20af97eaaf8cc006c397b75afb8da4806b944b8b30e5c47e259f2f23a1e2ddd::tapos_game_2::CurrentGame",
+            "type": "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>",
           },
-          "state_key_hash": "0xf4ff17aad712e383b34df996e2f3b2b3e5c3f5c170750c8ec1ca8e79d23bcf05",
+          "state_key_hash": "0x5e5e34448e75e3094b550d8a9e656dcc880b919db1538f0ff0412bc4873fe176",
           "type": "write_resource",
         },
         {
@@ -135,18 +129,40 @@ test("waitForTransaction", async ({ testnet }) => {
           "key": "0x0619dc29a0aac8fa146714058e8dd6d2d0f3bdf5f6331907bf91f3acd81e6935",
           "state_key_hash": "0x6e4b28d40f98a106a65163530924c0dcb40c1349d3aa915d108b4d6cfc1ddb19",
           "type": "write_table_item",
-          "value": "0x24dda2599879a5940100000000000000",
+          "value": "0x8fe44b2afa0298010000000000000000",
         },
       ],
-      "event_root_hash": "0x91d233f7235399cf448a872a161758f850babb9020b8a24dc76a5af640bb8dfb",
+      "event_root_hash": "0x5351cc43b446576780b1eaa2346fa30853461a798e911f88a670eb64cd299c00",
       "events": [
         {
           "data": {
-            "execution_gas_units": "4",
-            "io_gas_units": "4",
+            "amount": "100000",
+          },
+          "guid": {
+            "account_address": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
+            "creation_number": "3",
+          },
+          "sequence_number": "107202",
+          "type": "0x1::coin::WithdrawEvent",
+        },
+        {
+          "data": {
+            "amount": "100000",
+          },
+          "guid": {
+            "account_address": "0xf008a23b120630ee8503ef4f7e7cf51f84da0858f332d889287f4983fdfdfb4a",
+            "creation_number": "2",
+          },
+          "sequence_number": "1",
+          "type": "0x1::coin::DepositEvent",
+        },
+        {
+          "data": {
+            "execution_gas_units": "5",
+            "io_gas_units": "6",
             "storage_fee_octas": "0",
             "storage_fee_refund_octas": "0",
-            "total_charge_gas_units": "8",
+            "total_charge_gas_units": "11",
           },
           "guid": {
             "account_address": "0x0",
@@ -156,34 +172,35 @@ test("waitForTransaction", async ({ testnet }) => {
           "type": "0x1::transaction_fee::FeeStatement",
         },
       ],
-      "expiration_timestamp_secs": "1719839352",
+      "expiration_timestamp_secs": "1744922725",
       "gas_unit_price": "100",
-      "gas_used": "8",
-      "hash": "0xb119c1b00bc6d37f0af3ef0fe5667634a9d02726dad3f019e58bafef0c62d317",
-      "max_gas_amount": "50000",
+      "gas_used": "11",
+      "hash": "0xf0f67d76af475864eec20f4243f8284f6d1cd1236c6704788f6a24464264d00c",
+      "max_gas_amount": "1000",
       "payload": {
         "arguments": [
-          true,
+          "0xf008a23b120630ee8503ef4f7e7cf51f84da0858f332d889287f4983fdfdfb4a",
+          "100000",
         ],
-        "function": "0xe20af97eaaf8cc006c397b75afb8da4806b944b8b30e5c47e259f2f23a1e2ddd::tapos_game_2::play",
+        "function": "0x1::aptos_account::transfer",
         "type": "entry_function_payload",
         "type_arguments": [],
       },
       "replay_protection_nonce": null,
-      "sender": "0x98d84c2387fc01dfc4752f36b29adb4a4956cd1f45945ed2a0fa5a06dd3d174b",
-      "sequence_number": "19891",
+      "sender": "0xbd03f6ccb723a48d7ad7329918e400060f029c613ab9365534684be6b5b514dc",
+      "sequence_number": "213543",
       "signature": {
-        "public_key": "0x1d2c423122d67eed0776ed0dda3b4a385d9c4822467004f4e7f777bc1da87ba8",
-        "signature": "0x955996033a22507d2af47d436fb85403134928ffc516a7d869e988e5ee2fe2dfdd1f0ed884c4bb8a3bf3ff7cf757c4fc3e23aee782d49b506a8debb2e5cd000c",
+        "public_key": "0xf811372f0d9409e786da2d7a9b87e6fcdf5efd70c03f864327abdd8837e553e3",
+        "signature": "0xa4617274d89c16e242e7d4978fb47c682ac39c5c848d02e2522b4b31ce24104eb25a5ebd0f07ae8f819fc5452c95fdfd785a7b9a9a86185e6af5c5b3bb983b01",
         "type": "ed25519_signature",
       },
-      "state_change_hash": "0xc8e733bbab76c835cb47f4cf2b630b159eb919593ee9f71d850476905c4d8b76",
+      "state_change_hash": "0x75f11dd94216282004251fc2f5b69576d0a5b5321792f3bbb3b4dca0601adf36",
       "state_checkpoint_hash": null,
       "success": true,
-      "timestamp": "1719839333100588",
+      "timestamp": "1744922705338910",
       "txn_limits_request": null,
       "type": "user_transaction",
-      "version": "2614808448",
+      "version": "2617328349",
       "vm_status": "Executed successfully",
     }
   `);

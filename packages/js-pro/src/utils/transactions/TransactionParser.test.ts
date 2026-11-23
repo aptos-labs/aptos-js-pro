@@ -5,8 +5,14 @@ import { test } from "../../../tests/fixtures";
 import TransactionParser from "./TransactionParser";
 import { TransactionResponseType } from "@aptos-labs/ts-sdk";
 
+const ARCHIVE_MAINNET_FULLNODE = "https://archive.mainnet.aptoslabs.com/v1";
+
 describe("TransactionParser", () => {
   test("should parse a transaction", async ({ mainnet }) => {
+    mainnet.setConfig({
+      ...mainnet.state.config,
+      aptos: { config: { fullnode: ARCHIVE_MAINNET_FULLNODE } },
+    });
     const transaction = await mainnet.fetchTransaction({
       ledgerVersion: 2617328349,
     });
@@ -43,6 +49,10 @@ describe("TransactionParser", () => {
   test("should parse a transaction with fungible asset changes", async ({
     mainnet,
   }) => {
+    mainnet.setConfig({
+      ...mainnet.state.config,
+      aptos: { config: { fullnode: ARCHIVE_MAINNET_FULLNODE } },
+    });
     const transaction = await mainnet.fetchTransaction({
       ledgerVersion: 2617328168,
     });
@@ -78,6 +88,10 @@ describe("TransactionParser", () => {
   test("should parse a transaction for coin balance changes", async ({
     mainnet,
   }) => {
+    mainnet.setConfig({
+      ...mainnet.state.config,
+      aptos: { config: { fullnode: ARCHIVE_MAINNET_FULLNODE } },
+    });
     const transaction = await mainnet.fetchTransaction({
       ledgerVersion: 2617328168,
     });

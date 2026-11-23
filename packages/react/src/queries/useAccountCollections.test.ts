@@ -7,8 +7,8 @@ import { test } from "../../tests/fixtures";
 import { expect } from "vitest";
 import { Order_By } from "@aptos-labs/js-pro";
 
-test("useAccountCollections", async ({ testnet }) => {
-  const { result } = renderHook(testnet, () =>
+test("useAccountCollections", async ({ mainnet }) => {
+  const { result } = renderHook(mainnet, () =>
     useAccountCollections({
       address: "0x1",
       orderBy: { collection_id: Order_By.Desc },
@@ -17,5 +17,7 @@ test("useAccountCollections", async ({ testnet }) => {
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
-  expect(result.current.data?.pages.length).toBeGreaterThan(0);
+  expect(result.current.data?.pages.at(0)?.collections.length).toBeGreaterThan(
+    0,
+  );
 });

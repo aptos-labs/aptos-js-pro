@@ -4,19 +4,19 @@ import { describe, expect } from "vitest";
 import { test } from "../../tests/fixtures";
 import { AptosName } from "../utils";
 
-const name = new AptosName("rasa.apt");
+const name = new AptosName("altair.apt");
 
 describe("fetchAddressFromName", () => {
-  test("should fetch the address from the name", async ({ testnet }) => {
-    const address = await testnet.fetchAddressFromName({ name });
+  test("should fetch the address from the name", async ({ mainnet }) => {
+    const address = await mainnet.fetchAddressFromName({ name });
 
     expect(address?.toString()).toMatchInlineSnapshot(
-      `"0xfb385da49059a1a0617f085eddeeb67ef2b0f4d0ca0b3e324f36af35650351fa"`,
+      `"0xf06bc1c13514ae9fee4f57c3cdafadbbdf30d720827c1458beb7a123a0b7b49b"`,
     );
   });
 
-  test("should return null if the name is not found", async ({ testnet }) => {
-    const address = await testnet.fetchAddressFromName({
+  test("should return null if the name is not found", async ({ mainnet }) => {
+    const address = await mainnet.fetchAddressFromName({
       name: new AptosName("dkwajldbwajkdwjadnwajdwajnda.apt"),
     });
 

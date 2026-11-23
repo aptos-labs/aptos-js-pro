@@ -5,8 +5,8 @@ import { test } from "../../tests/fixtures";
 import { Network } from "@aptos-labs/ts-sdk";
 
 describe("fetchAccountTokens", () => {
-  test("should fetch the account tokens", async ({ testnet }) => {
-    const tokens = await testnet.fetchAccountTokens({
+  test("should fetch the account tokens", async ({ mainnet }) => {
+    const tokens = await mainnet.fetchAccountTokens({
       address: "0x1",
       where: {},
     });
@@ -15,14 +15,15 @@ describe("fetchAccountTokens", () => {
   });
 
   test("should fetch the account tokens with a collection id", async ({
-    testnet,
+    mainnet,
   }) => {
-    const tokens = await testnet.fetchAccountTokens({
+    const tokens = await mainnet.fetchAccountTokens({
       address: "0x1",
       collectionId:
         "0x63d26a4e3a8aeececf9b878e46bad78997fb38e50936efeabb2c4453f4d7f746",
     });
 
+    expect(tokens.tokens.length).toBeGreaterThan(0);
     expect(
       tokens.tokens.filter(
         (token) =>

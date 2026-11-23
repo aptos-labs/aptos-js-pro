@@ -6,15 +6,15 @@ import { useNameFromAddress } from "./useNameFromAddress";
 import { test } from "../../tests/fixtures";
 import { expect } from "vitest";
 
-test("useNameForAddress", async ({ testnet }) => {
-  const { result } = renderHook(testnet, () =>
+test("useNameForAddress", async ({ mainnet }) => {
+  const { result } = renderHook(mainnet, () =>
     useNameFromAddress({
       address:
-        "0xfb385da49059a1a0617f085eddeeb67ef2b0f4d0ca0b3e324f36af35650351fa",
+        "0xf06bc1c13514ae9fee4f57c3cdafadbbdf30d720827c1458beb7a123a0b7b49b",
     }),
   );
 
   await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
 
-  expect(result.current.data?.toString()).toMatchInlineSnapshot(`"rasa.apt"`);
+  expect(result.current.data?.toString()).toMatchInlineSnapshot(`"altair.apt"`);
 });
