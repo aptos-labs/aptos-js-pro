@@ -6,8 +6,8 @@ import { useAccountTokens } from "./useAccountTokens";
 import { test } from "../../tests/fixtures";
 import { expect } from "vitest";
 
-test("useAccountTokens", async ({ testnet }) => {
-  const { result } = renderHook(testnet, () =>
+test("useAccountTokens", async ({ mainnet }) => {
+  const { result } = renderHook(mainnet, () =>
     useAccountTokens({ address: "0x1" }),
   );
 

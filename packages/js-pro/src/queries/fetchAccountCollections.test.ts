@@ -6,8 +6,8 @@ import { Network } from "@aptos-labs/ts-sdk";
 import { Order_By } from "../operations";
 
 describe("fetchAccountCollections", () => {
-  test("should fetch the account collections", async ({ testnet }) => {
-    const collections = await testnet.fetchAccountCollections({
+  test("should fetch the account collections", async ({ mainnet }) => {
+    const collections = await mainnet.fetchAccountCollections({
       address: "0x1",
       orderBy: { collection_id: Order_By.Desc },
     });
