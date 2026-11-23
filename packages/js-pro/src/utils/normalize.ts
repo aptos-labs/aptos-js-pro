@@ -42,7 +42,16 @@ export const normalizePrimaryAptosName = (
 // normalizeFungibleAssetMetadata
 
 export const normalizeFungibleAssetMetadata = (
-  metadata: FungibleAssetMetadataFieldsFragment,
+  metadata: Omit<
+    FungibleAssetMetadataFieldsFragment,
+    "icon_uri" | "project_uri" | "supply_v2" | "maximum_v2"
+  > &
+    Partial<
+      Pick<
+        FungibleAssetMetadataFieldsFragment,
+        "icon_uri" | "project_uri" | "supply_v2" | "maximum_v2"
+      >
+    >,
 ): FungibleAssetMetadata => ({
   assetType: metadata.asset_type,
   creatorAddress: metadata.creator_address,

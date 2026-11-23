@@ -25,10 +25,13 @@ const config: CodegenConfig = {
       config: { scalars: typesScalars },
     },
     "src/operations/generated/operations.ts": {
-      preset: "import-types-preset",
-      presetConfig: { typesPath: "./types.js" },
       plugins: ["typescript-operations"],
-      config: { scalars: operationsScalars },
+      config: {
+        scalars: operationsScalars,
+        importSchemaTypesFrom: "src/operations/generated/types.ts",
+        importExtension: ".js",
+        enumType: "native",
+      },
     },
     "src/operations/generated/sdk.ts": {
       preset: "import-types-preset",
